@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import { LineChart, Pie } from "../components";
 import { earningData } from "../data/dummy";
