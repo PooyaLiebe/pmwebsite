@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./start.css";
+import './start.css'
 
 function Start() {
   const navigate = useNavigate();
@@ -36,9 +37,7 @@ function Start() {
               onClick={() => {
                 navigate("/login");
               }}
-              className="w-full h-[50px] bg-[#fff] border-[none] 
-              outline-[none] rounded-[40px] [box-shadow:0_0_10px_rgba(0,_0,_0,_0.1)] 
-              cursor-pointer text-[16px] text-[#333] font-bold mt-[45px] mx-[0] mb-[15px]"
+              className="login-button"
             >
               PM
             </button>
@@ -59,7 +58,7 @@ function Start() {
               onClick={() => {
                 navigate("/operatorlogin");
               }}
-              className="w-full h-[50px] bg-[#fff] border-[none] 
+              className="w-full h-[50px] bg-[#259617] border-[none] 
               outline-[none] rounded-[40px] [box-shadow:0_0_10px_rgba(0,_0,_0,_0.1)] 
               cursor-pointer text-[16px] text-[#333] font-bold mt-[45px] mx-[0] mb-[15px]"
             >
