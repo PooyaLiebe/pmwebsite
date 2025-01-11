@@ -26,7 +26,7 @@ function SubmitForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://preventivepm.netlify.app/submitform", values)
+      .post("http://localhost:3000/submitform", values)
       .then((result) => {
         if (result.data.Status) {
           navigate("/submitform");

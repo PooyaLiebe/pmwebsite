@@ -9,7 +9,7 @@ import cors from "cors";
 const app = express();
 
 const corsOptions = {
-  origin: "https://preventivepm.netlify.app",
+  origin: "http://localhost:5173",
   credentials: true,
 };
 
