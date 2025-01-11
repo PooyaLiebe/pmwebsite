@@ -29,7 +29,7 @@ function SubmitForm() {
       .post("http://localhost:3000/submitform", values)
       .then((result) => {
         if (result.data.Status) {
-          navigate("/dashboard");
+          navigate("/submitform");
           alert("فرم با موفقیت ثبت شد");
         } else {
           alert(result.data.Error);
@@ -80,7 +80,9 @@ function SubmitForm() {
                   >
                     <option value="Chipper">Chipper</option>
                     <option value="Conveyor Line">Conveyor Line</option>
-                    <option value="Dryer & Air Grader">Dryer & Air Grader</option>
+                    <option value="Dryer & Air Grader">
+                      Dryer & Air Grader
+                    </option>
                     <option value="Refiner">Refiner</option>
                     <option value="Before Press">Before Press</option>
                     <option value="Press">Press</option>
@@ -187,7 +189,9 @@ function SubmitForm() {
                     <option value="پایش وضعیت(غیر برنامهای)">
                       پایش وضعیت(غیر برنامه ای)
                     </option>
-                    <option value="آماده سازی برای تعمیرات">آماده سازی برای تعمیر</option>
+                    <option value="آماده سازی برای تعمیرات">
+                      آماده سازی برای تعمیر
+                    </option>
                     <option value="خدمات عمومی">خدمات عمومی</option>
                   </select>
                 </div>
@@ -206,7 +210,9 @@ function SubmitForm() {
                     <option value="درخواست اپراتور">درخواست اپراتور</option>
                     <option value="درخواست واحد نت">درخواست واحد نت</option>
                     <option value="گزارش واحد ایمنی">گزارش واحد ایمنی</option>
-                    <option value="آماده سازی برای تعمیر">آماده سازی برای تعمیر</option>
+                    <option value="آماده سازی برای تعمیر">
+                      آماده سازی برای تعمیر
+                    </option>
                     <option value="خدمات عمومی">خدمات عمومی</option>
                   </select>
                 </div>
