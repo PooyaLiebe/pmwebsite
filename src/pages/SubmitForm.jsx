@@ -26,10 +26,10 @@ function SubmitForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/operator/operator_submit", values)
+      .post("http://localhost:3000/dashboard", values)
       .then((result) => {
         if (result.data.Status) {
-          navigate("/operator_dashboard");
+          navigate("/dashboard");
           alert("فرم با موفقیت ثبت شد");
         } else {
           alert(result.data.Error);

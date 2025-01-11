@@ -1,13 +1,15 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import mongoose from "mongoose";
-
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(
-      "mongodb+srv://pooyapayvar25:UIrDeMpaPHWEA1r1@preventive.gw6nj.mongodb.net/?retryWrites=true&w=majority&appName=Preventive"
+      "mongodb+srv://pooyapayvar25:lVahtDBxArGDJFNJ@preventivewebapp.i7vs6.mongodb.net/pmwebapp?retryWrites=true&w=majority&appName=preventiveWebApp"
     );
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    console.log(`MongoDB Connected`);
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    process.exit(1);
   }
 };
 
