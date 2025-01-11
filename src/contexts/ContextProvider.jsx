@@ -1,4 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
+/* eslint-disable react-refresh/only-export-components */
+ 
+/* eslint-disable no-unused-vars */
+import React, { createContext, useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const StateContext = createContext();
 
@@ -17,6 +21,13 @@ export const ContextProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
 
+  useEffect(() => {
+    const savedMode = localStorage.getItem("themeMode");
+    const savedColor = localStorage.getItem("colorMode");
+    if (savedMode) setCurrentMode(savedMode);
+    if (savedColor) setCurrentColor(savedColor);
+  }, []);
+
   const setMode = (e) => {
     setCurrentMode(e.target.value);
     localStorage.setItem("themeMode", e.target.value);
@@ -31,7 +42,6 @@ export const ContextProvider = ({ children }) => {
     setIsClicked({ ...initialState, [clicked]: true });
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <StateContext.Provider
       value={{
         currentColor,
@@ -55,6 +65,10 @@ export const ContextProvider = ({ children }) => {
       {children}
     </StateContext.Provider>
   );
+};
+
+ContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const useStateContext = () => useContext(StateContext);
