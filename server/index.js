@@ -7,7 +7,13 @@ import FormModel from "./models/Login.js";
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 connectDB();
 
