@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import axios from "axios";
 import "./submitstyle.css";
 
@@ -122,6 +122,7 @@ function SubmitForm() {
                     type="text"
                     name="failuretime"
                     id="failuretime"
+                    placeholder="میزان ساعت کار را وارد کنید"
                     onChange={(e) =>
                       setValues({ ...values, failuretime: e.target.value })
                     }
@@ -148,7 +149,6 @@ function SubmitForm() {
                       setValues({ ...values, shift: e.target.value })
                     }
                   >
-                    <option value=""></option>
                     <option value="a">A</option>
                     <option value="b">B</option>
                     <option value="c">C</option>
@@ -182,7 +182,6 @@ function SubmitForm() {
                       setValues({ ...values, worksuggest: e.target.value })
                     }
                   >
-                    <option value=""></option>
                     <option value="emwork">اضطراری</option>
                     <option value="medwork">بهسازی</option>
                     <option value="setiuationwork">
@@ -204,7 +203,6 @@ function SubmitForm() {
                       setValues({ ...values, fixrepair: e.target.value })
                     }
                   >
-                    <option value=""></option>
                     <option value="operatorreq">درخواست اپراتور</option>
                     <option value="netreq">درخواست واحد نت</option>
                     <option value="hsereq">گزارش واحد ایمنی</option>
@@ -222,7 +220,6 @@ function SubmitForm() {
                       setValues({ ...values, reportinseption: e.target.value })
                     }
                   >
-                    <option value=""></option>
                     <option value="inseptech">بازرسی فنی</option>
                     <option value="netreport">واحد نت</option>
                     <option value="operatorreport">اپراتور</option>
@@ -239,7 +236,6 @@ function SubmitForm() {
                       setValues({ ...values, faultdm: e.target.value })
                     }
                   >
-                    <option value=""></option>
                     <option value="disruptionwork">اختلال در کارکرد</option>
                     <option value="periodicrepairs">تعمیرات دوره ای</option>
                     <option value="randomobservation">مشاهده تصادفی</option>
