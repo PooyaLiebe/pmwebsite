@@ -26,7 +26,7 @@ function SubmitForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/dashboard", values)
+      .post("http://localhost:3000/submitform", values)
       .then((result) => {
         if (result.data.Status) {
           navigate("/dashboard");
@@ -78,17 +78,17 @@ function SubmitForm() {
                       setValues({ ...values, section: e.target.value })
                     }
                   >
-                    <option value="chipper">Chipper</option>
-                    <option value="conveyorline">Conveyor Line</option>
-                    <option value="dryerairgraider">Dryer Air Grader</option>
-                    <option value="refiner">Refiner</option>
-                    <option value="beforepress">Before Press</option>
-                    <option value="press">Press</option>
-                    <option value="afterpress">After Press</option>
-                    <option value="sandingrbs">Sanding</option>
-                    <option value="coolingsystem">Cooling System</option>
-                    <option value="steamboiler">Steam Boiler</option>
-                    <option value="general">General</option>
+                    <option value="Chipper">Chipper</option>
+                    <option value="Conveyor Line">Conveyor Line</option>
+                    <option value="Dryer & Air Grader">Dryer & Air Grader</option>
+                    <option value="Refiner">Refiner</option>
+                    <option value="Before Press">Before Press</option>
+                    <option value="Press">Press</option>
+                    <option value="After Press">After Press</option>
+                    <option value="Sanding">Sanding</option>
+                    <option value="Cooling System">Cooling System</option>
+                    <option value="Steam Boiler">Steam Boiler</option>
+                    <option value="General">General</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -149,9 +149,9 @@ function SubmitForm() {
                       setValues({ ...values, shift: e.target.value })
                     }
                   >
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -166,10 +166,10 @@ function SubmitForm() {
                       setValues({ ...values, suggesttime: e.target.value })
                     }
                   >
-                    <option value="emergency">فوری</option>
-                    <option value="hour">ساعات آتی</option>
-                    <option value="day">اولین روز کاری</option>
-                    <option value="firstch">در اولین فرصت</option>
+                    <option value="فوری">فوری</option>
+                    <option value="ساعات آتی">ساعات آتی</option>
+                    <option value="اولین روز کاری">اولین روز کاری</option>
+                    <option value="در اولین فرصت">در اولین فرصت</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -182,13 +182,13 @@ function SubmitForm() {
                       setValues({ ...values, worksuggest: e.target.value })
                     }
                   >
-                    <option value="emwork">اضطراری</option>
-                    <option value="medwork">بهسازی</option>
-                    <option value="setiuationwork">
+                    <option value="اضطراری">اضطراری</option>
+                    <option value="بهسازی">بهسازی</option>
+                    <option value="پایش وضعیت(غیر برنامهای)">
                       پایش وضعیت(غیر برنامه ای)
                     </option>
-                    <option value="preparerepair">آماده سازی برای تعمیر</option>
-                    <option value="generalrepair">خدمات عمومی</option>
+                    <option value="آماده سازی برای تعمیرات">آماده سازی برای تعمیر</option>
+                    <option value="خدمات عمومی">خدمات عمومی</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -203,11 +203,11 @@ function SubmitForm() {
                       setValues({ ...values, fixrepair: e.target.value })
                     }
                   >
-                    <option value="operatorreq">درخواست اپراتور</option>
-                    <option value="netreq">درخواست واحد نت</option>
-                    <option value="hsereq">گزارش واحد ایمنی</option>
-                    <option value="fixrepairreq">آماده سازی برای تعمیر</option>
-                    <option value="generalreq">خدمات عمومی</option>
+                    <option value="درخواست اپراتور">درخواست اپراتور</option>
+                    <option value="درخواست واحد نت">درخواست واحد نت</option>
+                    <option value="گزارش واحد ایمنی">گزارش واحد ایمنی</option>
+                    <option value="آماده سازی برای تعمیر">آماده سازی برای تعمیر</option>
+                    <option value="خدمات عمومی">خدمات عمومی</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -220,10 +220,10 @@ function SubmitForm() {
                       setValues({ ...values, reportinseption: e.target.value })
                     }
                   >
-                    <option value="inseptech">بازرسی فنی</option>
-                    <option value="netreport">واحد نت</option>
-                    <option value="operatorreport">اپراتور</option>
-                    <option value="etcreport">سایر</option>
+                    <option value="بازرسی فنی">بازرسی فنی</option>
+                    <option value="واحد نت">واحد نت</option>
+                    <option value="اپراتور">اپراتور</option>
+                    <option value="سایر">سایر</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -236,22 +236,22 @@ function SubmitForm() {
                       setValues({ ...values, faultdm: e.target.value })
                     }
                   >
-                    <option value="disruptionwork">اختلال در کارکرد</option>
-                    <option value="periodicrepairs">تعمیرات دوره ای</option>
-                    <option value="randomobservation">مشاهده تصادفی</option>
-                    <option value="periodicobservation">بازرسی دوره ای</option>
-                    <option value="performancetesting">تست عملکرد</option>
-                    <option value="periodicstatusmonitoring">
+                    <option value="اختلال در کارکرد">اختلال در کارکرد</option>
+                    <option value="تعمیرات دوره ای">تعمیرات دوره ای</option>
+                    <option value="مشاهده تصادفی">مشاهده تصادفی</option>
+                    <option value="بازرسی دوره ای">بازرسی دوره ای</option>
+                    <option value="تست عملکرد">تست عملکرد</option>
+                    <option value="پایش وضعیت دوره ای">
                       پایش وضعیت دوره ای
                     </option>
-                    <option value="notready">
+                    <option value="آماده به کار نبودن در حین نیاز">
                       آماده به کار نبودن در حین نیاز
                     </option>
-                    <option value="correctiverepairs">
+                    <option value="در حین انجام تعمیرات اصلاحی">
                       در حین انجام تعیرات اصلاحی
                     </option>
-                    <option value="alarmfault">فالت با آلارم</option>
-                    <option value="etcfault">سایر</option>
+                    <option value="فالت با آلارم">فالت با آلارم</option>
+                    <option value="سایر روش ها">سایر</option>
                   </select>
                 </div>
                 <div className="input-field">

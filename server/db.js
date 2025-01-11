@@ -6,7 +6,7 @@ const connectDB = async () => {
     const conn = await mongoose.connect(
       "mongodb+srv://pooyapayvar25:lVahtDBxArGDJFNJ@preventivewebapp.i7vs6.mongodb.net/pmwebapp?retryWrites=true&w=majority&appName=preventiveWebApp"
     );
-    console.log(`MongoDB Connected`);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.log(error);
     process.exit(1);
