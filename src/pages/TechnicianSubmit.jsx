@@ -1,38 +1,63 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./submitstyle.css";
-import { Modal } from "react-modal";
 
+const Modal = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+      <div className="bg-white p-4 rounded shadow-lg">
+        {children}
+      </div>
+    </div>
+  );
+};
 
 function TechnicianSubmit() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModal1Open, setIsModal1Open] = useState(false);
+  const [isModal2Open, setIsModal2Open] = useState(false);
+  const [show, setShow] = useState(false);
+  const [showPermit, setShowPermit] = useState(false);
+  const handleSelectChange = (event) => {
+    if (event.target.value === "بله") {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  };
+  const handleSelectChangePermit = (event) => {
+    if (event.target.value === "بله") {
+      setShowPermit(true);
+    } else {
+      setShowPermit(false);
+    }
+  };
   const [values, setValues] = useState({
-    formcode: "",
-    problemdate: "",
-    section: "",
-    machinename: "",
-    equipstop: "",
-    failuretime: "",
-    productiontime: "",
-    shift: "",
-    suggesttime: "",
-    worksuggest: "",
-    fixrepair: "",
-    reportinseption: "",
-    faultdm: "",
-    operatorname: "",
-    problemdescription: "",
+    instructionsconfirm: "",
   });
   const navigate = useNavigate();
-  const handleSelectChange = (e) => {
-    const value = e.target.value
-    setValues({ ...values, instructions: value })
-    setIsModalOpen(value === 'بله')
+  const handleSend = () => {
+    // handleSubmit();
+    handleClose();
+  };
+  const handleSendPermit = () => {
+    // handleSubmit();
+    handleClosePermit();
+  };
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleClosePermit = () => {
+    setShowPermit(false);
+  };
+  const handleSendAghlam = () => {
+    handleCloseModal1()
   }
-  const closeModal = () => {
-    setIsModalOpen(false)
+  const handleCloseModal1 = () => {
+    setIsModal1Open(false)
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +83,8 @@ function TechnicianSubmit() {
             <div className="details personal">
               <div className="fields">
                 <div className="input-field">
-                  <label htmlFor="instructions">آیا برای انجام تعمیر دستورالعمل تهیه شده است ؟
+                  <label htmlFor="instructions">
+                    آیا برای انجام تعمیر دستورالعمل تهیه شده است ؟
                   </label>
                   <select
                     name="instructions"
@@ -66,232 +92,130 @@ function TechnicianSubmit() {
                     className="text-center"
                     onChange={handleSelectChange}
                   >
-                    <option value="بله">بله</option>
                     <option value="خیر">خیر</option>
+                    <option value="بله">بله</option>
                   </select>
-                  <Modal isOpen={isModalOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="additional input modal">
-                    <div className="input-field">
-                      <input type="text" name="instructionsmodal" id="instructionsmodal" placeholder="شماره دستورالعمل را وارد کنید" className="text-center" />
-                    </div>
-                    <button onClick={closeModal}>خروج</button>
-                  </Modal>
+                  {show && (
+                    <>
+                      <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
+                      <div className="fixed inset-0 flex items-center justify-center z-20">
+                        <div className="bg-white p-4 rounded">
+                          <input
+                            type="text"
+                            name="instructionsconfirm"
+                            id="instructionsconfirm"
+                            placeholder="شماره دستورالعمل را وارد کنید"
+                            onChange={(e) => {
+                              setValues({
+                                ...values,
+                                instructionsconfirm: e.target.value,
+                              });
+                            }}
+                          />
+                          <div className="flex justify-end">
+                            <button
+                              className="bg-blue-500 text-white px-4 py-2 rounded"
+                              onClick={handleSend}
+                            >
+                              تایید
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
                 <div className="input-field">
-                  <label htmlFor="problemdate">تاریخ بروز مشکل</label>
-                  <input
-                    type="datetime-local"
-                    name="problemdate"
-                    id="problemdate"
-                    onChange={(e) =>
-                      setValues({ ...values, problemdate: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-field">
-                  <label htmlFor="section">بخش</label>
-                  <select
-                    name="section"
-                    id="section"
-                    className="text-center"
-                    placeholder="نام بخش را وارد کنید"
-                    onChange={(e) =>
-                      setValues({ ...values, section: e.target.value })
-                    }
-                  >
-                    <option value="Chipper">Chipper</option>
-                    <option value="Conveyor Line">Conveyor Line</option>
-                    <option value="Dryer & Air Grader">
-                      Dryer & Air Grader
-                    </option>
-                    <option value="Refiner">Refiner</option>
-                    <option value="Before Press">Before Press</option>
-                    <option value="Press">Press</option>
-                    <option value="After Press">After Press</option>
-                    <option value="Sanding">Sanding</option>
-                    <option value="Cooling System">Cooling System</option>
-                    <option value="Steam Boiler">Steam Boiler</option>
-                    <option value="General">General</option>
-                  </select>
-                </div>
-                <div className="input-field">
-                  <label htmlFor="machinename">نام دستگاه</label>
-                  <input
-                    type="text"
-                    name="machinename"
-                    placeholder="نام دستگاه را وارد کنید"
-                    id="machinename"
-                    onChange={(e) =>
-                      setValues({ ...values, machinename: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-field">
-                  <label htmlFor="equipstop">مدت زمان توقف تجهیز</label>
-                  <input
-                    type="datetime-local"
-                    name="equipstop"
-                    id="equipstop"
-                    onChange={(e) =>
-                      setValues({ ...values, equipstop: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-field">
-                  <label htmlFor="failuretime">
-                    میزان ساعت کار تجهیز در زمان بروز عیب
+                  <label htmlFor="failurepart">
+                    نام قسمت معیوب(بر اساس تکسونومی)
                   </label>
                   <input
                     type="text"
+                    name="failurepart"
+                    id="failurepart"
+                    placeholder="نام قسمت معیوب(بر اساس تکسونومی)"
+                    onChange={(e) =>
+                      setValues({ ...values, failurepart: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="input-field">
+                  <label htmlFor="permit">نیاز به مجوز ایمنی دارد ؟</label>
+                  <select
+                    name="permit"
+                    id="permit"
+                    className="text-center"
+                    onChange={handleSelectChangePermit}
+                  >
+                    <option value="خیر">خیر</option>
+                    <option value="بله">بله</option>
+                  </select>
+                  {showPermit && (
+                    <>
+                      <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
+                      <div className="fixed inset-0 flex items-center justify-center z-20">
+                        <div className="bg-white p-4 rounded mt-3">
+                          <input
+                            type="text"
+                            name="permitconfirmnumber"
+                            id="permitconfirmnumber"
+                            placeholder="شماره پرمیت را وارد کنید"
+                            onChange={(e) => {
+                              setValues({
+                                ...values,
+                                permitconfirmnumber: e.target.value,
+                              });
+                            }}
+                          />
+                          <div className="flex justify-end">
+                            <button
+                              className="bg-blue-500 text-white px-4 py-2 rounded"
+                              onClick={handleSendPermit}
+                            >
+                              تایید
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div className="input-field">
+                  <label htmlFor="failuretime">مدت زمان تشخیص عیب</label>
+                  <input
+                    type="time"
                     name="failuretime"
                     id="failuretime"
-                    placeholder="میزان ساعت کار را وارد کنید"
-                    onChange={(e) =>
-                      setValues({ ...values, failuretime: e.target.value })
-                    }
+                    onChange={(e) => {
+                      setValues({ ...values, failuretime: e.target.value });
+                    }}
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="productiontime">مدت زمان توقف خط تولید</label>
+                  <label htmlFor="sparetime">مدت زمان تهیه لوازم یدکی</label>
                   <input
-                    type="datetime-local"
-                    name="productiontime"
-                    id="productiontime"
-                    onChange={(e) =>
-                      setValues({ ...values, productiontime: e.target.value })
-                    }
+                    type="time"
+                    name="sparetime"
+                    id="sparetime"
+                    onChange={(e) => {
+                      setValues({ ...values, sparetime: e.target.value });
+                    }}
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="shift">شیفت</label>
-                  <select
-                    name="shift"
-                    className="text-center"
-                    id="shift"
-                    onChange={(e) =>
-                      setValues({ ...values, shift: e.target.value })
-                    }
-                  >
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                  </select>
-                </div>
-                <div className="input-field">
-                  <label htmlFor="suggesttime">
-                    زمان پیشنهادی برای شروع تعمیر
+                  <label htmlFor="startfailuretime">
+                    میزان ساعت کار تجهیز در زمان شروع به رفع عیب
                   </label>
-                  <select
-                    name="suggesttime"
-                    className="text-center"
-                    id="suggesttime"
-                    onChange={(e) =>
-                      setValues({ ...values, suggesttime: e.target.value })
-                    }
-                  >
-                    <option value="فوری">فوری</option>
-                    <option value="ساعات آتی">ساعات آتی</option>
-                    <option value="اولین روز کاری">اولین روز کاری</option>
-                    <option value="در اولین فرصت">در اولین فرصت</option>
-                  </select>
-                </div>
-                <div className="input-field">
-                  <label htmlFor="worksuggest">نوع کار درخواستی</label>
-                  <select
-                    name="worksuggest"
-                    className="text-center"
-                    id="worksuggest"
-                    onChange={(e) =>
-                      setValues({ ...values, worksuggest: e.target.value })
-                    }
-                  >
-                    <option value="اضطراری">اضطراری</option>
-                    <option value="بهسازی">بهسازی</option>
-                    <option value="پایش وضعیت(غیر برنامهای)">
-                      پایش وضعیت(غیر برنامه ای)
-                    </option>
-                    <option value="آماده سازی برای تعمیرات">
-                      آماده سازی برای تعمیر
-                    </option>
-                    <option value="خدمات عمومی">خدمات عمومی</option>
-                  </select>
-                </div>
-                <div className="input-field">
-                  <label htmlFor="fixrepair">
-                    تعمیر و تعویض اصلاحی ناشی از
-                  </label>
-                  <select
-                    name="fixrepair"
-                    className="text-center"
-                    id="fixrepair"
-                    onChange={(e) =>
-                      setValues({ ...values, fixrepair: e.target.value })
-                    }
-                  >
-                    <option value="درخواست اپراتور">درخواست اپراتور</option>
-                    <option value="درخواست واحد نت">درخواست واحد نت</option>
-                    <option value="گزارش واحد ایمنی">گزارش واحد ایمنی</option>
-                    <option value="آماده سازی برای تعمیر">
-                      آماده سازی برای تعمیر
-                    </option>
-                    <option value="خدمات عمومی">خدمات عمومی</option>
-                  </select>
-                </div>
-                <div className="input-field">
-                  <label htmlFor="reportinseption">گزارش بازرسی</label>
-                  <select
-                    name="reportinseption"
-                    className="text-center"
-                    id="reportinseption"
-                    onChange={(e) =>
-                      setValues({ ...values, reportinseption: e.target.value })
-                    }
-                  >
-                    <option value="بازرسی فنی">بازرسی فنی</option>
-                    <option value="واحد نت">واحد نت</option>
-                    <option value="اپراتور">اپراتور</option>
-                    <option value="سایر">سایر</option>
-                  </select>
-                </div>
-                <div className="input-field">
-                  <label htmlFor="faultdm">روش کشف عیب</label>
-                  <select
-                    name="faultdm"
-                    className="text-center"
-                    id="faultdm"
-                    onChange={(e) =>
-                      setValues({ ...values, faultdm: e.target.value })
-                    }
-                  >
-                    <option value="اختلال در کارکرد">اختلال در کارکرد</option>
-                    <option value="تعمیرات دوره ای">تعمیرات دوره ای</option>
-                    <option value="مشاهده تصادفی">مشاهده تصادفی</option>
-                    <option value="بازرسی دوره ای">بازرسی دوره ای</option>
-                    <option value="تست عملکرد">تست عملکرد</option>
-                    <option value="پایش وضعیت دوره ای">
-                      پایش وضعیت دوره ای
-                    </option>
-                    <option value="آماده به کار نبودن در حین نیاز">
-                      آماده به کار نبودن در حین نیاز
-                    </option>
-                    <option value="در حین انجام تعمیرات اصلاحی">
-                      در حین انجام تعیرات اصلاحی
-                    </option>
-                    <option value="فالت با آلارم">فالت با آلارم</option>
-                    <option value="سایر روش ها">سایر</option>
-                  </select>
-                </div>
-                <div className="input-field">
-                  <label htmlFor="operatorname">نام اپراتور</label>
                   <input
-                    type="text"
-                    name="operatorname"
-                    id="operatorname"
-                    placeholder="نام اپراتور را وارد کنید"
-                    onChange={(e) =>
-                      setValues({ ...values, operatorname: e.target.value })
-                    }
+                    type="time"
+                    name="startfailuretime"
+                    id="startfailuretime"
+                    onChange={(e) => {
+                      setValues({
+                        ...values,
+                        startfailuretime: e.target.value,
+                      });
+                    }}
                   />
                 </div>
                 <div className="input-field">
@@ -311,9 +235,163 @@ function TechnicianSubmit() {
                   ></textarea>
                 </div>
               </div>
-              <button type="submit" className="nextBtn">
-                ثبت
-              </button>
+              <div className="flex">
+                <button
+                  type="submit"
+                  className="nextBtn"
+                  onClick={() => setIsModal1Open(true)}
+                >
+                  اقلام
+                </button>
+                <button
+                  type="submit"
+                  className="nextBtn"
+                  onClick={() => setIsModal2Open(true)}
+                >
+                  تکنیسین
+                </button>
+                <button
+                  type="submit"
+                  className="nextBtn"
+                >
+                  ثبت
+                </button>
+                <Modal
+                  isOpen={isModal1Open}
+                  onClose={() => setIsModal1Open(false)}
+                >
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="input-field">
+                      <h1>Aghlam</h1>
+                      <label htmlFor="kalaname1">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname1"
+                        id="kalaname1"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname2">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname2"
+                        id="kalaname2"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname3">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname3"
+                        id="kalaname3"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname4">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname4"
+                        id="kalaname4"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname5">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname5"
+                        id="kalaname5"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname6">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname6"
+                        id="kalaname6"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <button onClick={handleSendAghlam}>تایید</button>
+                  </div>
+                </Modal>
+                <Modal
+                  isOpen={isModal2Open}
+                  onClose={() => setIsModal1Open(false)}
+                >
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="input-field">
+                      <h2>Technician</h2>
+                      <input
+                        type="text"
+                        name="kalaname1"
+                        id="kalaname1"
+                        placeholder="پرسنل انجام دهنده"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname2">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname2"
+                        id="kalaname2"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname3">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname3"
+                        id="kalaname3"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname4">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname4"
+                        id="kalaname4"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname5">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname5"
+                        id="kalaname5"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <div className="input-field">
+
+                      <label htmlFor="kalaname6">نام کالا</label>
+                      <input
+                        type="text"
+                        name="kalaname6"
+                        id="kalaname6"
+                        placeholder="نام کالا"
+                      />
+                    </div>
+                    <button>تایید</button>
+                  </div>
+                </Modal>
+              </div>
             </div>
           </div>
         </form>
