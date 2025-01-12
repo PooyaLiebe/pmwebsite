@@ -26,6 +26,6 @@ function Button  ({
       {icon} {text}
     </button>
   );
-};
+}
 
 export default Button;

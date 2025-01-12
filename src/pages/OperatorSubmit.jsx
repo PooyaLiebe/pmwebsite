@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+// noinspection ES6CheckImport
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -270,7 +272,7 @@ function OperatorSubmit() {
                         problemdescription: e.target.value,
                       })
                     }
-                  ></textarea>
+                  />
                 </div>
               </div>
               <button type="submit" className="nextBtn">

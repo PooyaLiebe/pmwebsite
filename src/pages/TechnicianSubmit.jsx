@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+// noinspection ES6CheckImport
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./submitstyle.css";
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, children }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
@@ -232,7 +234,7 @@ function TechnicianSubmit() {
                         problemdescription: e.target.value,
                       })
                     }
-                  ></textarea>
+                  />
                 </div>
               </div>
               <div className="flex">

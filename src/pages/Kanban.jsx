@@ -1,3 +1,5 @@
+// noinspection ES6CheckImport
+
 import React, { useState, useEffect } from "react";
 import { FiPlus, FiTrash } from "react-icons/fi";
 import { motion } from "framer-motion";

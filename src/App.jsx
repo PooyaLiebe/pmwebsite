@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+// noinspection ES6CheckImport
+
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter,

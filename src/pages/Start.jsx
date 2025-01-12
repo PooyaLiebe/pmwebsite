@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+// noinspection ES6CheckImport
+
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

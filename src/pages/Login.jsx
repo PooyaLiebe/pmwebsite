@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+// noinspection ES6CheckImport
+
 import React, { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import "./loginstyle.css";

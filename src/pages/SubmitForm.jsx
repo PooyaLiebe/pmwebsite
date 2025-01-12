@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
+// noinspection ES6CheckImport
+
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./submitstyle.css";
+import {useNavigate} from "react-router-dom";
 
 function SubmitForm() {
   const [values, setValues] = useState({
@@ -73,7 +75,6 @@ function SubmitForm() {
                     name="section"
                     id="section"
                     className="text-center"
-                    placeholder="نام بخش را وارد کنید"
                     onChange={(e) =>
                       setValues({ ...values, section: e.target.value })
                     }
@@ -282,11 +283,10 @@ function SubmitForm() {
                     placeholder="کلیات شرح عیب مشاهده شده را توضیح دهید : "
                     onChange={(e) =>
                       setValues({
-                        ...values,
-                        problemdescription: e.target.value,
+                        ...values,problemdescription: e.target.value,
                       })
                     }
-                  ></textarea>
+                  />
                 </div>
               </div>
               <button type="submit" className="nextBtn">
