@@ -11,14 +11,52 @@ const Modal = ({ isOpen, children }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-4 rounded shadow-lg">
-        {children}
-      </div>
+      <div className="bg-white p-4 rounded shadow-lg">{children}</div>
     </div>
   );
 };
 
 function TechnicianSubmit() {
+  //Aghlam Section
+  const [aghlamData, setAghlamData] = useState({
+    kalaname: "",
+    countkala: "",
+    vahedkala: "عدد",
+    codekala: "",
+    flamekala: "خیر",
+    shopkala: "فوری",
+  });
+  const handleAghlam = (e) => {
+    setAghlamData({
+      ...aghlamData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSendAghlam = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/techniciansubmit", values)
+      .then((result) => {
+        if (result.data.Status) {
+          alert("کالا با موفقیت ثبت شد");
+          // setValues({
+          //   kalaname: "",
+          //   countkala: "",
+          //   vahedkala: "",
+          //   codekala: "",
+          //   flamekala: "",
+          //   shopkala: "",
+          // });
+        } else {
+          alert(result.data.Error);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleCloseModal1 = () => {
+    setIsModal1Open(false);
+  };
+  // End of Aghlam Section
   const [isModal1Open, setIsModal1Open] = useState(false);
   const [isModal2Open, setIsModal2Open] = useState(false);
   const [show, setShow] = useState(false);
@@ -55,12 +93,6 @@ function TechnicianSubmit() {
   const handleClosePermit = () => {
     setShowPermit(false);
   };
-  const handleSendAghlam = () => {
-    handleCloseModal1()
-  }
-  const handleCloseModal1 = () => {
-    setIsModal1Open(false)
-  }
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -239,158 +271,228 @@ function TechnicianSubmit() {
               </div>
               <div className="flex">
                 <button
-                  type="submit"
+                  type="button"
                   className="nextBtn"
                   onClick={() => setIsModal1Open(true)}
                 >
                   اقلام
                 </button>
                 <button
-                  type="submit"
+                  type="button"
                   className="nextBtn"
                   onClick={() => setIsModal2Open(true)}
                 >
                   تکنیسین
                 </button>
-                <button
-                  type="submit"
-                  className="nextBtn"
-                >
+                <button type="submit" className="nextBtn">
                   ثبت
                 </button>
                 <Modal
                   isOpen={isModal1Open}
                   onClose={() => setIsModal1Open(false)}
                 >
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="input-field">
-                      <h1>Aghlam</h1>
-                      <label htmlFor="kalaname1">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname1"
-                        id="kalaname1"
-                        placeholder="نام کالا"
-                      />
+                  <div className="container">
+                    <header className="flex">Aghlam</header>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div>
+                        <label htmlFor="kalaname" className="mr-2">
+                          نام کالا
+                        </label>
+                        <input
+                          type="text"
+                          name="kalaname"
+                          id="kalaname"
+                          placeholder="نام کالا"
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.kalaname}
+                          onChange={handleAghlam}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="countkala">تعداد</label>
+                        <input
+                          type="text"
+                          name="countkala"
+                          id="countkala"
+                          placeholder="تعداد"
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.countkala}
+                          onChange={handleAghlam}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="vahedkala">واحد</label>
+                        <select
+                          type="text"
+                          name="vahedkala"
+                          id="vahedkala"
+                          placeholder=""
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                          value={aghlamData.vahedkala}
+                          onChange={handleAghlam}
+                        >
+                          <option value="عدد">عدد</option>
+                          <option value="گرم">گرم</option>
+                          <option value="کیلوگرم">کیلوگرم</option>
+                          <option value="متر">متر</option>
+                          <option value="سانتی متر">سانتی متر</option>
+                          <option value="میلی متر">میلی متر</option>
+                          <option value="لیتر">لیتر</option>
+                          <option value="گالن">گالن</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="codekala">کد کالا</label>
+                        <input
+                          type="text"
+                          name="codekala"
+                          id="codekala"
+                          placeholder=""
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.codekala}
+                          onChange={handleAghlam}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="flamekala">قطعه مستعمل</label>
+                        <select
+                          type="text"
+                          name="flamekala"
+                          id="flamekala"
+                          placeholder=""
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                          value={aghlamData.flamekala}
+                          onChange={handleAghlam}
+                        >
+                          <option value="خیر">خیر</option>
+                          <option value="بله">بله</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="shopkala">خرید فوری</label>
+                        <select
+                          type="text"
+                          name="shopkala"
+                          id="shopkala"
+                          placeholder=""
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                          value={aghlamData.shopkala}
+                          onChange={handleAghlam}
+                        >
+                          <option value="فوری">فوری</option>
+                          <option value="ضروری">ضروری</option>
+                          <option value="معمولی">معمولی</option>
+                        </select>
+                      </div>
+                      <button onClick={handleSendAghlam}>تایید</button>
+                      <button onClick={handleCloseModal1}>خروج</button>
                     </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname2">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname2"
-                        id="kalaname2"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname3">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname3"
-                        id="kalaname3"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname4">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname4"
-                        id="kalaname4"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname5">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname5"
-                        id="kalaname5"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname6">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname6"
-                        id="kalaname6"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <button onClick={handleSendAghlam}>تایید</button>
                   </div>
                 </Modal>
                 <Modal
                   isOpen={isModal2Open}
                   onClose={() => setIsModal1Open(false)}
                 >
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="input-field">
-                      <h2>Technician</h2>
-                      <input
-                        type="text"
-                        name="kalaname1"
-                        id="kalaname1"
-                        placeholder="پرسنل انجام دهنده"
-                      />
+                  <div className="container">
+                    <header className="flex">Aghlam</header>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div>
+                        <label htmlFor="kalaname" className="mr-2">
+                          نام کالا
+                        </label>
+                        <input
+                          type="text"
+                          name="kalaname"
+                          id="kalaname"
+                          placeholder="نام کالا"
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.kalaname}
+                          onChange={"handleAghlam"}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="countkala">تعداد</label>
+                        <input
+                          type="text"
+                          name="countkala"
+                          id="countkala"
+                          placeholder="تعداد"
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.countkala}
+                          onChange={"handleAghlam"}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="vahedkala">واحد</label>
+                        <select
+                          type="text"
+                          name="vahedkala"
+                          id="vahedkala"
+                          placeholder=""
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.vahedkala}
+                          onChange={"handleAghlam"}
+                        >
+                          <option value="عدد">عدد</option>
+                          <option value="گرم">گرم</option>
+                          <option value="کیلوگرم">کیلوگرم</option>
+                          <option value="متر">متر</option>
+                          <option value="سانتی متر">سانتی متر</option>
+                          <option value="میلی متر">میلی متر</option>
+                          <option value="لیتر">لیتر</option>
+                          <option value="گالن">گالن</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="codekala">کد کالا</label>
+                        <input
+                          type="text"
+                          name="codekala"
+                          id="codekala"
+                          placeholder=""
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.codekala}
+                          onChange={"handleAghlam"}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="flamekala">قطعه مستعمل</label>
+                        <select
+                          type="text"
+                          name="flamekala"
+                          id="flamekala"
+                          placeholder=""
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.flamekala}
+                          onChange={"handleAghlam"}
+                        >
+                          <option value="خیر">خیر</option>
+                          <option value="بله">بله</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="shopkala">خرید فوری</label>
+                        <select
+                          type="text"
+                          name="shopkala"
+                          id="shopkala"
+                          placeholder=""
+                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
+                          value={aghlamData.shopkala}
+                          onChange={"handleAghlam"}
+                        >
+                          <option value="فوری">فوری</option>
+                          <option value="ضروری">ضروری</option>
+                          <option value="معمولی">معمولی</option>
+                        </select>
+                      </div>
+                      <button type="submit" onClick={"handleSendAghlam"}>
+                        تایید
+                      </button>
+                      <button type="button" onClick={"handleCloseModal1"}>
+                        خروج
+                      </button>
                     </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname2">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname2"
-                        id="kalaname2"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname3">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname3"
-                        id="kalaname3"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname4">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname4"
-                        id="kalaname4"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname5">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname5"
-                        id="kalaname5"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <div className="input-field">
-
-                      <label htmlFor="kalaname6">نام کالا</label>
-                      <input
-                        type="text"
-                        name="kalaname6"
-                        id="kalaname6"
-                        placeholder="نام کالا"
-                      />
-                    </div>
-                    <button>تایید</button>
                   </div>
                 </Modal>
               </div>
