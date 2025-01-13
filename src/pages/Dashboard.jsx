@@ -32,8 +32,8 @@ function Dashboard() {
         </div>
       </div>
       <div className="flex flex-col lg:flex-row gap-10 m-4 justify-center">
-        <div className="bg-gray-200 dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-full flex flex-col lg:flex-row justify-center items-center overflow-auto">
-          <div className="flex-1 flex flex-col items-center">
+        <div className="bg-gray-200 dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-full justify-center items-center overflow-auto">
+          <div className="flex flex-col-2 items-center">
             <div className="flex justify-between items-center gap-2 mb-10 w-full">
               <p className="text-xl font-semibold">Forms Overview</p>
             </div>
