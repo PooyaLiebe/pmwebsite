@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+// noinspection ES6CheckImport
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,10 +21,10 @@ function TechnicianSubmit() {
   const [aghlamData, setAghlamData] = useState({
     kalaname: "",
     countkala: "",
-    vahedkala: "عدد",
+    vahedkala: "",
     codekala: "",
-    flamekala: "خیر",
-    shopkala: "فوری",
+    flamekala: "",
+    shopkala: "",
   });
   const handleSendAghlam = (e) => {
     e.preventDefault();
@@ -424,7 +425,7 @@ function TechnicianSubmit() {
                           placeholder="نام کالا"
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
                           value={aghlamData.kalaname}
-                          onChange={"handleAghlam"}
+                          onChange={handleSendAghlam}
                         />
                       </div>
                       <div>
@@ -436,7 +437,7 @@ function TechnicianSubmit() {
                           placeholder="تعداد"
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
                           value={aghlamData.countkala}
-                          onChange={"handleAghlam"}
+                          onChange={handleSendAghlam}
                         />
                       </div>
                       <div>
@@ -448,7 +449,7 @@ function TechnicianSubmit() {
                           placeholder=""
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
                           value={aghlamData.vahedkala}
-                          onChange={"handleAghlam"}
+                          onChange={handleSendAghlam}
                         >
                           <option value="عدد">عدد</option>
                           <option value="گرم">گرم</option>
@@ -469,7 +470,7 @@ function TechnicianSubmit() {
                           placeholder=""
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
                           value={aghlamData.codekala}
-                          onChange={"handleAghlam"}
+                          onChange={handleSendAghlam}
                         />
                       </div>
                       <div>
@@ -481,7 +482,7 @@ function TechnicianSubmit() {
                           placeholder=""
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
                           value={aghlamData.flamekala}
-                          onChange={"handleAghlam"}
+                          onChange={handleSendAghlam}
                         >
                           <option value="خیر">خیر</option>
                           <option value="بله">بله</option>
@@ -496,15 +497,15 @@ function TechnicianSubmit() {
                           placeholder=""
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
                           value={aghlamData.shopkala}
-                          onChange={"handleAghlam"}
+                          onChange={handleSendAghlam}
                         >
                           <option value="فوری">فوری</option>
                           <option value="ضروری">ضروری</option>
                           <option value="معمولی">معمولی</option>
                         </select>
                       </div>
-                      <button onClick={"handleSendAghlam"}>تایید</button>
-                      <button onClick={"handleCloseModal1"}>خروج</button>
+                      <button>تایید</button>
+                      <button onChange={handleCloseModal1}>خروج</button>
                     </div>
                   </div>
                 </Modal>
