@@ -13,7 +13,7 @@ import {
 import { FiSettings } from "react-icons/fi";
 import Tooltip from "@mui/material/Tooltip";
 
-import { Navbar, Sidebar, ThemeSettings } from "./components";
+import { LineChart, Navbar, Sidebar, ThemeSettings } from "./components";
 import { Pie } from "./components";
 import {
   Dashboard,
@@ -159,6 +159,7 @@ const AppContent = ({
                 <Route path="/area" element={<Area />} />
                 <Route path="/bar" element={<Bar />} />
                 <Route path="/pie" element={<Pie />} />
+                <Route path="/linechart" element={<LineChart />} />
               </>
             )}
           </Routes>

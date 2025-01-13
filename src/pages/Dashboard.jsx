@@ -6,7 +6,7 @@ import { Area, Bar } from "../pages";
 
 function Dashboard() {
   return (
-    <div className="mt-24">
+    <div className="mt-24 overflow-x-auto mx-auto">
       <div className="flex flex-wrap lg:flex-nowrap justify-center">
         <div className="flex m-3 flex-wrap justify-center gap-1 items-center">
           {earningData.map((item) => (

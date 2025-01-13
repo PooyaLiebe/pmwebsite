@@ -44,6 +44,20 @@ app.post("/submitform", async (req, res) => {
   }
 });
 
+app.get("/linechart", async (req, res) => {
+  try {
+    await mongoose.connect();
+    const database = mongoose.db("preventivewebapp");
+    const collection = database.collection("forms");
+    const data = await collection.find({ shift: { $exsists: true } }).toArray();
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  } finally {
+    await mongoose.close();
+  }
+});
 app.listen(3000, () => {
   console.log("Server is Running");
 });
