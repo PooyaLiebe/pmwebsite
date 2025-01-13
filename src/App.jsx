@@ -20,7 +20,6 @@ import {
   Forms,
   OperatorSubmit,
   Kanban,
-  Line,
   Area,
   Login,
   Bar,
@@ -157,7 +156,6 @@ const AppContent = ({
                 <Route path="/submitform" element={<SubmitForm />} />
                 <Route path="/kanban" element={<Kanban />} />
                 <Route path="/projects" element={<Projects />} />
-                <Route path="/line" element={<Line />} />
                 <Route path="/area" element={<Area />} />
                 <Route path="/bar" element={<Bar />} />
                 <Route path="/pie" element={<Pie />} />

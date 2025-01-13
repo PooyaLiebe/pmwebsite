@@ -45,18 +45,16 @@ const Sidebar = ({ userRole }) => {
     { name: "forms", icon: <FaWpforms /> },
     { name: "projects", icon: <FiPieChart /> },
     { name: "kanban", icon: <BsKanban /> },
-    { name: "area", icon: <AiOutlineAreaChart /> },
-    { name: "bar", icon: <AiOutlineBarChart /> },
   ];
 
   const links =
     userRole === "operator"
       ? operatorLinks
       : userRole === "technician"
-        ? technicianLinks
-        : adminLinks;
+      ? technicianLinks
+      : adminLinks;
   return (
-    <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
+    <div className="ml-3 h-screen md:overflow-hidden  md:hover:overflow-auto pb-10">
       {activeMenu && (
         <>
           <div className="flex justify-between items-center">

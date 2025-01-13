@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { ChartsHeader } from "../../components";
@@ -12,9 +13,9 @@ function Area() {
   const { currentMode } = useStateContext();
 
   return (
-    <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg  rounded-3xl">
+    <div>
       <ChartsHeader category="Area" />
-      <div id="chart" className="w-ful">
+      <div id="chart">
         <ReactApexChart
           options={{
             chart: {
@@ -29,10 +30,10 @@ function Area() {
             data: series.dataSource.map((item) => item.y),
           }))}
           type="area"
-          height={350}
+          height={300}
         />
       </div>
-      <div id="html-dist" className="w-full"></div>
+      <div id="html-dist"></div>
     </div>
   );
 }

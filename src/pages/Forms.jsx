@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 
 function Forms({ role }) {
@@ -85,7 +87,7 @@ function Forms({ role }) {
   ]);
   const [show, setShow] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
-  const [currentRow, setCurrentRow] = useState(null); // eslint-disable-line no-unused-vars
+  const [currentRow, setCurrentRow] = useState(null);  
 
   function generateFormCode(section, formDate, rowIndex) {
     const sectionCode = getSectionCode(section);

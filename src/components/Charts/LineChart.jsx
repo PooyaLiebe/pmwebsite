@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { useStateContext } from "../../contexts/ContextProvider";
@@ -6,13 +7,15 @@ import {
   LinePrimaryXAxis,
   LinePrimaryYAxis,
 } from "../../data/dummy";
+import ChartsHeader from "../ChartsHeader";
 
 const LineChart = () => {
   const { currentMode } = useStateContext();
 
   return (
-    <div className="m-4 md:m-10 mt-24 p-10 dark:text-white rounded-3xl">
-      <div id="chart" className="w-full ">
+    <div>
+      <ChartsHeader category="Line" title="Forms Numbers in Month" />
+      <div id="chart">
         <ReactApexChart
           options={{
             chart: {
@@ -27,10 +30,9 @@ const LineChart = () => {
             data: series.dataSource.map((item) => item.y),
           }))}
           type="line"
-          height={350}
+          height={300}
         />
       </div>
-      <div id="html-dist" className="w-full"></div>
     </div>
   );
 };

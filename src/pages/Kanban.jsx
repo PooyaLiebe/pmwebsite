@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 // noinspection ES6CheckImport
 
 import React, { useState, useEffect } from "react";
@@ -39,15 +41,6 @@ const Board = ({ isDarkMode, userRole }) => {
 
   return (
     <div className="flex h-full w-full gap-3 overflow-scroll p-12">
-      <Column
-        title="Backlog"
-        column="backlog"
-        headingColor="dark:text-white text-black"
-        cards={cards}
-        setCards={setCards}
-        isDarkMode={isDarkMode}
-        userRole={userRole}
-      />
       <Column
         title="TODO"
         column="todo"
@@ -359,11 +352,6 @@ const AddCard = ({ column, setCards }) => {
 };
 
 const DEFAULT_CARDS = [
-  // BACKLOG
-  { title: "Look into render bug in dashboard", id: "1", column: "backlog" },
-  { title: "SOX compliance checklist", id: "2", column: "backlog" },
-  { title: "[SPIKE] Migrate to Azure", id: "3", column: "backlog" },
-  { title: "Document Notifications service", id: "4", column: "backlog" },
   // TODO
   {
     title: "Research DB options for new microservice",

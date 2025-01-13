@@ -8,7 +8,5 @@ export { default as Notification } from "./Notification";
 export { default as UserProfile } from "./UserProfile";
 export { default as LineChart } from "./Charts/LineChart";
 export { default as Pie } from "./Charts/Pie";
-export { default as Area } from "./Charts/Area";
-export { default as Bar } from "./Charts/Bar";
 export { default as ChartsHeader } from "./ChartsHeader";
 export { default as Header } from "./Header";

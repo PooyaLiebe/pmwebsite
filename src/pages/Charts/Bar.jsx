@@ -13,9 +13,9 @@ function BarsChartStacked() {
   const { currentMode } = useStateContext();
 
   return (
-    <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg  rounded-3xl">
+    <div>
       <ChartsHeader category="Bar" title="Forms Numbers in Month" />
-      <div id="chart" className="w-ful">
+      <div id="chart">
         <ReactApexChart
           options={{
             chart: {
@@ -30,7 +30,7 @@ function BarsChartStacked() {
             data: series.dataSource.map((item) => item.y),
           }))}
           type="bar"
-          height={350}
+          height={300}
         />
       </div>
       <div id="html-dist" className="w-full"></div>

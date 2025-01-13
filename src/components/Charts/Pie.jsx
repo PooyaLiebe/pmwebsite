@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import { ChartsHeader } from "..";
@@ -8,9 +9,9 @@ function PieChart() {
   const { currentMode } = useStateContext();
 
   return (
-    <div className="m-4 md:m-10  mt-24 p-10 rounded-3xl">
+    <div>
       <ChartsHeader category="Pie" title="Forms Numbers in Month" />
-      <div id="chart" className="w-full">
+      <div id="chart" className="overflow-hidden">
         <ReactApexChart
           options={{
             legend: {
@@ -24,7 +25,7 @@ function PieChart() {
           }}
           series={pieChartData.map((item) => item.y)} // Using the imported data
           type="pie"
-          height={350}
+          height={300}
         />
       </div>
       <div id="html-dist" className="w-full text-white"></div>

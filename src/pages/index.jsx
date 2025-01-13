@@ -11,5 +11,3 @@ export { default as Start } from "./Start";
 export { default as Forms } from "./Forms";
 export { default as Area } from "./Charts/Area";
 export { default as Bar } from "./Charts/Bar";
-export { default as Line } from "./Charts/Line";
-export { default as Pie } from "./Charts/Pie";
