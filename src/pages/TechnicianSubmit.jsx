@@ -26,27 +26,21 @@ function TechnicianSubmit() {
     flamekala: "خیر",
     shopkala: "فوری",
   });
-  const handleAghlam = (e) => {
-    setAghlamData({
-      ...aghlamData,
-      [e.target.name]: e.target.value,
-    });
-  };
   const handleSendAghlam = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/techniciansubmit", values)
+      .post("http://localhost:3000/techniciansubmit", aghlamData)
       .then((result) => {
         if (result.data.Status) {
           alert("کالا با موفقیت ثبت شد");
-          // setValues({
-          //   kalaname: "",
-          //   countkala: "",
-          //   vahedkala: "",
-          //   codekala: "",
-          //   flamekala: "",
-          //   shopkala: "",
-          // });
+          setAghlamData({
+            kalaname: "",
+            countkala: "",
+            vahedkala: "",
+            codekala: "",
+            flamekala: "",
+            shopkala: "",
+          });
         } else {
           alert(result.data.Error);
         }
@@ -304,8 +298,12 @@ function TechnicianSubmit() {
                           id="kalaname"
                           placeholder="نام کالا"
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.kalaname}
-                          onChange={handleAghlam}
+                          onChange={(e) =>
+                            setAghlamData({
+                              ...values,
+                              kalaname: e.target.value,
+                            })
+                          }
                         />
                       </div>
                       <div>
@@ -316,8 +314,12 @@ function TechnicianSubmit() {
                           id="countkala"
                           placeholder="تعداد"
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.countkala}
-                          onChange={handleAghlam}
+                          onChange={(e) =>
+                            setAghlamData({
+                              ...values,
+                              countkala: e.target.value,
+                            })
+                          }
                         />
                       </div>
                       <div>
@@ -328,8 +330,12 @@ function TechnicianSubmit() {
                           id="vahedkala"
                           placeholder=""
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                          value={aghlamData.vahedkala}
-                          onChange={handleAghlam}
+                          onChange={(e) =>
+                            setAghlamData({
+                              ...values,
+                              vahedkala: e.target.value,
+                            })
+                          }
                         >
                           <option value="عدد">عدد</option>
                           <option value="گرم">گرم</option>
@@ -349,8 +355,12 @@ function TechnicianSubmit() {
                           id="codekala"
                           placeholder=""
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.codekala}
-                          onChange={handleAghlam}
+                          onChange={(e) =>
+                            setAghlamData({
+                              ...values,
+                              codekala: e.target.value,
+                            })
+                          }
                         />
                       </div>
                       <div>
@@ -361,8 +371,12 @@ function TechnicianSubmit() {
                           id="flamekala"
                           placeholder=""
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                          value={aghlamData.flamekala}
-                          onChange={handleAghlam}
+                          onChange={(e) =>
+                            setAghlamData({
+                              ...values,
+                              flamekala: e.target.value,
+                            })
+                          }
                         >
                           <option value="خیر">خیر</option>
                           <option value="بله">بله</option>
@@ -376,8 +390,12 @@ function TechnicianSubmit() {
                           id="shopkala"
                           placeholder=""
                           className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                          value={aghlamData.shopkala}
-                          onChange={handleAghlam}
+                          onChange={(e) =>
+                            setAghlamData({
+                              ...values,
+                              shopkala: e.target.value,
+                            })
+                          }
                         >
                           <option value="فوری">فوری</option>
                           <option value="ضروری">ضروری</option>
@@ -486,12 +504,8 @@ function TechnicianSubmit() {
                           <option value="معمولی">معمولی</option>
                         </select>
                       </div>
-                      <button type="submit" onClick={"handleSendAghlam"}>
-                        تایید
-                      </button>
-                      <button type="button" onClick={"handleCloseModal1"}>
-                        خروج
-                      </button>
+                      <button onClick={"handleSendAghlam"}>تایید</button>
+                      <button onClick={"handleCloseModal1"}>خروج</button>
                     </div>
                   </div>
                 </Modal>
