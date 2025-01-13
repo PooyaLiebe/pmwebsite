@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-// noinspection ES6CheckImport
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
