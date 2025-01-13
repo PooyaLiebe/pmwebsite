@@ -12,7 +12,7 @@ import { FaWpforms } from "react-icons/fa6";
 import { BsKanban } from "react-icons/bs";
 import { AiOutlineAreaChart, AiOutlineBarChart } from "react-icons/ai";
 
-const Sidebar = ({ userRole }) => {
+const Sidebar = ({ userRole = "technician" }) => {
   const { currentColor, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
 

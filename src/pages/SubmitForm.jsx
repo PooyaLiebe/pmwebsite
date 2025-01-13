@@ -4,23 +4,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./submitstyle.css";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SubmitForm() {
   const [values, setValues] = useState({
     formcode: "",
     problemdate: "",
-    section: "",
+    section: "Chipper",
     machinename: "",
     equipstop: "",
     failuretime: "",
     productiontime: "",
-    shift: "",
-    suggesttime: "",
-    worksuggest: "",
-    fixrepair: "",
-    reportinseption: "",
-    faultdm: "",
+    shift: "A",
+    suggesttime: "فوری",
+    worksuggest: "اضطراری",
+    fixrepair: "درخواست اپراتو",
+    reportinseption: "بازرسی فنی",
+    faultdm: "اختلال در کارکرد",
     operatorname: "",
     problemdescription: "",
   });
@@ -28,7 +28,7 @@ function SubmitForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://preventivepm.netlify.app/submitform", values)
+      .post("http://localhost:3000/submitform", values)
       .then((result) => {
         if (result.data.Status) {
           navigate("/submitform");
@@ -283,7 +283,8 @@ function SubmitForm() {
                     placeholder="کلیات شرح عیب مشاهده شده را توضیح دهید : "
                     onChange={(e) =>
                       setValues({
-                        ...values,problemdescription: e.target.value,
+                        ...values,
+                        problemdescription: e.target.value,
                       })
                     }
                   />
