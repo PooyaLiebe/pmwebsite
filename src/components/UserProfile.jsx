@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
 
@@ -31,10 +32,6 @@ const UserProfile = () => {
           <p className="font-semibold text-xl dark:text-gray-200">
             {" "}
             Pooya Payvar{" "}
-          </p>
-          <p className="text-gray-500 text-sm dark:text-gray-400">
-            {" "}
-            Administrator{" "}
           </p>
           <p className="text-gray-500 text-sm font-semibold dark:text-gray-400">
             {" "}
