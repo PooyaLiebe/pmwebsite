@@ -56,6 +56,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, formcode: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
