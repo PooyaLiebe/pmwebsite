@@ -28,6 +28,8 @@ import {
   OperatorLogin,
   SubmitForm,
   Projects,
+  Aghlam,
+  Technician,
 } from "./pages";
 
 import "./App.css";
@@ -156,6 +158,8 @@ const AppContent = ({
                 <Route path="/submitform" element={<SubmitForm />} />
                 <Route path="/kanban" element={<Kanban />} />
                 <Route path="/projects" element={<Projects />} />
+                <Route path="/aghlam" element={<Aghlam />} />
+                <Route path="/technician" element={<Technician />} />
                 <Route path="/area" element={<Area />} />
                 <Route path="/bar" element={<Bar />} />
                 <Route path="/pie" element={<Pie />} />
