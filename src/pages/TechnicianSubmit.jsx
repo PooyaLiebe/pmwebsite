@@ -1,92 +1,51 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-// noinspection ES6CheckImport
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./submitstyle.css";
-
-const Modal = ({ isOpen, children }) => {
-  if (!isOpen) return null;
-  return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-4 rounded shadow-lg">{children}</div>
-    </div>
-  );
-};
+import { useNavigate } from "react-router-dom";
 
 function TechnicianSubmit() {
-  //Aghlam Section
-  const [aghlamData, setAghlamData] = useState({
-    kalaname: "",
-    countkala: "",
-    vahedkala: "",
-    codekala: "",
-    flamekala: "",
-    shopkala: "",
+  const [values, setValues] = useState({
+    instructions: "خیر",
+    instructionsconfirm: "",
+    failurepart: "",
+    permit: "خیر",
+    permitconfirmnumber: "",
+    failuretime: "",
+    sparetime: "",
+    startfailuretime: "",
+    problemdescription: "",
   });
-  const handleSendAghlam = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:3000/techniciansubmit", aghlamData)
-      .then((result) => {
-        if (result.data.Status) {
-          alert("کالا با موفقیت ثبت شد");
-          setAghlamData({
-            kalaname: "",
-            countkala: "",
-            vahedkala: "",
-            codekala: "",
-            flamekala: "",
-            shopkala: "",
-          });
-        } else {
-          alert(result.data.Error);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-  const handleCloseModal1 = () => {
-    setIsModal1Open(false);
-  };
-  // End of Aghlam Section
-  const [isModal1Open, setIsModal1Open] = useState(false);
-  const [isModal2Open, setIsModal2Open] = useState(false);
   const [show, setShow] = useState(false);
   const [showPermit, setShowPermit] = useState(false);
-  const handleSelectChange = (event) => {
-    if (event.target.value === "بله") {
-      setShow(true);
-    } else {
-      setShow(false);
-    }
-  };
-  const handleSelectChangePermit = (event) => {
-    if (event.target.value === "بله") {
-      setShowPermit(true);
-    } else {
-      setShowPermit(false);
-    }
-  };
-  const [values, setValues] = useState({
-    instructionsconfirm: "",
+  const [showAghlam, setShowAghlam] = useState(false);
+  const [showTech, setShowTech] = useState(false);
+  const [aghlam, setAghlam] = useState({
+    kalaname: "",
+    countkala: "",
+    vahedkala: "عدد",
+    codekala: "",
+    flamekala: "خیر",
+    shopkala: "فوری",
+  });
+  const [tech, setTech] = useState({
+    personel: "",
+    personelnumber: "",
+    datesubmit: "",
+    specialjob: "رئیس",
+    starttimerepair: "",
+    endtimerepair: "",
+    repairstatus: "تعمیر کامل و قابل کاربری است",
+    unitrepair: "Mechanic",
+    shift: "A",
+    delayreason: "نبود قطعه یدکی",
+    failurereason: "اضافه بار",
+    failurereasondescription: "",
+    suggestionfailure: "",
   });
   const navigate = useNavigate();
-  const handleSend = () => {
-    // handleSubmit();
-    handleClose();
-  };
-  const handleSendPermit = () => {
-    // handleSubmit();
-    handleClosePermit();
-  };
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleClosePermit = () => {
-    setShowPermit(false);
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -101,7 +60,66 @@ function TechnicianSubmit() {
       })
       .catch((err) => console.log(err));
   };
-
+  const handleAghlamSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/aghlam", aghlam)
+      .then((result) => {
+        if (result.data.Status) {
+          alert("اقلام با موفقیت ثبت شد");
+        } else {
+          alert(result.data.Error);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleTechSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/technician", tech)
+      .then((result) => {
+        if (result.data.Status) {
+          alert("اقلام با موفقیت ثبت شد");
+        } else {
+          alert(result.data.Error);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleSelectChange = (event) => {
+    if (event.target.value === "بله") {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  };
+  const handleSend = () => {
+    // handleSubmit();
+    handleClose();
+  };
+  const handleSelectChangePermit = (event) => {
+    if (event.target.value === "بله") {
+      setShowPermit(true);
+    } else {
+      setShowPermit(false);
+    }
+  };
+  const handleSendPermit = () => {
+    // handleSubmit();
+    handleClosePermit();
+  };
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleClosePermit = () => {
+    setShowPermit(false);
+  };
+  const handleCloseAghlam = () => {
+    setShowAghlam(false);
+  };
+  const handleCloseTech = () => {
+    setShowTech(false);
+  };
   return (
     <div className="body dark:bg-secondary-dark-bg rounded-3xl">
       <div className="container">
@@ -176,7 +194,7 @@ function TechnicianSubmit() {
                     onChange={handleSelectChangePermit}
                   >
                     <option value="خیر">خیر</option>
-                    <option value="بله">بله</option>
+                    <option value="بله">بله </option>
                   </select>
                   {showPermit && (
                     <>
@@ -211,7 +229,7 @@ function TechnicianSubmit() {
                 <div className="input-field">
                   <label htmlFor="failuretime">مدت زمان تشخیص عیب</label>
                   <input
-                    type="time"
+                    type="datetime-local"
                     name="failuretime"
                     id="failuretime"
                     onChange={(e) => {
@@ -222,7 +240,7 @@ function TechnicianSubmit() {
                 <div className="input-field">
                   <label htmlFor="sparetime">مدت زمان تهیه لوازم یدکی</label>
                   <input
-                    type="time"
+                    type="datetime-local"
                     name="sparetime"
                     id="sparetime"
                     onChange={(e) => {
@@ -235,7 +253,7 @@ function TechnicianSubmit() {
                     میزان ساعت کار تجهیز در زمان شروع به رفع عیب
                   </label>
                   <input
-                    type="time"
+                    type="datetime-local"
                     name="startfailuretime"
                     id="startfailuretime"
                     onChange={(e) => {
@@ -267,248 +285,529 @@ function TechnicianSubmit() {
                 <button
                   type="button"
                   className="nextBtn"
-                  onClick={() => setIsModal1Open(true)}
+                  onClick={() => setShowAghlam(true)}
                 >
                   اقلام
                 </button>
                 <button
                   type="button"
                   className="nextBtn"
-                  onClick={() => setIsModal2Open(true)}
+                  onClick={() => setShowTech(true)}
                 >
                   تکنیسین
                 </button>
                 <button type="submit" className="nextBtn">
                   ثبت
                 </button>
-                <Modal
-                  isOpen={isModal1Open}
-                  onClose={() => setIsModal1Open(false)}
-                >
-                  <div className="container">
-                    <header className="flex">Aghlam</header>
-                    <div className="grid grid-cols-3 gap-4">
-                      <div>
-                        <label htmlFor="kalaname" className="mr-2">
-                          نام کالا
-                        </label>
-                        <input
-                          type="text"
-                          name="kalaname"
-                          id="kalaname"
-                          placeholder="نام کالا"
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          onChange={(e) =>
-                            setAghlamData({
-                              ...values,
-                              kalaname: e.target.value,
-                            })
-                          }
-                        />
+                {showAghlam && (
+                  <>
+                    <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
+                    <div className="fixed inset-0 flex items-center justify-center z-20">
+                      <div className="bg-white p-4 rounded">
+                        <div className="container">
+                          <header className="flex">
+                            شرح و مشخصات قطعات یدکی مصرف شده
+                          </header>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <label
+                                htmlFor="kalaname"
+                                className="flex justify-center items-center"
+                              >
+                                نام کالا
+                              </label>
+                              <input
+                                type="text"
+                                name="kalaname"
+                                id="kalaname"
+                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setAghlam({
+                                    ...aghlam,
+                                    kalaname: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="countkala"
+                                className="flex justify-center items-center"
+                              >
+                                تعداد
+                              </label>
+                              <input
+                                type="text"
+                                name="countkala"
+                                id="countkala"
+                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setAghlam({
+                                    ...aghlam,
+                                    countkala: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="vahedkala"
+                                className="flex justify-center items-center"
+                              >
+                                واحد
+                              </label>
+                              <select
+                                type="text"
+                                name="vahedkala"
+                                id="vahedkala"
+                                placeholder=""
+                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setAghlam({
+                                    ...aghlam,
+                                    vahedkala: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value="عدد">عدد</option>
+                                <option value="گرم">گرم</option>
+                                <option value="کیلوگرم">کیلوگرم</option>
+                                <option value="متر">متر</option>
+                                <option value="سانتی متر">سانتی متر</option>
+                                <option value="میلی متر">میلی متر</option>
+                                <option value="لیتر">لیتر</option>
+                                <option value="گالن">گالن</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="codekala"
+                                className="flex justify-center items-center"
+                              >
+                                کد کالا
+                              </label>
+                              <input
+                                type="text"
+                                name="codekala"
+                                id="codekala"
+                                placeholder=""
+                                className="outline-none text-14 w-full font-normal flex text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setAghlam({
+                                    ...aghlam,
+                                    codekala: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="flamekala"
+                                className="flex justify-center items-center"
+                              >
+                                قطعه مستعمل
+                              </label>
+                              <select
+                                type="text"
+                                name="flamekala"
+                                id="flamekala"
+                                placeholder=""
+                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setAghlam({
+                                    ...aghlam,
+                                    flamekala: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value="خیر">خیر</option>
+                                <option value="بله">بله</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="shopkala"
+                                className="flex justify-center items-center"
+                              >
+                                خرید فوری
+                              </label>
+                              <select
+                                type="text"
+                                name="shopkala"
+                                id="shopkala"
+                                placeholder=""
+                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setAghlam({
+                                    ...aghlam,
+                                    shopkala: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value="فوری">فوری</option>
+                                <option value="ضروری">ضروری</option>
+                                <option value="معمولی">معمولی</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <button onClick={handleAghlamSubmit}>تایید</button>
+                            <button onClick={handleCloseAghlam}>خروج</button>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <label htmlFor="countkala">تعداد</label>
-                        <input
-                          type="text"
-                          name="countkala"
-                          id="countkala"
-                          placeholder="تعداد"
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          onChange={(e) =>
-                            setAghlamData({
-                              ...values,
-                              countkala: e.target.value,
-                            })
-                          }
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="vahedkala">واحد</label>
-                        <select
-                          type="text"
-                          name="vahedkala"
-                          id="vahedkala"
-                          placeholder=""
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                          onChange={(e) =>
-                            setAghlamData({
-                              ...values,
-                              vahedkala: e.target.value,
-                            })
-                          }
-                        >
-                          <option value="عدد">عدد</option>
-                          <option value="گرم">گرم</option>
-                          <option value="کیلوگرم">کیلوگرم</option>
-                          <option value="متر">متر</option>
-                          <option value="سانتی متر">سانتی متر</option>
-                          <option value="میلی متر">میلی متر</option>
-                          <option value="لیتر">لیتر</option>
-                          <option value="گالن">گالن</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label htmlFor="codekala">کد کالا</label>
-                        <input
-                          type="text"
-                          name="codekala"
-                          id="codekala"
-                          placeholder=""
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          onChange={(e) =>
-                            setAghlamData({
-                              ...values,
-                              codekala: e.target.value,
-                            })
-                          }
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="flamekala">قطعه مستعمل</label>
-                        <select
-                          type="text"
-                          name="flamekala"
-                          id="flamekala"
-                          placeholder=""
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                          onChange={(e) =>
-                            setAghlamData({
-                              ...values,
-                              flamekala: e.target.value,
-                            })
-                          }
-                        >
-                          <option value="خیر">خیر</option>
-                          <option value="بله">بله</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label htmlFor="shopkala">خرید فوری</label>
-                        <select
-                          type="text"
-                          name="shopkala"
-                          id="shopkala"
-                          placeholder=""
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                          onChange={(e) =>
-                            setAghlamData({
-                              ...values,
-                              shopkala: e.target.value,
-                            })
-                          }
-                        >
-                          <option value="فوری">فوری</option>
-                          <option value="ضروری">ضروری</option>
-                          <option value="معمولی">معمولی</option>
-                        </select>
-                      </div>
-                      <button onClick={handleSendAghlam}>تایید</button>
-                      <button onClick={handleCloseModal1}>خروج</button>
                     </div>
-                  </div>
-                </Modal>
-                <Modal
-                  isOpen={isModal2Open}
-                  onClose={() => setIsModal1Open(false)}
-                >
-                  <div className="container">
-                    <header className="flex">Aghlam</header>
-                    <div className="grid grid-cols-3 gap-4">
-                      <div>
-                        <label htmlFor="kalaname" className="mr-2">
-                          نام کالا
-                        </label>
-                        <input
-                          type="text"
-                          name="kalaname"
-                          id="kalaname"
-                          placeholder="نام کالا"
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.kalaname}
-                          onChange={handleSendAghlam}
-                        />
+                  </>
+                )}
+                {showTech && (
+                  <>
+                    <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
+                    <div className="fixed inset-0 flex items-center justify-center z-20">
+                      <div className="bg-white p-4 rounded">
+                        <div className="container">
+                          <header className="flex">سرپرست/مسئول تعمیرات</header>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <label
+                                htmlFor="personel"
+                                className="flex justify-center items-center"
+                              >
+                                پرسنل انجام دهنده
+                              </label>
+                              <input
+                                type="text"
+                                name="personel"
+                                id="personel"
+                                placeholder="نام و نام خانوادگی پرسنل"
+                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    personel: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="personelnumber"
+                                className="flex justify-center items-center"
+                              >
+                                شماره پرسنلی
+                              </label>
+                              <input
+                                type="text"
+                                name="personelnumber"
+                                id="personelnumber"
+                                placeholder="شماره پرسنلی را وارد کنید"
+                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    personelnumber: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="datesubmit"
+                                className="flex justify-center items-center"
+                              >
+                                تاریخ انجام
+                              </label>
+                              <input
+                                type="datetime-local"
+                                name="datesubmit"
+                                id="datesubmit"
+                                className="outline-none text-14 w-full font-normal flex text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    datesubmit: e.target.value,
+                                  })
+                                }
+                              ></input>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="specialjob"
+                                className="flex justify-center items-center"
+                              >
+                                مهارت
+                              </label>
+                              <select
+                                name="specialjob"
+                                id="specialjob"
+                                className="outline-none text-14 w-full font-normal flex text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    specialjob: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value="رئیس">رئیس</option>
+                                <option value="سرپرست">سرپرست</option>
+                                <option value="سرشیفت">سرشیفت</option>
+                                <option value="کارشناس">کارشناس</option>
+                                <option value="تکنسین">تکنسین</option>
+                                <option value="تعمیرکار">تعمیرکار</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="starttimerepair"
+                                className="flex justify-center items-center"
+                              >
+                                ساعت شروع تعمیرات
+                              </label>
+                              <input
+                                type="datetime-local"
+                                name="starttimerepair"
+                                id="starttimerepair"
+                                className="outline-none text-14 w-full font-normal flex text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    starttimerepair: e.target.value,
+                                  })
+                                }
+                              ></input>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="endtimerepair"
+                                className="flex justify-center items-center"
+                              >
+                                ساعت پایان تعمیرات
+                              </label>
+                              <input
+                                type="datetime-local"
+                                name="endtimerepair"
+                                id="endtimerepair"
+                                className="outline-none text-14 w-full font-normal flex text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    endtimerepair: e.target.value,
+                                  })
+                                }
+                              ></input>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="repairstatus"
+                                className="flex justify-center items-center"
+                              >
+                                وضعیت تعمیر
+                              </label>
+                              <select
+                                name="repairstatus"
+                                id="repairstatus"
+                                className="outline-none text-14 text-center w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    repairstatus: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value="تعمیر کامل و قابل کاربری است">
+                                  تعمیر کامل و قابل کاربری است
+                                </option>
+                                <option value="نیاز به تعمیر مجدد دارد">
+                                  نیاز به تعمیر مجدد دارد
+                                </option>
+                                <option value="نیاز به بازرسی مجدد دارد">
+                                  نیاز به بازرسی مجدد دارد
+                                </option>
+                                <option value="تعمیر کامل نیست و نیاز به تکمیل دارد">
+                                  تعمیر کامل نیست و نیاز به تکمیل دارد
+                                </option>
+                              </select>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="unitrepair"
+                                className="flex justify-center items-center"
+                              >
+                                {" "}
+                                واحد انجام دهنده
+                              </label>
+                              <select
+                                name="unitrepair"
+                                id="unitrepair"
+                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    unitrepair: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value="Mechanic">Mechanic</option>
+                                <option value="Electric">Electric</option>
+                                <option value="Utility">Utility</option>
+                                <option value="Production">Production</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="shift"
+                                className="flex justify-center items-center"
+                              >
+                                شیفت
+                              </label>
+                              <select
+                                name="shift"
+                                id="shift"
+                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    shift: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="delayreason"
+                                className="flex justify-center items-center"
+                              >
+                                دلیل تاخیر
+                              </label>
+                              <select
+                                name="delayreason"
+                                id="delayreason"
+                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    delayreason: e.target.value,
+                                  })
+                                }
+                              >
+                                <option value="نبود قطعه یدکی">
+                                  نبود قطعه یدکی
+                                </option>
+                                <option value="نبودابزار و تجهیزات مناسب">
+                                  نبود ابزار و تجهیزات مناسب
+                                </option>
+                                <option value="عدم حضور متخصص تعمیرات">
+                                  عدم حضوری متخصص تعمیرات
+                                </option>
+                                <option value="کمبود نیرو">کمبود نیرو</option>
+                                <option value="برونسپاری">برونسپاری</option>
+                                <option value="تاخیر در صدور مجوزها">
+                                  تاخیر در صدور مجوزها
+                                </option>
+                                <option value="تاخیر در ماشین آلات">
+                                  تاخیر در ماشین آلات
+                                </option>
+                              </select>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="failurereason"
+                                className="flex justify-center items-center"
+                              >
+                                دلیل خرابی
+                              </label>
+                              <select
+                                name="failurereason"
+                                id="failurereason"
+                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    failurereason: e.target.value,
+                                  })
+                                }
+                              >
+                                {" "}
+                                <option value="اضافه بار">اضافه بار</option>
+                                <option value="تنظیم نادرست">
+                                  تنظیم نادرست
+                                </option>
+                                <option value="حادثه">حادثه</option>
+                                <option value="طراحی غلط">طراحی غلط</option>
+                                <option value="بهره برداری نادرست">
+                                  بهره برداری نادرست
+                                </option>
+                                <option value="نگهداری ضعیف">
+                                  نگهداری ضعیف
+                                </option>
+                                <option value="فرسودگی">فرسودگی</option>
+                                <option value="نامرغوب بودن قطعات">
+                                  نامرغوب بودن قطعات
+                                </option>
+                                <option value="نبود / کمبود اطلاعات فنی">
+                                  نبود / کمبود اطلاعات فنی
+                                </option>
+                                <option value="تاخیر در ارجاع مکاتبات">
+                                  تاخیر در ارجاع مکاتبات
+                                </option>
+                                <option value="نامناسب بودن تعمیرات قبلی">
+                                  نامناسب بودن تعمیرات قبلی
+                                </option>
+                              </select>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="failurereasondescription"
+                                className="flex justify-center items-center"
+                              >
+                                شرح دلیل خرابی
+                              </label>
+                              <textarea
+                                placeholder="شرح دلیل خرابی"
+                                name="failurereasondescription"
+                                id="failurereasondescription"
+                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    failurereasondescription: e.target.value,
+                                  })
+                                }
+                              ></textarea>
+                            </div>
+                            <div>
+                              <label
+                                htmlFor="suggestionfailure"
+                                className="flex justify-center items-center"
+                              >
+                                پیشنهاد
+                              </label>
+                              <textarea
+                                placeholder="پیشنهاد"
+                                name="suggestionfailure"
+                                id="suggestionfailure"
+                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                onChange={(e) =>
+                                  setTech({
+                                    ...tech,
+                                    suggestionfailure: e.target.value,
+                                  })
+                                }
+                              ></textarea>
+                            </div>
+                          </div>
+                          <div className="flex">
+                            <button onClick={handleTechSubmit}>تایید</button>
+                            <button onClick={handleCloseTech}>خروج</button>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <label htmlFor="countkala">تعداد</label>
-                        <input
-                          type="text"
-                          name="countkala"
-                          id="countkala"
-                          placeholder="تعداد"
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.countkala}
-                          onChange={handleSendAghlam}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="vahedkala">واحد</label>
-                        <select
-                          type="text"
-                          name="vahedkala"
-                          id="vahedkala"
-                          placeholder=""
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.vahedkala}
-                          onChange={handleSendAghlam}
-                        >
-                          <option value="عدد">عدد</option>
-                          <option value="گرم">گرم</option>
-                          <option value="کیلوگرم">کیلوگرم</option>
-                          <option value="متر">متر</option>
-                          <option value="سانتی متر">سانتی متر</option>
-                          <option value="میلی متر">میلی متر</option>
-                          <option value="لیتر">لیتر</option>
-                          <option value="گالن">گالن</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label htmlFor="codekala">کد کالا</label>
-                        <input
-                          type="text"
-                          name="codekala"
-                          id="codekala"
-                          placeholder=""
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.codekala}
-                          onChange={handleSendAghlam}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="flamekala">قطعه مستعمل</label>
-                        <select
-                          type="text"
-                          name="flamekala"
-                          id="flamekala"
-                          placeholder=""
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.flamekala}
-                          onChange={handleSendAghlam}
-                        >
-                          <option value="خیر">خیر</option>
-                          <option value="بله">بله</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label htmlFor="shopkala">خرید فوری</label>
-                        <select
-                          type="text"
-                          name="shopkala"
-                          id="shopkala"
-                          placeholder=""
-                          className="outline-none text-14 font-normal rounded-md shadow-lg border-2 p-4 h-11 m-2"
-                          value={aghlamData.shopkala}
-                          onChange={handleSendAghlam}
-                        >
-                          <option value="فوری">فوری</option>
-                          <option value="ضروری">ضروری</option>
-                          <option value="معمولی">معمولی</option>
-                        </select>
-                      </div>
-                      <button>تایید</button>
-                      <button onChange={handleCloseModal1}>خروج</button>
                     </div>
-                  </div>
-                </Modal>
+                  </>
+                )}
               </div>
             </div>
           </div>
