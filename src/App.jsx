@@ -46,7 +46,7 @@ const App = () => {
     themeSettings,
     setThemeSettings,
   } = useStateContext();
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Set default to false to enable login
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem("colorMode");

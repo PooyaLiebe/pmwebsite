@@ -700,7 +700,7 @@ function TechnicianSubmit() {
                                 شرح دلیل خرابی
                               </label>
                               <textarea
-                                placeholder="شرح دلیل خرابی"
+                                placeholder="دلیل خرابی را توضیح دهید"
                                 name="failurereasondescription"
                                 id="failurereasondescription"
                                 className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
@@ -720,7 +720,7 @@ function TechnicianSubmit() {
                                 پیشنهاد
                               </label>
                               <textarea
-                                placeholder="پیشنهاد"
+                                placeholder="پیشنهاد تکنیسین"
                                 name="suggestionfailure"
                                 id="suggestionfailure"
                                 className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"

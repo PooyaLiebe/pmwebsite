@@ -12,7 +12,7 @@ import { FaWpforms } from "react-icons/fa6";
 import { BsKanban } from "react-icons/bs";
 import { AiOutlineAreaChart, AiOutlineBarChart } from "react-icons/ai";
 
-const Sidebar = ({ userRole = "technician" }) => {
+const Sidebar = ({ userRole = "admin" }) => {
   const { currentColor, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
 
@@ -42,6 +42,7 @@ const Sidebar = ({ userRole = "technician" }) => {
   const adminLinks = [
     { name: "dashboard", icon: <FiShoppingBag /> },
     { name: "submitform", icon: <RiContactsLine /> },
+    { name: "TechnicianSubmit", icon: <RiContactsLine /> },
     { name: "forms", icon: <FaWpforms /> },
     { name: "projects", icon: <FiPieChart /> },
     { name: "kanban", icon: <BsKanban /> },
