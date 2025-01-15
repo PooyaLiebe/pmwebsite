@@ -76,7 +76,7 @@ function OperatorSubmit() {
                   <input
                     type="datetime-local"
                     name="problemdate"
-                    className="text-center"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     id="problemdate"
                     onChange={(e) =>
                       setValues({ ...values, problemdate: e.target.value })
@@ -142,7 +142,7 @@ function OperatorSubmit() {
                     type="datetime-local"
                     name="equipstop"
                     id="equipstop"
-                    className="text-center"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={(e) =>
                       setValues({ ...values, equipstop: e.target.value })
                     }
@@ -176,7 +176,7 @@ function OperatorSubmit() {
                   <input
                     type="datetime-local"
                     name="productiontime"
-                    className="text-center"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     id="productiontime"
                     onChange={(e) =>
                       setValues({ ...values, productiontime: e.target.value })
