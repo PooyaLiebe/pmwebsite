@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("https://planningmaintenance.ir/login", values)
+      .post("http://localhost:5173/auth/login", values)
       .then((result) => {
         if (result.data.loginStatus) {
           navigate("/dashboard");

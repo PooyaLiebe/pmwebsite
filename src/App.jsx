@@ -46,7 +46,7 @@ const App = () => {
     themeSettings,
     setThemeSettings,
   } = useStateContext();
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Set default to false to enable login
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Set default to false to enable login
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem("colorMode");
@@ -134,8 +134,6 @@ const AppContent = ({
           {themeSettings && <ThemeSettings />}
           <Routes>
             <Route path="/" element={<Start />} />
-            <Route path="/technicianlogin" element={<TechnicianLogin />} />
-            <Route path="/operatorlogin" element={<OperatorLogin />} />
             <Route
               path="/login"
               element={
@@ -146,6 +144,9 @@ const AppContent = ({
                 )
               }
             />
+            <Route path="/technicianlogin" element={<TechnicianLogin />} />
+            <Route path="/operatorlogin" element={<OperatorLogin />} />
+
             {isLoggedIn && (
               <>
                 <Route path="/dashboard" element={<Dashboard />} />

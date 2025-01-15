@@ -1,13 +1,12 @@
-/* eslint-disable no-unused-vars */
 import express from "express";
 import cors from "cors";
+import { AdminRouter } from "../Routes/AdminRoutes.js";
 
 const app = express();
 
-const corsOptions = {
-  origin: "https://planningmaintenance.ir/",
-  credentials: true,
-};
+app.use(cors());
+app.use(express.json());
+app.use("/auth", AdminRouter);
 
 app.listen(3000, () => {
   console.log("Server is Running");
