@@ -11,7 +11,7 @@ function PieChart() {
   return (
     <div>
       <ChartsHeader category="Pie" title="Forms Numbers in Month" />
-      <div id="chart" className="overflow-hidden">
+      <div id="chart" className="overflow-hidden justify-center">
         <ReactApexChart
           options={{
             legend: {
@@ -28,7 +28,6 @@ function PieChart() {
           height={300}
         />
       </div>
-      <div id="html-dist" className="w-full text-white"></div>
     </div>
   );
 }

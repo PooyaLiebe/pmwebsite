@@ -15,7 +15,7 @@ const LineChart = () => {
   return (
     <div>
       <ChartsHeader category="Line" title="Forms Numbers in Month" />
-      <div id="chart">
+      <div id="chart" className="overflow-hidden justify-center">
         <ReactApexChart
           options={{
             chart: {
