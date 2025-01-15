@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import "./submitstyle.css";
+import "./techniciansubmit.css";
 import { useNavigate } from "react-router-dom";
 
 function TechnicianSubmit() {
@@ -104,10 +104,6 @@ function TechnicianSubmit() {
       setShowPermit(false);
     }
   };
-  const handleSendPermit = () => {
-    // handleSubmit();
-    handleClosePermit();
-  };
   const handleClose = () => {
     setShow(false);
   };
@@ -129,50 +125,10 @@ function TechnicianSubmit() {
             <div className="details personal">
               <div className="fields">
                 <div className="input-field">
-                  <label htmlFor="instructions">
-                    آیا برای انجام تعمیر دستورالعمل تهیه شده است ؟
-                  </label>
-                  <select
-                    name="instructions"
-                    id="instructions"
-                    className="text-center"
-                    onChange={handleSelectChange}
+                  <label
+                    htmlFor="failurepart"
+                    className="flex justify-center items-center"
                   >
-                    <option value="خیر">خیر</option>
-                    <option value="بله">بله</option>
-                  </select>
-                  {show && (
-                    <>
-                      <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
-                      <div className="fixed inset-0 flex items-center justify-center z-20">
-                        <div className="bg-white p-4 rounded">
-                          <input
-                            type="text"
-                            name="instructionsconfirm"
-                            id="instructionsconfirm"
-                            placeholder="شماره دستورالعمل را وارد کنید"
-                            onChange={(e) => {
-                              setValues({
-                                ...values,
-                                instructionsconfirm: e.target.value,
-                              });
-                            }}
-                          />
-                          <div className="flex justify-end">
-                            <button
-                              className="bg-blue-500 text-white px-4 py-2 rounded"
-                              onClick={handleSend}
-                            >
-                              تایید
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="input-field">
-                  <label htmlFor="failurepart">
                     نام قسمت معیوب(بر اساس تکسونومی)
                   </label>
                   <input
@@ -180,57 +136,23 @@ function TechnicianSubmit() {
                     name="failurepart"
                     id="failurepart"
                     placeholder="نام قسمت معیوب(بر اساس تکسونومی)"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={(e) =>
                       setValues({ ...values, failurepart: e.target.value })
                     }
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="permit">نیاز به مجوز ایمنی دارد ؟</label>
-                  <select
-                    name="permit"
-                    id="permit"
-                    className="text-center"
-                    onChange={handleSelectChangePermit}
+                  <label
+                    htmlFor="failuretime"
+                    className="flex justify-center items-center"
                   >
-                    <option value="خیر">خیر</option>
-                    <option value="بله">بله </option>
-                  </select>
-                  {showPermit && (
-                    <>
-                      <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
-                      <div className="fixed inset-0 flex items-center justify-center z-20">
-                        <div className="bg-white p-4 rounded mt-3">
-                          <input
-                            type="text"
-                            name="permitconfirmnumber"
-                            id="permitconfirmnumber"
-                            placeholder="شماره پرمیت را وارد کنید"
-                            onChange={(e) => {
-                              setValues({
-                                ...values,
-                                permitconfirmnumber: e.target.value,
-                              });
-                            }}
-                          />
-                          <div className="flex justify-end">
-                            <button
-                              className="bg-blue-500 text-white px-4 py-2 rounded"
-                              onClick={handleSendPermit}
-                            >
-                              تایید
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="input-field">
-                  <label htmlFor="failuretime">مدت زمان تشخیص عیب</label>
+                    مدت زمان تشخیص عیب
+                  </label>
                   <input
                     type="datetime-local"
                     name="failuretime"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     id="failuretime"
                     onChange={(e) => {
                       setValues({ ...values, failuretime: e.target.value });
@@ -238,24 +160,34 @@ function TechnicianSubmit() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="sparetime">مدت زمان تهیه لوازم یدکی</label>
+                  <label
+                    htmlFor="sparetime"
+                    className="flex justify-center items-center"
+                  >
+                    مدت زمان تهیه لوازم یدکی
+                  </label>
                   <input
                     type="datetime-local"
                     name="sparetime"
                     id="sparetime"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={(e) => {
                       setValues({ ...values, sparetime: e.target.value });
                     }}
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="startfailuretime">
+                  <label
+                    htmlFor="startfailuretime"
+                    className="flex justify-center items-center"
+                  >
                     میزان ساعت کار تجهیز در زمان شروع به رفع عیب
                   </label>
                   <input
                     type="datetime-local"
                     name="startfailuretime"
                     id="startfailuretime"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={(e) => {
                       setValues({
                         ...values,
@@ -265,12 +197,16 @@ function TechnicianSubmit() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="problemdescription">
+                  <label
+                    htmlFor="problemdescription"
+                    className="flex justify-center items-center"
+                  >
                     کلیات شرح عیب مشاهده شده
                   </label>
                   <textarea
                     name="problemdescription"
                     id="problemdescription"
+                    className="outline-none text-center text-14 w-full font-normal flex  items-center rounded-md shadow-lg border-2 p-2 m-2"
                     placeholder="کلیات شرح عیب مشاهده شده را توضیح دهید : "
                     onChange={(e) =>
                       setValues({
@@ -281,7 +217,7 @@ function TechnicianSubmit() {
                   />
                 </div>
               </div>
-              <div className="flex">
+              <div className="flex justify-center text-center aling-center">
                 <button
                   type="button"
                   className="nextBtn"
@@ -320,7 +256,8 @@ function TechnicianSubmit() {
                                 type="text"
                                 name="kalaname"
                                 id="kalaname"
-                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                placeholder="نام کالا را وارد کنید"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setAghlam({
                                     ...aghlam,
@@ -340,7 +277,8 @@ function TechnicianSubmit() {
                                 type="text"
                                 name="countkala"
                                 id="countkala"
-                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                placeholder="تعداد کالا را وارد کنید"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setAghlam({
                                     ...aghlam,
@@ -361,7 +299,7 @@ function TechnicianSubmit() {
                                 name="vahedkala"
                                 id="vahedkala"
                                 placeholder=""
-                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setAghlam({
                                     ...aghlam,
@@ -390,8 +328,8 @@ function TechnicianSubmit() {
                                 type="text"
                                 name="codekala"
                                 id="codekala"
-                                placeholder=""
-                                className="outline-none text-14 w-full font-normal flex text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                placeholder="کد کالا را وارد کنید"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setAghlam({
                                     ...aghlam,
@@ -412,7 +350,7 @@ function TechnicianSubmit() {
                                 name="flamekala"
                                 id="flamekala"
                                 placeholder=""
-                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setAghlam({
                                     ...aghlam,
@@ -436,7 +374,7 @@ function TechnicianSubmit() {
                                 name="shopkala"
                                 id="shopkala"
                                 placeholder=""
-                                className="outline-none text-14 w-full text-center font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setAghlam({
                                     ...aghlam,
@@ -479,7 +417,7 @@ function TechnicianSubmit() {
                                 name="personel"
                                 id="personel"
                                 placeholder="نام و نام خانوادگی پرسنل"
-                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setTech({
                                     ...tech,
@@ -500,7 +438,7 @@ function TechnicianSubmit() {
                                 name="personelnumber"
                                 id="personelnumber"
                                 placeholder="شماره پرسنلی را وارد کنید"
-                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setTech({
                                     ...tech,
@@ -638,7 +576,7 @@ function TechnicianSubmit() {
                               <select
                                 name="unitrepair"
                                 id="unitrepair"
-                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setTech({
                                     ...tech,
@@ -662,7 +600,7 @@ function TechnicianSubmit() {
                               <select
                                 name="shift"
                                 id="shift"
-                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setTech({
                                     ...tech,
@@ -685,7 +623,7 @@ function TechnicianSubmit() {
                               <select
                                 name="delayreason"
                                 id="delayreason"
-                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setTech({
                                     ...tech,
@@ -722,7 +660,7 @@ function TechnicianSubmit() {
                               <select
                                 name="failurereason"
                                 id="failurereason"
-                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setTech({
                                     ...tech,
@@ -769,7 +707,7 @@ function TechnicianSubmit() {
                                 placeholder="شرح دلیل خرابی"
                                 name="failurereasondescription"
                                 id="failurereasondescription"
-                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setTech({
                                     ...tech,
@@ -789,7 +727,7 @@ function TechnicianSubmit() {
                                 placeholder="پیشنهاد"
                                 name="suggestionfailure"
                                 id="suggestionfailure"
-                                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                                className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                                 onChange={(e) =>
                                   setTech({
                                     ...tech,

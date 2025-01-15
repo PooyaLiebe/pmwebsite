@@ -90,8 +90,9 @@ function Forms({ role }) {
     instructionsconfirm: "",
   });
   const [show, setShow] = useState(false);
-  const [permit, setPermite] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
+  const [instructions, setInstructions] = useState(false);
+  const [permit, setPermit] = useState(false);
   const [currentRow, setCurrentRow] = useState(null);
 
   function generateFormCode(section, formDate, rowIndex) {
@@ -137,6 +138,8 @@ function Forms({ role }) {
   }
 
   const handleClose = () => setShow(false);
+  const handleClosePermit = () => setPermit(false);
+  const handleCloseInstructions = () => setInstructions(false);
 
   const handleShow = (row) => {
     setCurrentRow(row);
@@ -176,11 +179,18 @@ function Forms({ role }) {
       )
     );
   };
-  const handleSelectChange = (event) => {
+  const handleSelectChangeInstructions = (event) => {
     if (event.target.value === "بله") {
-      setPermite(true);
+      setInstructions(true);
     } else {
-      setPermite(false);
+      setInstructions(false);
+    }
+  };
+  const handleSelectChangePermit = (event) => {
+    if (event.target.value === "بله") {
+      setPermit(true);
+    } else {
+      setPermit(false);
     }
   };
   const handleDelete = () => {
@@ -294,7 +304,7 @@ function Forms({ role }) {
             <div className="bg-white p-4 rounded ">
               <h2 className="text-xl mb-4 text-center">ارسال</h2>
               <select
-                className="border border-gray-300 p-2 rounded w-full mb-4"
+                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                 value={selectedOption}
                 onChange={(e) => setSelectedOption(e.target.value)}
               >
@@ -314,20 +324,70 @@ function Forms({ role }) {
                   یونس حسین زاده
                 </option>
               </select>
-              <div className="input-field">
+              <div className="text-center">
                 <label htmlFor="instructions" className="text-center">
                   آیا برای انجام تعمیر دستورالعمل تهیه شده است ؟
                 </label>
                 <select
                   name="instructions"
                   id="instructions"
-                  className="text-center"
-                  onChange={handleSelectChange}
+                  className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                  onChange={handleSelectChangeInstructions}
                 >
                   <option value="خیر">خیر</option>
                   <option value="بله">بله</option>
                 </select>
-                {permit && (
+                <div className="input-field">
+                  <label htmlFor="permit" className="text-center">
+                    نیاز به مجوز ایمنی دارد ؟
+                  </label>
+                  <select
+                    name="permit"
+                    id="permit"
+                    className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                    onChange={handleSelectChangePermit}
+                  >
+                    <option value="خیر">خیر</option>
+                    <option value="بله">بله </option>
+                  </select>
+                  {permit && (
+                    <>
+                      <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
+                      <div className="fixed inset-0 flex items-center justify-center z-20">
+                        <div className="bg-white p-4 rounded mt-3">
+                          <input
+                            type="text"
+                            name="permitconfirmnumber"
+                            id="permitconfirmnumber"
+                            placeholder="شماره پرمیت را وارد کنید"
+                            className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                            onChange={(e) => {
+                              setValues({
+                                ...values,
+                                permitconfirmnumber: e.target.value,
+                              });
+                            }}
+                          />
+                          <div className="flex justify-center text-center items-center mt-5">
+                            <button
+                              className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
+                              onClick={handleClosePermit}
+                            >
+                              بستن
+                            </button>
+                            <button
+                              className="bg-blue-500 text-white px-4 py-2 rounded"
+                              onClick={handleClosePermit}
+                            >
+                              تایید
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+                {instructions && (
                   <>
                     <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
                     <div className="fixed inset-0 flex items-center justify-center z-20">
@@ -337,6 +397,7 @@ function Forms({ role }) {
                           name="instructionsconfirm"
                           id="instructionsconfirm"
                           placeholder="شماره دستورالعمل را وارد کنید"
+                          className="outline-none text-center text-14 w-full font-normal flex justify-normal items-center rounded-md shadow-lg border-2 p-2  m-2"
                           onChange={(e) => {
                             setValues({
                               ...values,
@@ -344,9 +405,15 @@ function Forms({ role }) {
                             });
                           }}
                         />
-                        <div className="flex justify-end">
+                        <div className="flex justify-center text-center items-center mt-5">
                           <button
-                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                            className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
+                            onClick={handleCloseInstructions}
+                          >
+                            بستن
+                          </button>
+                          <button
+                            className="bg-blue-500 text-white px-4 py-2 rounded "
                             onClick={handleSend}
                           >
                             تایید
@@ -357,7 +424,7 @@ function Forms({ role }) {
                   </>
                 )}
               </div>
-              <div className="flex justify-end">
+              <div className="flex justify-center text-center items-center mt-5">
                 <button
                   className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
                   onClick={handleClose}
