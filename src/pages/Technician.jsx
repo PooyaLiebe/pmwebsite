@@ -20,21 +20,6 @@ function Technician() {
     setIsModal1Open(false);
   };
 
-  const handleSendTech = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/techniciansubmit",
-        tech
-      ); // Update '/api/Tech' with your actual endpoint
-      console.log("Response from server:", response.data);
-      // Optionally, update your UI to reflect successful submission
-      setIsModal1Open(false); // Close the modal after successful submission
-    } catch (error) {
-      console.error("Error sending data:", error);
-      // Handle the error appropriately, e.g., display an error message to the user
-      alert("خطا در ارسال اطلاعات");
-    }
-  };
   return (
     <Modal isOpen={isModal1Open} onClose={() => setIsModal1Open(false)}>
       <div className="container">

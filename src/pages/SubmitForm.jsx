@@ -28,7 +28,7 @@ function SubmitForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/submitform", values)
+      .post("https://planningmaintenance.ir/submitform", values)
       .then((result) => {
         if (result.data.Status) {
           navigate("/submitform");

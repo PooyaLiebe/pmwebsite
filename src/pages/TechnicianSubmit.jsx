@@ -7,11 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function TechnicianSubmit() {
   const [values, setValues] = useState({
-    instructions: "خیر",
-    instructionsconfirm: "",
     failurepart: "",
-    permit: "خیر",
-    permitconfirmnumber: "",
     failuretime: "",
     sparetime: "",
     startfailuretime: "",
@@ -49,7 +45,7 @@ function TechnicianSubmit() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/techniciansubmit", values)
+      .post("https://planningmaintenance.ir/techniciansubmit", values)
       .then((result) => {
         if (result.data.Status) {
           navigate("/techniciansubmit");
@@ -63,7 +59,7 @@ function TechnicianSubmit() {
   const handleAghlamSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/aghlam", aghlam)
+      .post("https://planningmaintenance.ir/aghlam", aghlam)
       .then((result) => {
         if (result.data.Status) {
           alert("اقلام با موفقیت ثبت شد");
@@ -76,7 +72,7 @@ function TechnicianSubmit() {
   const handleTechSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/technician", tech)
+      .post("https://planningmaintenance.ir/technician", tech)
       .then((result) => {
         if (result.data.Status) {
           alert("اقلام با موفقیت ثبت شد");

@@ -2,32 +2,36 @@
 // noinspection ES6CheckImport
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./submitstyle.css";
+import { useNavigate } from "react-router-dom";
 
 function OperatorSubmit() {
   const [values, setValues] = useState({
     formcode: "",
-    section: "",
+    problemdate: "",
+    section: "Chipper",
     machinename: "",
-    shift: "",
+    equipstop: "",
+    failuretime: "",
+    productiontime: "",
+    shift: "A",
+    suggesttime: "فوری",
+    worksuggest: "اضطراری",
+    fixrepair: "درخواست اپراتو",
+    reportinseption: "بازرسی فنی",
+    faultdm: "اختلال در کارکرد",
     operatorname: "",
-    formdate: "",
-    problemtype: "",
-    stopstatus: "",
-    stopdate: "",
-    startdate: "",
     problemdescription: "",
   });
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/operator/operator_submit", values)
+      .post("https://planningmaintenance.ir/operatorsubmit", values)
       .then((result) => {
         if (result.data.Status) {
-          navigate("/operator_dashboard");
+          navigate("/operatorsubmit");
           alert("فرم با موفقیت ثبت شد");
         } else {
           alert(result.data.Error);
@@ -39,7 +43,7 @@ function OperatorSubmit() {
   return (
     <div className="body dark:bg-secondary-dark-bg rounded-3xl">
       <div className="container">
-        <header>Operator Form</header>
+        <header>ثبت فرم</header>
         <form onSubmit={handleSubmit}>
           <div className="form first">
             <div className="details personal">
@@ -49,10 +53,10 @@ function OperatorSubmit() {
                   <input
                     type="text"
                     id="formcode"
-                    placeholder="Enter Form Code"
                     onChange={(e) =>
                       setValues({ ...values, formcode: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -60,7 +64,6 @@ function OperatorSubmit() {
                   <input
                     type="datetime-local"
                     name="problemdate"
-                    placeholder="Enter Machine Name"
                     id="problemdate"
                     onChange={(e) =>
                       setValues({ ...values, problemdate: e.target.value })
@@ -77,17 +80,19 @@ function OperatorSubmit() {
                       setValues({ ...values, section: e.target.value })
                     }
                   >
-                    <option value="chipper">Chipper</option>
-                    <option value="conveyorline">Conveyor Line</option>
-                    <option value="dryerairgraider">Dryer Air Grader</option>
-                    <option value="refiner">Refiner</option>
-                    <option value="beforepress">Before Press</option>
-                    <option value="press">Press</option>
-                    <option value="afterpress">After Press</option>
-                    <option value="sandingrbs">Sanding</option>
-                    <option value="coolingsystem">Cooling System</option>
-                    <option value="steamboiler">Steam Boiler</option>
-                    <option value="general">General</option>
+                    <option value="Chipper">Chipper</option>
+                    <option value="Conveyor Line">Conveyor Line</option>
+                    <option value="Dryer & Air Grader">
+                      Dryer & Air Grader
+                    </option>
+                    <option value="Refiner">Refiner</option>
+                    <option value="Before Press">Before Press</option>
+                    <option value="Press">Press</option>
+                    <option value="After Press">After Press</option>
+                    <option value="Sanding">Sanding</option>
+                    <option value="Cooling System">Cooling System</option>
+                    <option value="Steam Boiler">Steam Boiler</option>
+                    <option value="General">General</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -95,7 +100,7 @@ function OperatorSubmit() {
                   <input
                     type="text"
                     name="machinename"
-                    placeholder="Enter Machine Name"
+                    placeholder="نام دستگاه را وارد کنید"
                     id="machinename"
                     onChange={(e) =>
                       setValues({ ...values, machinename: e.target.value })
@@ -114,28 +119,27 @@ function OperatorSubmit() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="problemtime">
+                  <label htmlFor="failuretime">
                     میزان ساعت کار تجهیز در زمان بروز عیب
                   </label>
                   <input
                     type="text"
-                    name="problemtime"
-                    id="problemtime"
-                    placeholder="Enter Operator Name"
+                    name="failuretime"
+                    id="failuretime"
+                    placeholder="میزان ساعت کار را وارد کنید"
                     onChange={(e) =>
-                      setValues({ ...values, problemtime: e.target.value })
+                      setValues({ ...values, failuretime: e.target.value })
                     }
                   />
                 </div>
-
                 <div className="input-field">
-                  <label htmlFor="problemdate">مدت زمان توقف خط تولید</label>
+                  <label htmlFor="productiontime">مدت زمان توقف خط تولید</label>
                   <input
                     type="datetime-local"
-                    name="problemdate"
-                    id="problemdate"
+                    name="productiontime"
+                    id="productiontime"
                     onChange={(e) =>
-                      setValues({ ...values, problemdate: e.target.value })
+                      setValues({ ...values, productiontime: e.target.value })
                     }
                   />
                 </div>
@@ -149,9 +153,9 @@ function OperatorSubmit() {
                       setValues({ ...values, shift: e.target.value })
                     }
                   >
-                    <option value="a">A</option>
-                    <option value="b">B</option>
-                    <option value="c">C</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -166,84 +170,96 @@ function OperatorSubmit() {
                       setValues({ ...values, suggesttime: e.target.value })
                     }
                   >
-                    <option value="Emergency">فوری</option>
-                    <option value="Hour">ساعات آتی</option>
-                    <option value="Day">اولین روز کاری</option>
-                    <option value="FirstCh">در اولین فرصت</option>
+                    <option value="فوری">فوری</option>
+                    <option value="ساعات آتی">ساعات آتی</option>
+                    <option value="اولین روز کاری">اولین روز کاری</option>
+                    <option value="در اولین فرصت">در اولین فرصت</option>
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="suggesttime">نوع کار درخواستی</label>
+                  <label htmlFor="worksuggest">نوع کار درخواستی</label>
                   <select
-                    name="suggesttime"
+                    name="worksuggest"
                     className="text-center"
-                    id="suggesttime"
+                    id="worksuggest"
                     onChange={(e) =>
-                      setValues({ ...values, suggesttime: e.target.value })
+                      setValues({ ...values, worksuggest: e.target.value })
                     }
                   >
-                    <option value="Emergency">اضطراری</option>
-                    <option value="Hour">بهسازی</option>
-                    <option value="Day">پایش وضعیت(غیر برنامه ای)</option>
-                    <option value="FirstCh">آماده سازی برای تعمیر</option>
-                    <option value="FirstCh">خدمات عمومی</option>
+                    <option value="اضطراری">اضطراری</option>
+                    <option value="بهسازی">بهسازی</option>
+                    <option value="پایش وضعیت(غیر برنامهای)">
+                      پایش وضعیت(غیر برنامه ای)
+                    </option>
+                    <option value="آماده سازی برای تعمیرات">
+                      آماده سازی برای تعمیر
+                    </option>
+                    <option value="خدمات عمومی">خدمات عمومی</option>
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="suggesttime">
+                  <label htmlFor="fixrepair">
                     تعمیر و تعویض اصلاحی ناشی از
                   </label>
                   <select
-                    name="suggesttime"
+                    name="fixrepair"
                     className="text-center"
-                    id="suggesttime"
+                    id="fixrepair"
                     onChange={(e) =>
-                      setValues({ ...values, suggesttime: e.target.value })
+                      setValues({ ...values, fixrepair: e.target.value })
                     }
                   >
-                    <option value="Emergency">درخواست اپراتور</option>
-                    <option value="Hour">درخواست واحد نت</option>
-                    <option value="Day">گزارش واحد ایمنی</option>
-                    <option value="FirstCh">آماده سازی برای تعمیر</option>
-                    <option value="FirstCh">خدمات عمومی</option>
+                    <option value="درخواست اپراتور">درخواست اپراتور</option>
+                    <option value="درخواست واحد نت">درخواست واحد نت</option>
+                    <option value="گزارش واحد ایمنی">گزارش واحد ایمنی</option>
+                    <option value="آماده سازی برای تعمیر">
+                      آماده سازی برای تعمیر
+                    </option>
+                    <option value="خدمات عمومی">خدمات عمومی</option>
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="suggesttime">گزارش بازرسی</label>
+                  <label htmlFor="reportinseption">گزارش بازرسی</label>
                   <select
-                    name="suggesttime"
+                    name="reportinseption"
                     className="text-center"
-                    id="suggesttime"
+                    id="reportinseption"
                     onChange={(e) =>
-                      setValues({ ...values, suggesttime: e.target.value })
+                      setValues({ ...values, reportinseption: e.target.value })
                     }
                   >
-                    <option value="Emergency">بازرسی فنی</option>
-                    <option value="Hour">واحد نت</option>
-                    <option value="Day">اپراتور</option>
-                    <option value="Day">سایر</option>
+                    <option value="بازرسی فنی">بازرسی فنی</option>
+                    <option value="واحد نت">واحد نت</option>
+                    <option value="اپراتور">اپراتور</option>
+                    <option value="سایر">سایر</option>
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="suggesttime">روش کشف عیب</label>
+                  <label htmlFor="faultdm">روش کشف عیب</label>
                   <select
-                    name="suggesttime"
+                    name="faultdm"
                     className="text-center"
-                    id="suggesttime"
+                    id="faultdm"
                     onChange={(e) =>
-                      setValues({ ...values, suggesttime: e.target.value })
+                      setValues({ ...values, faultdm: e.target.value })
                     }
                   >
-                    <option value="Emergency">اختلال در کارکرد</option>
-                    <option value="Hour">تعمیرات دوره ای</option>
-                    <option value="Day">مشاهده تصادفی</option>
-                    <option value="Day">بازرسی دوره ای</option>
-                    <option value="Day">تست عملکرد</option>
-                    <option value="Day">پایش وضعیت دوره ای</option>
-                    <option value="Day">آماده به کار نبودن در حین نیاز</option>
-                    <option value="Day">در حین انجام تعیرات اصلاحی</option>
-                    <option value="Day">فالت با آلارم</option>
-                    <option value="Day">سایر</option>
+                    <option value="اختلال در کارکرد">اختلال در کارکرد</option>
+                    <option value="تعمیرات دوره ای">تعمیرات دوره ای</option>
+                    <option value="مشاهده تصادفی">مشاهده تصادفی</option>
+                    <option value="بازرسی دوره ای">بازرسی دوره ای</option>
+                    <option value="تست عملکرد">تست عملکرد</option>
+                    <option value="پایش وضعیت دوره ای">
+                      پایش وضعیت دوره ای
+                    </option>
+                    <option value="آماده به کار نبودن در حین نیاز">
+                      آماده به کار نبودن در حین نیاز
+                    </option>
+                    <option value="در حین انجام تعمیرات اصلاحی">
+                      در حین انجام تعیرات اصلاحی
+                    </option>
+                    <option value="فالت با آلارم">فالت با آلارم</option>
+                    <option value="سایر روش ها">سایر</option>
                   </select>
                 </div>
                 <div className="input-field">
@@ -252,7 +268,7 @@ function OperatorSubmit() {
                     type="text"
                     name="operatorname"
                     id="operatorname"
-                    placeholder="Enter Operator Name"
+                    placeholder="نام اپراتور را وارد کنید"
                     onChange={(e) =>
                       setValues({ ...values, operatorname: e.target.value })
                     }
@@ -265,7 +281,7 @@ function OperatorSubmit() {
                   <textarea
                     name="problemdescription"
                     id="problemdescription"
-                    placeholder="Enter Problem Description"
+                    placeholder="کلیات شرح عیب مشاهده شده را توضیح دهید : "
                     onChange={(e) =>
                       setValues({
                         ...values,

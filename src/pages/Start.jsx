@@ -4,14 +4,14 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import './start.css'
+import "./start.css";
 
 function Start() {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   useEffect(() => {
     axios
-      .get("http://localhost:5173/auth/adminlogin")
+      .get("https://planningmaintenance.ir/")
       .then((result) => {
         if (result.data.Status) {
           if (result.data.role === "technician") {

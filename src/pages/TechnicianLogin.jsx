@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // noinspection ES6CheckImport
 
 import React, { useState } from "react";
@@ -16,7 +17,7 @@ function TechnicianLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/", values)
+      .post("https://planningmaintenance.ir/technicianlogin", values)
       .then((result) => {
         if (result.data.loginStatus) {
           navigate("/personeldashboard");
