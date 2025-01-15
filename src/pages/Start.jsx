@@ -8,26 +8,7 @@ import "./start.css";
 
 function Start() {
   const navigate = useNavigate();
-  axios.defaults.withCredentials = true;
-  useEffect(() => {
-    axios
-      .get("https://planningmaintenance.ir/")
-      .then((result) => {
-        if (result.data.Status) {
-          if (result.data.role === "technician") {
-            navigate("/dashboard");
-          }
-          if (result.data.role === "operator") {
-            navigate("/dashboard");
-          } else {
-            navigate("/dashboard");
-          }
-        } else {
-          navigate("/");
-        }
-      })
-      .catch((err) => console.log(err));
-  }, [navigate]);
+
   return (
     <div className="start-container">
       <div className="start-wrapper">

@@ -46,7 +46,7 @@ const App = () => {
     themeSettings,
     setThemeSettings,
   } = useStateContext();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem("colorMode");
@@ -134,37 +134,32 @@ const AppContent = ({
           {themeSettings && <ThemeSettings />}
           <Routes>
             <Route path="/" element={<Start />} />
-            <Route
-              path="/login"
-              element={
-                isLoggedIn ? (
-                  <Navigate to="/dashboard" />
-                ) : (
-                  <Login onLogin={handleLogin} />
-                )
-              }
-            />
+            <Route path="/login" element={<Login />} />
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
             <Route path="/operatorlogin" element={<OperatorLogin />} />
 
             {isLoggedIn && (
               <>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/forms" element={<Forms />} />
-                <Route path="/operatorsubmit" element={<OperatorSubmit />} />
+                <Route path="/dashboard" element={<Dashboard />}></Route>
+                <Route path="/forms" element={<Forms />}></Route>
+                <Route
+                  path="/operatorsubmit"
+                  element={<OperatorSubmit />}
+                ></Route>
                 <Route
                   path="/techniciansubmit"
                   element={<TechnicianSubmit />}
-                />
-                <Route path="/submitform" element={<SubmitForm />} />
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/aghlam" element={<Aghlam />} />
-                <Route path="/technician" element={<Technician />} />
-                <Route path="/area" element={<Area />} />
-                <Route path="/bar" element={<Bar />} />
-                <Route path="/pie" element={<Pie />} />
-                <Route path="/linechart" element={<LineChart />} />
+                ></Route>
+
+                <Route path="/kanban" element={<Kanban />}></Route>
+                <Route path="/projects" element={<Projects />}></Route>
+                <Route path="/aghlam" element={<Aghlam />}></Route>
+                <Route path="/technician" element={<Technician />}></Route>
+                <Route path="/area" element={<Area />}></Route>
+                <Route path="/bar" element={<Bar />}></Route>
+                <Route path="/pie" element={<Pie />}></Route>
+                <Route path="/linechart" element={<LineChart />}></Route>
+                <Route path="/submitform" element={<SubmitForm />}></Route>
               </>
             )}
           </Routes>

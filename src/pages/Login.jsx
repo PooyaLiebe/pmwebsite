@@ -7,6 +7,7 @@ import "./loginstyle.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 function Login() {
   const [values, setValues] = useState({
     username: "",
@@ -16,17 +17,15 @@ function Login() {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:5173/auth/login", values)
-      .then((result) => {
-        if (result.data.loginStatus) {
-          navigate("/dashboard");
-        } else {
-          setError(result.data.Error);
-        }
-      })
-      .catch((err) => console.log(err));
+    axios.post("http://localhost:3000/auth/login", values).then((result) => {
+      if (result.data.loginStatus) {
+        navigate("/dashboard");
+      } else {
+        setError(result.data.Error);
+      }
+    });
   };
+
   return (
     <div className="login-container">
       <div className="wrapper">
