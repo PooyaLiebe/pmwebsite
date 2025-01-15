@@ -110,3 +110,9 @@ form button:hover {
 form button .next-icon {
   margin: 0 6px;
 }
+
+@media (max-width: 750px) {
+  form .fields .input-field{
+    width: calc(100% / 2 - 15px);
+  }
+}

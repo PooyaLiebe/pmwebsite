@@ -49,10 +49,17 @@ function OperatorSubmit() {
             <div className="details personal">
               <div className="fields">
                 <div className="input-field">
-                  <label htmlFor="formcode">شماره درخواست</label>
+                  <label
+                    htmlFor="formcode"
+                    className="flex justify-center items-center"
+                  >
+                    شماره درخواست
+                  </label>
                   <input
                     type="text"
                     id="formcode"
+                    placeholder="شماره درخواست"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={(e) =>
                       setValues({ ...values, formcode: e.target.value })
                     }
@@ -60,10 +67,16 @@ function OperatorSubmit() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="problemdate">تاریخ بروز مشکل</label>
+                  <label
+                    htmlFor="problemdate"
+                    className="flex justify-center items-center"
+                  >
+                    تاریخ بروز مشکل
+                  </label>
                   <input
                     type="datetime-local"
                     name="problemdate"
+                    className="text-center"
                     id="problemdate"
                     onChange={(e) =>
                       setValues({ ...values, problemdate: e.target.value })
@@ -71,7 +84,12 @@ function OperatorSubmit() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="section">بخش</label>
+                  <label
+                    htmlFor="section"
+                    className="flex justify-center items-center"
+                  >
+                    بخش
+                  </label>
                   <select
                     name="section"
                     id="section"
@@ -96,36 +114,52 @@ function OperatorSubmit() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="machinename">نام دستگاه</label>
+                  <label
+                    htmlFor="machinename"
+                    className="flex justify-center items-center"
+                  >
+                    نام دستگاه
+                  </label>
                   <input
                     type="text"
                     name="machinename"
                     placeholder="نام دستگاه را وارد کنید"
                     id="machinename"
+                    className="text-center"
                     onChange={(e) =>
                       setValues({ ...values, machinename: e.target.value })
                     }
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="equipstop">مدت زمان توقف تجهیز</label>
+                  <label
+                    htmlFor="equipstop"
+                    className="flex justify-center items-center"
+                  >
+                    مدت زمان توقف تجهیز
+                  </label>
                   <input
                     type="datetime-local"
                     name="equipstop"
                     id="equipstop"
+                    className="text-center"
                     onChange={(e) =>
                       setValues({ ...values, equipstop: e.target.value })
                     }
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="failuretime">
+                  <label
+                    htmlFor="failuretime"
+                    className="flex justify-center items-center"
+                  >
                     میزان ساعت کار تجهیز در زمان بروز عیب
                   </label>
                   <input
                     type="text"
                     name="failuretime"
                     id="failuretime"
+                    className="text-center"
                     placeholder="میزان ساعت کار را وارد کنید"
                     onChange={(e) =>
                       setValues({ ...values, failuretime: e.target.value })
@@ -133,10 +167,16 @@ function OperatorSubmit() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="productiontime">مدت زمان توقف خط تولید</label>
+                  <label
+                    htmlFor="productiontime"
+                    className="flex justify-center items-center"
+                  >
+                    مدت زمان توقف خط تولید
+                  </label>
                   <input
                     type="datetime-local"
                     name="productiontime"
+                    className="text-center"
                     id="productiontime"
                     onChange={(e) =>
                       setValues({ ...values, productiontime: e.target.value })
@@ -144,7 +184,12 @@ function OperatorSubmit() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="shift">شیفت</label>
+                  <label
+                    htmlFor="shift"
+                    className="flex justify-center items-center"
+                  >
+                    شیفت
+                  </label>
                   <select
                     name="shift"
                     className="text-center"
@@ -159,7 +204,10 @@ function OperatorSubmit() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="suggesttime">
+                  <label
+                    htmlFor="suggesttime"
+                    className="flex justify-center items-center"
+                  >
                     زمان پیشنهادی برای شروع تعمیر
                   </label>
                   <select
@@ -177,7 +225,12 @@ function OperatorSubmit() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="worksuggest">نوع کار درخواستی</label>
+                  <label
+                    htmlFor="worksuggest"
+                    className="flex justify-center items-center"
+                  >
+                    نوع کار درخواستی
+                  </label>
                   <select
                     name="worksuggest"
                     className="text-center"
@@ -198,7 +251,10 @@ function OperatorSubmit() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="fixrepair">
+                  <label
+                    htmlFor="fixrepair"
+                    className="flex justify-center items-center"
+                  >
                     تعمیر و تعویض اصلاحی ناشی از
                   </label>
                   <select
@@ -219,7 +275,12 @@ function OperatorSubmit() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="reportinseption">گزارش بازرسی</label>
+                  <label
+                    htmlFor="reportinseption"
+                    className="flex justify-center items-center"
+                  >
+                    گزارش بازرسی
+                  </label>
                   <select
                     name="reportinseption"
                     className="text-center"
@@ -235,7 +296,12 @@ function OperatorSubmit() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="faultdm">روش کشف عیب</label>
+                  <label
+                    htmlFor="faultdm"
+                    className="flex justify-center items-center"
+                  >
+                    روش کشف عیب
+                  </label>
                   <select
                     name="faultdm"
                     className="text-center"
@@ -263,11 +329,17 @@ function OperatorSubmit() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="operatorname">نام اپراتور</label>
+                  <label
+                    htmlFor="operatorname"
+                    className="flex justify-center items-center"
+                  >
+                    نام اپراتور
+                  </label>
                   <input
                     type="text"
                     name="operatorname"
                     id="operatorname"
+                    className="text-center"
                     placeholder="نام اپراتور را وارد کنید"
                     onChange={(e) =>
                       setValues({ ...values, operatorname: e.target.value })
@@ -275,12 +347,16 @@ function OperatorSubmit() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="problemdescription">
+                  <label
+                    htmlFor="problemdescription"
+                    className="flex justify-center items-center"
+                  >
                     کلیات شرح عیب مشاهده شده
                   </label>
                   <textarea
                     name="problemdescription"
                     id="problemdescription"
+                    className="text-center"
                     placeholder="کلیات شرح عیب مشاهده شده را توضیح دهید : "
                     onChange={(e) =>
                       setValues({

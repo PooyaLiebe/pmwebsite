@@ -202,7 +202,7 @@ function TechnicianSubmit() {
                   <textarea
                     name="problemdescription"
                     id="problemdescription"
-                    className="outline-none text-center text-14 w-full font-normal flex  items-center rounded-md shadow-lg border-2 p-2 m-2"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     placeholder="کلیات شرح عیب مشاهده شده را توضیح دهید : "
                     onChange={(e) =>
                       setValues({
@@ -481,10 +481,10 @@ function TechnicianSubmit() {
                                   })
                                 }
                               >
-                                <option value="رئیس">رئیس</option>
-                                <option value="سرپرست">سرپرست</option>
-                                <option value="سرشیفت">سرشیفت</option>
                                 <option value="کارشناس">کارشناس</option>
+                                <option value="رئیس">رئیس</option>
+                                <option value="سرشیفت">سرشیفت</option>
+                                <option value="سرپرست">سرپرست</option>
                                 <option value="تکنسین">تکنسین</option>
                                 <option value="تعمیرکار">تعمیرکار</option>
                               </select>
