@@ -32,24 +32,24 @@ function Dashboard() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row justify-center">
-        <div className="bg-gray-200 grid grid-cols-2 dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-[1110px] gap-2 overflow-hidden">
+      <div className="flex flex-wrap lg:flex-nowrap justify-center">
+        <div className="bg-gray-500 grid lg:grid-cols-2 sm:grid-cols-1 dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl lg:w-full overflow-hidden">
           <div>
             <div className="bg-white flex justify-center rounded-lg w-[400px] h-full items-center align-center">
               <LineChart />
             </div>
           </div>
-          <div className="bg-white flex justify-center rounded-lg w-[400px] h-full items-center align-center">
-            <div className="flex justify-center items-center">
+          <div className="bg-white flex justify-center items-center align-center rounded-lg w-[400px] h-full  mt-2">
+            <div className="flex justify-center items-center ">
               <Pie />
             </div>
           </div>
-          <div className="bg-white flex justify-center rounded-lg w-[400px] h-full items-center align-center">
+          <div className="bg-white flex justify-center rounded-lg w-[400px] h-full items-center align-center mt-4">
             <div className="flex justify-center items-center">
               <Bar />
             </div>
           </div>
-          <div className="bg-white flex justify-center rounded-lg w-[400px] h-full items-center align-center">
+          <div className="bg-white flex justify-center rounded-lg w-[400px] h-full items-center align-center mt-6">
             <div className="flex justify-center items-center">
               <Area />
             </div>
