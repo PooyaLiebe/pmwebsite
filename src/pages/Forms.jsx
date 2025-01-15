@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-
+import "./submitstyle.css";
 function Forms({ role }) {
   const [rows, setRows] = useState([
     {
@@ -85,9 +85,14 @@ function Forms({ role }) {
       isSelected: false,
     },
   ]);
+  const [values, setValues] = useState({
+    instructions: "",
+    instructionsconfirm: "",
+  });
   const [show, setShow] = useState(false);
+  const [permit, setPermite] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
-  const [currentRow, setCurrentRow] = useState(null);  
+  const [currentRow, setCurrentRow] = useState(null);
 
   function generateFormCode(section, formDate, rowIndex) {
     const sectionCode = getSectionCode(section);
@@ -171,7 +176,13 @@ function Forms({ role }) {
       )
     );
   };
-
+  const handleSelectChange = (event) => {
+    if (event.target.value === "بله") {
+      setPermite(true);
+    } else {
+      setPermite(false);
+    }
+  };
   const handleDelete = () => {
     setRows(rows.filter((row) => !row.isSelected));
   };
@@ -281,7 +292,7 @@ function Forms({ role }) {
           <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
           <div className="fixed inset-0 flex items-center justify-center z-20">
             <div className="bg-white p-4 rounded ">
-              <h2 className="text-xl mb-4">ارسال</h2>
+              <h2 className="text-xl mb-4 text-center">ارسال</h2>
               <select
                 className="border border-gray-300 p-2 rounded w-full mb-4"
                 value={selectedOption}
@@ -303,6 +314,49 @@ function Forms({ role }) {
                   یونس حسین زاده
                 </option>
               </select>
+              <div className="input-field">
+                <label htmlFor="instructions" className="text-center">
+                  آیا برای انجام تعمیر دستورالعمل تهیه شده است ؟
+                </label>
+                <select
+                  name="instructions"
+                  id="instructions"
+                  className="text-center"
+                  onChange={handleSelectChange}
+                >
+                  <option value="خیر">خیر</option>
+                  <option value="بله">بله</option>
+                </select>
+                {permit && (
+                  <>
+                    <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
+                    <div className="fixed inset-0 flex items-center justify-center z-20">
+                      <div className="bg-white p-4 rounded text-center">
+                        <input
+                          type="text"
+                          name="instructionsconfirm"
+                          id="instructionsconfirm"
+                          placeholder="شماره دستورالعمل را وارد کنید"
+                          onChange={(e) => {
+                            setValues({
+                              ...values,
+                              instructionsconfirm: e.target.value,
+                            });
+                          }}
+                        />
+                        <div className="flex justify-end">
+                          <button
+                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                            onClick={handleSend}
+                          >
+                            تایید
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
               <div className="flex justify-end">
                 <button
                   className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
