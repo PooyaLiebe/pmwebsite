@@ -3,7 +3,7 @@ import mysql from "mysql";
 const con = mysql.createConnection({
   host: "box110.parsvds.com",
   user: "qeltcenb_pooya",
-  password: "wjn%m57v_nUR",
+  password: "Po@12345660376911",
   database: "qeltcenb_PM",
 });
 
