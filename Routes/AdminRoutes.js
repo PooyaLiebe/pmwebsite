@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.post("/login", (req, res) => {
+router.post("/", (req, res) => {
   const sql = "SELECT * FROM users WHERE username = ? and password = ?";
   con.query(sql, [req.body.username, req.body.password], (err, result) => {
     if (err) return res.json({ loginStatus: false, Error: "Query Failed" });
