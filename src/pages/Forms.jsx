@@ -88,9 +88,9 @@ function Forms({ role }) {
   const [values, setValues] = useState({
     instructions: "",
     instructionsconfirm: "",
+    submitformtype: "",
   });
   const [show, setShow] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
   const [instructions, setInstructions] = useState(false);
   const [permit, setPermit] = useState(false);
   const [currentRow, setCurrentRow] = useState(null);
@@ -301,28 +301,16 @@ function Forms({ role }) {
         <>
           <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
           <div className="fixed inset-0 flex items-center justify-center z-20">
-            <div className="bg-white p-4 rounded ">
-              <h2 className="text-xl mb-4 text-center">ارسال</h2>
-              <select
-                className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                value={selectedOption}
-                onChange={(e) => setSelectedOption(e.target.value)}
-              >
-                <option value="mechanic" className="text-center">
-                  مهران الماسی فر
-                </option>
-                <option value="electric" className="text-center">
-                  مهدی زاده حسین
-                </option>
-                <option value="utility" className="text-center">
-                  محمد راشدی
-                </option>
-                <option value="metalworking" className="text-center">
-                  محسن اورامه
-                </option>
-                <option value="production" className="text-center">
-                  یونس حسین زاده
-                </option>
+            <div className="bg-white p-4 rounded text-center">
+              <label htmlFor="" className="text-center">
+                شخص دریافت کننده
+              </label>
+              <select className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2">
+                <option value="mechanic">مهران الماسی فر</option>
+                <option value="electric">مهدی زاده حسین</option>
+                <option value="utility">محمد راشدی</option>
+                <option value="metalworking">محسن اورامه</option>
+                <option value="production">یونس حسین زاده</option>
               </select>
               <div className="text-center">
                 <label htmlFor="instructions" className="text-center">
@@ -337,56 +325,71 @@ function Forms({ role }) {
                   <option value="خیر">خیر</option>
                   <option value="بله">بله</option>
                 </select>
-                <div className="input-field">
-                  <label htmlFor="permit" className="text-center">
-                    نیاز به مجوز ایمنی دارد ؟
-                  </label>
-                  <select
-                    name="permit"
-                    id="permit"
-                    className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                    onChange={handleSelectChangePermit}
-                  >
-                    <option value="خیر">خیر</option>
-                    <option value="بله">بله </option>
-                  </select>
-                  {permit && (
-                    <>
-                      <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
-                      <div className="fixed inset-0 flex items-center justify-center z-20">
-                        <div className="bg-white p-4 rounded mt-3">
-                          <input
-                            type="text"
-                            name="permitconfirmnumber"
-                            id="permitconfirmnumber"
-                            placeholder="شماره پرمیت را وارد کنید"
-                            className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                            onChange={(e) => {
-                              setValues({
-                                ...values,
-                                permitconfirmnumber: e.target.value,
-                              });
-                            }}
-                          />
-                          <div className="flex justify-center text-center items-center mt-5">
-                            <button
-                              className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
-                              onClick={handleClosePermit}
-                            >
-                              بستن
-                            </button>
-                            <button
-                              className="bg-blue-500 text-white px-4 py-2 rounded"
-                              onClick={handleClosePermit}
-                            >
-                              تایید
-                            </button>
-                          </div>
+                <label htmlFor="permit" className="text-center">
+                  نیاز به مجوز ایمنی دارد ؟
+                </label>
+                <select
+                  name="permit"
+                  id="permit"
+                  className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                  onChange={handleSelectChangePermit}
+                >
+                  <option value="خیر">خیر</option>
+                  <option value="بله">بله </option>
+                </select>
+                <label htmlFor="submitformtype">نوع فرم</label>
+                <select
+                  name="submitformtype"
+                  id="submitformtype"
+                  className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                  onChange={(e) => {
+                    setValues({
+                      ...values,
+                      submitformtype: e.target.value,
+                    });
+                  }}
+                >
+                  <option value="">EM</option>
+                  <option value="">PM</option>
+                  <option value="">CM</option>
+                  <option value="">GM</option>
+                </select>
+                {permit && (
+                  <>
+                    <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
+                    <div className="fixed inset-0 flex items-center justify-center z-20">
+                      <div className="bg-white p-4 rounded mt-3">
+                        <input
+                          type="text"
+                          name="permitconfirmnumber"
+                          id="permitconfirmnumber"
+                          placeholder="شماره پرمیت را وارد کنید"
+                          className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                          onChange={(e) => {
+                            setValues({
+                              ...values,
+                              permitconfirmnumber: e.target.value,
+                            });
+                          }}
+                        />
+                        <div className="flex justify-center text-center items-center mt-5">
+                          <button
+                            className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
+                            onClick={handleClosePermit}
+                          >
+                            بستن
+                          </button>
+                          <button
+                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                            onClick={handleClosePermit}
+                          >
+                            تایید
+                          </button>
                         </div>
                       </div>
-                    </>
-                  )}
-                </div>
+                    </div>
+                  </>
+                )}
                 {instructions && (
                   <>
                     <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
