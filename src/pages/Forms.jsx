@@ -196,7 +196,7 @@ function Forms({ role }) {
   return (
     <div className="p-4 ">
       <div className="mb-10">
-        <h1 className="bg-gray-200 w-full text-xl flex text-center justify-center align-center mb-6">
+        <h1 className="bg-gray-200 rounded-md w-full text-xl flex text-center justify-center align-center mb-6">
           فرم های ثبت شده توسط تولید
         </h1>
         <button
@@ -468,10 +468,10 @@ function Forms({ role }) {
         >
           حذف
         </button> */}
+        <h1 className="bg-gray-200 rounded-md w-full text-xl flex text-center justify-center align-center mb-6">
+          فرم های ثبت شده توسط تکنیسین
+        </h1>
         <div className="overflow-x-auto mx-auto">
-          <h1 className="bg-gray-200 w-full text-xl flex text-center justify-center align-center mb-6">
-            فرم های ثبت شده توسط تکنیسین
-          </h1>
           <table className="min-w-fit bg-white border border-gray-200 rounded-s-md z-0">
             <thead>
               <tr>
