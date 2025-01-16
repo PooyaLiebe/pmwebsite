@@ -10,9 +10,8 @@ import { FiPieChart, FiShoppingBag } from "react-icons/fi";
 import { RiContactsLine } from "react-icons/ri";
 import { FaWpforms } from "react-icons/fa6";
 import { BsKanban } from "react-icons/bs";
-import { AiOutlineAreaChart, AiOutlineBarChart } from "react-icons/ai";
 
-const Sidebar = ({ userRole = 'operator'  }) => {
+const Sidebar = ({ userRole }) => {
   const { currentColor, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
 

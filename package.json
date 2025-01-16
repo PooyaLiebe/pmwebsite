@@ -1,6 +1,7 @@
 {
   "name": "pmwebsite",
   "private": true,
+  "homepage": "https://planningmaintenance.ir/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
