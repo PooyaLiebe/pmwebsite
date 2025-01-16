@@ -16,13 +16,15 @@ function Login() {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("http://localhost:3000/auth/login", values).then((result) => {
-      if (result.data.loginStatus) {
-        navigate("/dashboard");
-      } else {
-        setError(result.data.Error);
-      }
-    });
+    axios
+      .post("https://planningmaintenance.ir/auth/login", values)
+      .then((result) => {
+        if (result.data.loginStatus) {
+          navigate("/dashboard");
+        } else {
+          setError(result.data.Error);
+        }
+      });
   };
 
   return (
