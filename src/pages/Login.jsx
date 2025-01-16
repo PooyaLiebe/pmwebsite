@@ -16,7 +16,7 @@ function Login() {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("https://box110.parsvds.com/auth/", values).then((result) => {
+    axios.post("https://box110.parsvds.com:8080/auth/", values).then((result) => {
       if (result.data.loginStatus) {
         navigate("/dashboard");
       } else {

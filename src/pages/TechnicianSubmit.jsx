@@ -132,7 +132,7 @@ function TechnicianSubmit() {
                     name="failurepart"
                     id="failurepart"
                     placeholder="نام قسمت معیوب(بر اساس تکسونومی)"
-                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 "
                     onChange={(e) =>
                       setValues({ ...values, failurepart: e.target.value })
                     }
@@ -148,7 +148,7 @@ function TechnicianSubmit() {
                   <input
                     type="datetime-local"
                     name="failuretime"
-                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11"
                     id="failuretime"
                     onChange={(e) => {
                       setValues({ ...values, failuretime: e.target.value });
@@ -166,7 +166,7 @@ function TechnicianSubmit() {
                     type="datetime-local"
                     name="sparetime"
                     id="sparetime"
-                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11"
                     onChange={(e) => {
                       setValues({ ...values, sparetime: e.target.value });
                     }}
@@ -183,7 +183,7 @@ function TechnicianSubmit() {
                     type="datetime-local"
                     name="startfailuretime"
                     id="startfailuretime"
-                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 h-11 "
                     onChange={(e) => {
                       setValues({
                         ...values,

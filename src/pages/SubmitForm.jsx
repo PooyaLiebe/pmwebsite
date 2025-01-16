@@ -10,9 +10,12 @@ function SubmitForm() {
   const [values, setValues] = useState({
     formcode: "",
     problemdate: "",
+    productionstop: "خیر",
     section: "Chipper",
     machinename: "",
-    equipstop: "",
+    machinecode: "",
+    machineplacecode: "",
+    stoptime: "",
     failuretime: "",
     productiontime: "",
     shift: "A",
@@ -28,10 +31,10 @@ function SubmitForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://planningmaintenance.ir/submitform", values)
+      .post("https://planningmaintenance.ir/operatorsubmit", values)
       .then((result) => {
         if (result.data.Status) {
-          navigate("/submitform");
+          navigate("/operatorsubmit");
           alert("فرم با موفقیت ثبت شد");
         } else {
           alert(result.data.Error);
@@ -49,10 +52,17 @@ function SubmitForm() {
             <div className="details personal">
               <div className="fields">
                 <div className="input-field">
-                  <label htmlFor="formcode">شماره درخواست</label>
+                  <label
+                    htmlFor="formcode"
+                    className="flex justify-center text-center"
+                  >
+                    شماره درخواست
+                  </label>
                   <input
                     type="text"
                     id="formcode"
+                    placeholder="شماره درخواست"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={(e) =>
                       setValues({ ...values, formcode: e.target.value })
                     }
@@ -60,10 +70,16 @@ function SubmitForm() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="problemdate">تاریخ بروز مشکل</label>
+                  <label
+                    htmlFor="problemdate"
+                    className="flex justify-center items-center"
+                  >
+                    تاریخ بروز مشکل
+                  </label>
                   <input
                     type="datetime-local"
                     name="problemdate"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     id="problemdate"
                     onChange={(e) =>
                       setValues({ ...values, problemdate: e.target.value })
@@ -71,7 +87,32 @@ function SubmitForm() {
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="section">بخش</label>
+                  <label
+                    htmlFor="productionstop"
+                    className="flex justify-center items-center"
+                  >
+                    مشکل باعث توقف خط شده است ؟
+                  </label>
+                  <select
+                    name="productionstop"
+                    className="text-center"
+                    id="productionstop"
+                    onChange={(e) =>
+                      setValues({ ...values, productionstop: e.target.value })
+                    }
+                    required
+                  >
+                    <option value="خیر">خیر</option>
+                    <option value="بله">بله</option>
+                  </select>
+                </div>
+                <div className="input-field">
+                  <label
+                    htmlFor="section"
+                    className="flex justify-center items-center"
+                  >
+                    بخش
+                  </label>
                   <select
                     name="section"
                     id="section"
@@ -79,6 +120,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, section: e.target.value })
                     }
+                    required
                   >
                     <option value="Chipper">Chipper</option>
                     <option value="Conveyor Line">Conveyor Line</option>
@@ -96,55 +138,105 @@ function SubmitForm() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="machinename">نام دستگاه</label>
+                  <label
+                    htmlFor="machinename"
+                    className="flex justify-center items-center"
+                  >
+                    نام دستگاه
+                  </label>
                   <input
                     type="text"
                     name="machinename"
                     placeholder="نام دستگاه را وارد کنید"
                     id="machinename"
+                    className="text-center"
                     onChange={(e) =>
                       setValues({ ...values, machinename: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="equipstop">مدت زمان توقف تجهیز</label>
+                  <label
+                    htmlFor="machinename"
+                    className="flex justify-center items-center"
+                  >
+                    کد دستگاه
+                  </label>
+                  <input
+                    type="text"
+                    name="machinecode"
+                    placeholder="کد دستگاه را وارد کنید"
+                    id="machinecode"
+                    className="text-center"
+                    onChange={(e) =>
+                      setValues({ ...values, machinecode: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="input-field">
+                  <label
+                    htmlFor="machineplacecode"
+                    className="flex justify-center items-center"
+                  >
+                    کد محل استقرار دستگاه
+                  </label>
+                  <input
+                    type="text"
+                    name="machineplacecode"
+                    placeholder="کد محل استقرار دستگاه را وارد کنید"
+                    id="machineplacecode"
+                    className="text-center"
+                    onChange={(e) =>
+                      setValues({ ...values, machineplacecode: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="input-field">
+                  <label
+                    htmlFor="stoptime"
+                    className="flex justify-center items-center"
+                  >
+                    ساعت شروع توقف
+                  </label>
                   <input
                     type="datetime-local"
-                    name="equipstop"
-                    id="equipstop"
+                    name="stoptime"
+                    id="stoptime"
+                    className="outline-none text-14 w-full font-normal flex justify-center text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={(e) =>
-                      setValues({ ...values, equipstop: e.target.value })
+                      setValues({ ...values, stoptime: e.target.value })
                     }
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="failuretime">
+                  <label
+                    htmlFor="failuretime"
+                    className="flex justify-center items-center"
+                  >
                     میزان ساعت کار تجهیز در زمان بروز عیب
                   </label>
                   <input
                     type="text"
                     name="failuretime"
                     id="failuretime"
+                    className="text-center"
                     placeholder="میزان ساعت کار را وارد کنید"
                     onChange={(e) =>
                       setValues({ ...values, failuretime: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="productiontime">مدت زمان توقف خط تولید</label>
-                  <input
-                    type="datetime-local"
-                    name="productiontime"
-                    id="productiontime"
-                    onChange={(e) =>
-                      setValues({ ...values, productiontime: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="input-field">
-                  <label htmlFor="shift">شیفت</label>
+                  <label
+                    htmlFor="shift"
+                    className="flex justify-center items-center"
+                  >
+                    شیفت
+                  </label>
                   <select
                     name="shift"
                     className="text-center"
@@ -159,7 +251,10 @@ function SubmitForm() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="suggesttime">
+                  <label
+                    htmlFor="suggesttime"
+                    className="flex justify-center items-center"
+                  >
                     زمان پیشنهادی برای شروع تعمیر
                   </label>
                   <select
@@ -177,7 +272,12 @@ function SubmitForm() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="worksuggest">نوع کار درخواستی</label>
+                  <label
+                    htmlFor="worksuggest"
+                    className="flex justify-center items-center"
+                  >
+                    نوع کار درخواستی
+                  </label>
                   <select
                     name="worksuggest"
                     className="text-center"
@@ -198,7 +298,10 @@ function SubmitForm() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="fixrepair">
+                  <label
+                    htmlFor="fixrepair"
+                    className="flex justify-center items-center"
+                  >
                     تعمیر و تعویض اصلاحی ناشی از
                   </label>
                   <select
@@ -219,7 +322,12 @@ function SubmitForm() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="reportinseption">گزارش بازرسی</label>
+                  <label
+                    htmlFor="reportinseption"
+                    className="flex justify-center items-center"
+                  >
+                    گزارش بازرسی
+                  </label>
                   <select
                     name="reportinseption"
                     className="text-center"
@@ -235,7 +343,12 @@ function SubmitForm() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="faultdm">روش کشف عیب</label>
+                  <label
+                    htmlFor="faultdm"
+                    className="flex justify-center items-center"
+                  >
+                    روش کشف عیب
+                  </label>
                   <select
                     name="faultdm"
                     className="text-center"
@@ -263,24 +376,35 @@ function SubmitForm() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="operatorname">نام اپراتور</label>
+                  <label
+                    htmlFor="operatorname"
+                    className="flex justify-center items-center"
+                  >
+                    نام اپراتور
+                  </label>
                   <input
                     type="text"
                     name="operatorname"
                     id="operatorname"
+                    className="text-center"
                     placeholder="نام اپراتور را وارد کنید"
                     onChange={(e) =>
                       setValues({ ...values, operatorname: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
-                  <label htmlFor="problemdescription">
+                  <label
+                    htmlFor="problemdescription"
+                    className="flex justify-center items-center"
+                  >
                     کلیات شرح عیب مشاهده شده
                   </label>
                   <textarea
                     name="problemdescription"
                     id="problemdescription"
+                    className="text-center"
                     placeholder="کلیات شرح عیب مشاهده شده را توضیح دهید : "
                     onChange={(e) =>
                       setValues({
@@ -288,6 +412,7 @@ function SubmitForm() {
                         problemdescription: e.target.value,
                       })
                     }
+                    required
                   />
                 </div>
               </div>

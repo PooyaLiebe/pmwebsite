@@ -10,9 +10,12 @@ function OperatorSubmit() {
   const [values, setValues] = useState({
     formcode: "",
     problemdate: "",
+    productionstop: "خیر",
     section: "Chipper",
     machinename: "",
-    equipstop: "",
+    machinecode: "",
+    machineplacecode: "",
+    stoptime: "",
     failuretime: "",
     productiontime: "",
     shift: "A",
@@ -85,6 +88,26 @@ function OperatorSubmit() {
                 </div>
                 <div className="input-field">
                   <label
+                    htmlFor="productionstop"
+                    className="flex justify-center items-center"
+                  >
+                    مشکل باعث توقف خط شده است ؟
+                  </label>
+                  <select
+                    name="productionstop"
+                    className="text-center"
+                    id="productionstop"
+                    onChange={(e) =>
+                      setValues({ ...values, productionstop: e.target.value })
+                    }
+                    required
+                  >
+                    <option value="خیر">خیر</option>
+                    <option value="بله">بله</option>
+                  </select>
+                </div>
+                <div className="input-field">
+                  <label
                     htmlFor="section"
                     className="flex justify-center items-center"
                   >
@@ -97,6 +120,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, section: e.target.value })
                     }
+                    required
                   >
                     <option value="Chipper">Chipper</option>
                     <option value="Conveyor Line">Conveyor Line</option>
@@ -129,22 +153,61 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, machinename: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
                   <label
-                    htmlFor="equipstop"
+                    htmlFor="machinename"
                     className="flex justify-center items-center"
                   >
-                    مدت زمان توقف تجهیز
+                    کد دستگاه
+                  </label>
+                  <input
+                    type="text"
+                    name="machinecode"
+                    placeholder="کد دستگاه را وارد کنید"
+                    id="machinecode"
+                    className="text-center"
+                    onChange={(e) =>
+                      setValues({ ...values, machinecode: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="input-field">
+                  <label
+                    htmlFor="machineplacecode"
+                    className="flex justify-center items-center"
+                  >
+                    کد محل استقرار دستگاه
+                  </label>
+                  <input
+                    type="text"
+                    name="machineplacecode"
+                    placeholder="کد محل استقرار دستگاه را وارد کنید"
+                    id="machineplacecode"
+                    className="text-center"
+                    onChange={(e) =>
+                      setValues({ ...values, machineplacecode: e.target.value })
+                    }
+                    required
+                  />
+                </div>
+                <div className="input-field">
+                  <label
+                    htmlFor="stoptime"
+                    className="flex justify-center items-center"
+                  >
+                    ساعت شروع توقف
                   </label>
                   <input
                     type="datetime-local"
-                    name="equipstop"
-                    id="equipstop"
+                    name="stoptime"
+                    id="stoptime"
                     className="outline-none text-14 w-full font-normal flex justify-center text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={(e) =>
-                      setValues({ ...values, equipstop: e.target.value })
+                      setValues({ ...values, stoptime: e.target.value })
                     }
                   />
                 </div>
@@ -164,23 +227,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, failuretime: e.target.value })
                     }
-                  />
-                </div>
-                <div className="input-field">
-                  <label
-                    htmlFor="productiontime"
-                    className="flex justify-center items-center"
-                  >
-                    مدت زمان توقف خط تولید
-                  </label>
-                  <input
-                    type="datetime-local"
-                    name="productiontime"
-                    className="outline-none text-14 w-full font-normal flex justify-center text-center items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                    id="productiontime"
-                    onChange={(e) =>
-                      setValues({ ...values, productiontime: e.target.value })
-                    }
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -344,6 +391,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, operatorname: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -364,6 +412,7 @@ function OperatorSubmit() {
                         problemdescription: e.target.value,
                       })
                     }
+                    required
                   />
                 </div>
               </div>

@@ -55,7 +55,7 @@
 }
 form .fields .input-field {
   display: flex;
-  width: calc(100% / 3 - 15px);
+  width: calc(100% / 2 - 15px);
   flex-direction: column;
   margin: 4px 0;
 }
@@ -112,7 +112,7 @@ form button .next-icon {
 }
 
 @media (max-width: 750px) {
-  form .fields .input-field{
+  form .fields .input-field {
     width: calc(100% / 2 - 15px);
   }
 }
