@@ -59,11 +59,11 @@ const Sidebar = ({ userRole }) => {
         <>
           <div className="flex justify-between items-center">
             <Link
-              to="/"
+              to="/dashboard"
               onClick={handleCloseSideBar}
               className="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
             >
-              <SiShopware /> <span>Planning Maintenance</span>
+              <span>Planning Maintenance</span>
             </Link>
             <Tooltip content="Menu" position="BottomCenter">
               <button

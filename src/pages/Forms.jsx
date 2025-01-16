@@ -64,7 +64,9 @@ function Forms({ role }) {
     submitformtype: "",
   });
   const [show, setShow] = useState(false);
+  const [showTech, setShowTech] = useState(false);
   const [instructions, setInstructions] = useState(false);
+  const [piecetime, setPieceTime] = useState(false);
   const [permit, setPermit] = useState(false);
   const [currentRow, setCurrentRow] = useState(null);
 
@@ -111,6 +113,7 @@ function Forms({ role }) {
   }
 
   const handleClose = () => setShow(false);
+  const handleCloseTech = () => setShowTech(false);
   const handleClosePermit = () => setPermit(false);
   const handleCloseInstructions = () => setInstructions(false);
 
@@ -118,7 +121,10 @@ function Forms({ role }) {
     setCurrentRow(row);
     setShow(true);
   };
-
+  const handleShowTech = (row) => {
+    setCurrentRow(row);
+    setShowTech(true);
+  };
   const handleSend = () => {
     // Handle send logic here
 
@@ -167,6 +173,13 @@ function Forms({ role }) {
       setInstructions(false);
     }
   };
+  const handlePieceTime = (event) => {
+    if (event.target.value === "بله") {
+      setPieceTime(true);
+    } else {
+      setPieceTime(false);
+    }
+  };
   const handleSelectChangePermit = (event) => {
     if (event.target.value === "بله") {
       setPermit(true);
@@ -183,7 +196,7 @@ function Forms({ role }) {
   return (
     <div className="p-4 ">
       <div className="mb-10">
-        <h1 className="bg-gray-200 text-xl flex text-center justify-center align-center mb-6">
+        <h1 className="bg-gray-200 w-full text-xl flex text-center justify-center align-center mb-6">
           فرم های ثبت شده توسط تولید
         </h1>
         <button
@@ -456,7 +469,7 @@ function Forms({ role }) {
           حذف
         </button> */}
         <div className="overflow-x-auto mx-auto">
-          <h1 className="bg-gray-200 text-xl flex text-center justify-center align-center mb-6">
+          <h1 className="bg-gray-200 w-full text-xl flex text-center justify-center align-center mb-6">
             فرم های ثبت شده توسط تکنیسین
           </h1>
           <table className="min-w-fit bg-white border border-gray-200 rounded-s-md z-0">
@@ -548,7 +561,7 @@ function Forms({ role }) {
                     <td className="py-2 px-4 border-b">
                       <button
                         className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-                        onClick={() => handleShow(row)}
+                        onClick={() => handleShowTech(row)}
                       >
                         تایید
                       </button>
@@ -559,130 +572,59 @@ function Forms({ role }) {
             </tbody>
           </table>
         </div>
-        {show && (
+        {showTech && (
           <>
             <div className="fixed inset-0 bg-black bg-opacity-50 z-10"></div>
             <div className="fixed inset-0 flex items-center justify-center z-20">
               <div className="bg-white p-4 rounded text-center">
-                <label htmlFor="" className="text-center">
-                  شخص دریافت کننده
-                </label>
-                <select className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2">
-                  <option value="mechanic">مهران الماسی فر</option>
-                  <option value="electric">مهدی زاده حسین</option>
-                  <option value="utility">محمد راشدی</option>
-                  <option value="metalworking">محسن اورامه</option>
-                  <option value="production">یونس حسین زاده</option>
-                </select>
                 <div className="text-center">
-                  <label htmlFor="instructions" className="text-center">
-                    آیا برای انجام تعمیر دستورالعمل تهیه شده است ؟
+                  <label htmlFor="stoptimeproduction" className="text-center">
+                    زمان پایان توقف را وارد کنید
+                  </label>
+                  <input
+                    type="datetime-local"
+                    name="stoptimeproduction"
+                    id="stoptimeproduction"
+                    className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                  />
+                </div>
+                <div className="text-center">
+                  <label htmlFor="starttimeproduction" className="text-center">
+                    مدت زمان راه اندازی خط
+                  </label>
+                  <input
+                    type="datetime-local"
+                    name="starttimeproduction"
+                    id="starttimeproduction"
+                    className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="piecetimestop">
+                    آیا توقف مقطعی وجود دارد ؟
                   </label>
                   <select
-                    name="instructions"
-                    id="instructions"
+                    name="piecetimestop"
+                    id="piecetimestop"
                     className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                    onChange={handleSelectChangeInstructions}
+                    onChange={handlePieceTime}
                   >
                     <option value="خیر">خیر</option>
                     <option value="بله">بله</option>
                   </select>
-                  <label htmlFor="permit" className="text-center">
-                    نیاز به مجوز ایمنی دارد ؟
-                  </label>
-                  <select
-                    name="permit"
-                    id="permit"
-                    className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                    onChange={handleSelectChangePermit}
-                  >
-                    <option value="خیر">خیر</option>
-                    <option value="بله">بله </option>
-                  </select>
-                  <label htmlFor="submitformtype">نوع فرم</label>
-                  <select
-                    name="submitformtype"
-                    id="submitformtype"
-                    className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                    onChange={(e) => {
-                      setValues({
-                        ...values,
-                        submitformtype: e.target.value,
-                      });
-                    }}
-                  >
-                    <option value="">EM</option>
-                    <option value="">PM</option>
-                    <option value="">CM</option>
-                    <option value="">GM</option>
-                  </select>
-                  {permit && (
+                  {piecetime && (
                     <>
-                      <div className="fixed inset-0 flex items-center justify-center z-20">
-                        <div className="bg-white p-4 rounded mt-3">
-                          <input
-                            type="text"
-                            name="permitconfirmnumber"
-                            id="permitconfirmnumber"
-                            placeholder="شماره پرمیت را وارد کنید"
-                            className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
-                            onChange={(e) => {
-                              setValues({
-                                ...values,
-                                permitconfirmnumber: e.target.value,
-                              });
-                            }}
-                          />
-                          <div className="flex justify-center text-center items-center mt-5">
-                            <button
-                              className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
-                              onClick={handleClosePermit}
-                            >
-                              بستن
-                            </button>
-                            <button
-                              className="bg-blue-500 text-white px-4 py-2 rounded"
-                              onClick={handleClosePermit}
-                            >
-                              تایید
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                  {instructions && (
-                    <>
-                      <div className="fixed inset-0 flex items-center justify-center z-20">
-                        <div className="bg-white p-4 rounded text-center">
-                          <input
-                            type="text"
-                            name="instructionsconfirm"
-                            id="instructionsconfirm"
-                            placeholder="شماره دستورالعمل را وارد کنید"
-                            className="outline-none text-center text-14 w-full font-normal flex justify-normal items-center rounded-md shadow-lg border-2 p-2  m-2"
-                            onChange={(e) => {
-                              setValues({
-                                ...values,
-                                instructionsconfirm: e.target.value,
-                              });
-                            }}
-                          />
-                          <div className="flex justify-center text-center items-center mt-5">
-                            <button
-                              className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
-                              onClick={handleCloseInstructions}
-                            >
-                              بستن
-                            </button>
-                            <button
-                              className="bg-blue-500 text-white px-4 py-2 rounded "
-                              onClick={handleSend}
-                            >
-                              تایید
-                            </button>
-                          </div>
-                        </div>
+                      <div>
+                        <label htmlFor="piecetimecount">
+                          مقدار زمان را به دقیقه وارد کنید
+                        </label>
+                        <input
+                          type="number"
+                          name="piecetimecount"
+                          id="piecetimecount"
+                          placeholder="مقدار زمان مقطعی را وارد کنید"
+                          className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                        />
                       </div>
                     </>
                   )}
@@ -690,7 +632,7 @@ function Forms({ role }) {
                 <div className="flex justify-center text-center items-center mt-5">
                   <button
                     className="bg-gray-500 text-white px-4 py-2 rounded mr-2"
-                    onClick={handleClose}
+                    onClick={handleCloseTech}
                   >
                     بستن
                   </button>
