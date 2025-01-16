@@ -17,7 +17,7 @@ function SubmitForm() {
     machineplacecode: "",
     stoptime: "",
     failuretime: "",
-    productiontime: "",
+
     shift: "A",
     suggesttime: "فوری",
     worksuggest: "اضطراری",
@@ -158,7 +158,7 @@ function SubmitForm() {
                 </div>
                 <div className="input-field">
                   <label
-                    htmlFor="machinename"
+                    htmlFor="machinecode"
                     className="flex justify-center items-center"
                   >
                     کد دستگاه
