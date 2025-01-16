@@ -51,7 +51,7 @@ function OperatorSubmit() {
                 <div className="input-field">
                   <label
                     htmlFor="formcode"
-                    className="flex justify-center items-center"
+                    className="flex justify-center text-center"
                   >
                     شماره درخواست
                   </label>

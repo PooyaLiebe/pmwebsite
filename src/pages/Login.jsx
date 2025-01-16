@@ -16,15 +16,13 @@ function Login() {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("https://planningmaintenance.ir/auth/", values)
-      .then((result) => {
-        if (result.data.loginStatus) {
-          navigate("/dashboard");
-        } else {
-          setError(result.data.Error);
-        }
-      });
+    axios.post("https://box110.parsvds.com/auth/", values).then((result) => {
+      if (result.data.loginStatus) {
+        navigate("/dashboard");
+      } else {
+        setError(result.data.Error);
+      }
+    });
   };
 
   return (
