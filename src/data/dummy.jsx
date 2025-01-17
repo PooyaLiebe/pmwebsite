@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import {
-  AiOutlineCalendar,
   AiOutlineAreaChart,
   AiOutlineBarChart,
   AiOutlineStock,
@@ -11,8 +10,8 @@ import { GrHostMaintenance } from "react-icons/gr";
 import { AiFillGoogleSquare } from "react-icons/ai";
 import { CiWarning } from "react-icons/ci";
 import { FaWpforms } from "react-icons/fa6";
-import { FiShoppingBag, FiPieChart, FiCreditCard } from "react-icons/fi";
-import { BsKanban, BsBarChart, BsShield } from "react-icons/bs";
+import { FiShoppingBag, FiPieChart } from "react-icons/fi";
+import { BsBarChart } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { RiContactsLine } from "react-icons/ri";
 import { GrLocation } from "react-icons/gr";
@@ -434,73 +433,135 @@ export const employeesGrid = [
 
 export const links = [
   {
-    title: "Dashboard",
+    title: "PM",
     links: [
+      { name: "dashboard", displayName: "داشبورد", icon: <FaWpforms /> },
       {
-        name: "dashboard",
+        name: "submitform",
+        displayName: "ثبت فرم",
+        icon: <FaWpforms />,
+      },
+      {
+        name: "techniciansubmit",
+        displayName: "ثبت فرم فنی",
+        icon: <RiContactsLine />,
+      },
+      {
+        name: "HSESubmit",
+        displayName: "HSEثبت فرم",
+        icon: <RiContactsLine />,
+      },
+
+      {
+        name: "HSE",
+        displayName: "HSEفرم های ثبت شده",
+        icon: <RiContactsLine />,
+      },
+      {
+        name: "PMSubmit",
+        displayName: "PM ثبت",
+        icon: <FiShoppingBag />,
+      },
+      {
+        name: "forms",
+        displayName: "فرم ها",
+        icon: <FiShoppingBag />,
+      },
+      {
+        name: "kanban",
+        displayName: "تعمیرات برنامه ریزی شده",
+        icon: <FiShoppingBag />,
+      },
+      {
+        name: "Projects",
+        displayName: "پروژه های در حال اجرا",
         icon: <FiShoppingBag />,
       },
     ],
   },
 
   {
-    title: "Pages",
+    title: "Production",
     links: [
-      {
-        name: "forms",
-        icon: <RiContactsLine />,
-      },
-
-      {
-        name: "operatorSubmit",
-        icon: <FaWpforms />,
-      },
+      { name: "dashboard", displayName: "داشبورد", icon: <FaWpforms /> },
       {
         name: "submitform",
+        displayName: "ثبت فرم",
         icon: <FaWpforms />,
       },
+      {
+        name: "forms",
+        displayName: "فرم ها",
+        icon: <FaWpforms />,
+      },
+      {
+        name: "kanban",
+        displayName: "تعمیرات برنامه ریزی شده",
+        icon: <FiShoppingBag />,
+      },
+      {
+        name: "Projects",
+        displayName: "پروژه های در حال اجرا",
+        icon: <FiShoppingBag />,
+      },
     ],
   },
   {
-    title: "Apps",
+    title: "technician",
     links: [
+      { name: "dashboard", displayName: "داشبورد", icon: <FaWpforms /> },
       {
-        name: "masterform",
+        name: "techniciansubmit",
+        displayName: "ثبت فرم فنی",
         icon: <RiContactsLine />,
-      },
-    ],
-  },
-  {
-    title: "Charts",
-    links: [
-      {
-        name: "line",
-        icon: <AiOutlineStock />,
-      },
-      {
-        name: "area",
-        icon: <AiOutlineAreaChart />,
       },
 
       {
-        name: "bar",
-        icon: <AiOutlineBarChart />,
+        name: "forms",
+        displayName: "فرم ها",
+        icon: <RiContactsLine />,
       },
       {
-        name: "pie",
-        icon: <FiPieChart />,
+        name: "kanban",
+        displayName: "تعمیرات برنامه ریزی شده",
+        icon: <FiShoppingBag />,
       },
       {
-        name: "color-mapping",
-        icon: <BsBarChart />,
+        name: "Projects",
+        displayName: "پروژه های در حال اجرا",
+        icon: <FiShoppingBag />,
       },
+    ],
+  },
+  {
+    title: "HSE",
+    links: [
+      { name: "dashboard", displayName: "داشبورد", icon: <FaWpforms /> },
       {
-        name: "stacked",
-        icon: <AiOutlineBarChart />,
+        name: "HSESubmit",
+        displayName: "ثبت فرم",
+        icon: <RiContactsLine />,
+      },
+
+      {
+        name: "HSE",
+        displayName: "فرم های ثبت شده",
+        icon: <RiContactsLine />,
       },
     ],
   },
 ];
+export const formData = [
+  { id: 1, machineName: "Push Feeder" },
+  { id: 2, machinename: "Conveyor Line" },
+];
+export const useRoleBasedLinks = (role) => {
+  if (!role) return links;
+  const filteredLinks = links.filter((link) => {
+    return link.title.toLowerCase() === role.toLowerCase();
+  });
+  return filteredLinks;
+};
 
 export const cartData = [
   {
@@ -1379,13 +1440,6 @@ export const dropdownData = [
     Id: "3",
     Time: "May 2021",
   },
-];
-export const SparklineAreaData = [
-  { x: 1, yval: 2 },
-  { x: 2, yval: 6 },
-  { x: 3, yval: 8 },
-  { x: 4, yval: 5 },
-  { x: 5, yval: 10 },
 ];
 
 export const lineCustomSeries = [
