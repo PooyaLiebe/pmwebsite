@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import Tooltip from "@mui/material/Tooltip";
-
 import { LineChart, Navbar, Sidebar, ThemeSettings } from "./components";
 import { Pie } from "./components";
 import {
@@ -14,6 +13,7 @@ import {
   Kanban,
   Area,
   Login,
+  HSE,
   Bar,
   TechnicianLogin,
   OperatorLogin,
@@ -26,6 +26,7 @@ import {
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import TechnicianSubmit from "./pages/TechnicianSubmit";
+import { formData } from "./data/dummy";
 
 const App = () => {
   const {
@@ -119,6 +120,7 @@ const AppContent = ({
             <Route path="/operatorlogin" element={<OperatorLogin />} />
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/forms" element={<Forms />}></Route>
+            <Route path="/hse" element={<HSE />}></Route>
             <Route path="/operatorsubmit" element={<OperatorSubmit />}></Route>
             <Route
               path="/techniciansubmit"
