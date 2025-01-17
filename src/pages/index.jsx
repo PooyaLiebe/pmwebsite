@@ -1,7 +1,8 @@
 export { default as Login } from "./Login";
 export { default as Dashboard } from "./Dashboard";
 export { default as SubmitForm } from "./SubmitForm";
-export { default as HSE } from "./HSE";
+export { default as HseSubmit } from "./HseSubmit";
+export { default as HseForms } from "./HseForms";
 export { default as OperatorSubmit } from "./OperatorSubmit";
 export { default as OperatorLogin } from "./OperatorLogin";
 export { default as TechnicianSubmit } from "./TechnicianSubmit";

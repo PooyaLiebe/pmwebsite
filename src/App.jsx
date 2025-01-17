@@ -13,7 +13,6 @@ import {
   Kanban,
   Area,
   Login,
-  HSE,
   Bar,
   TechnicianLogin,
   OperatorLogin,
@@ -21,12 +20,13 @@ import {
   Projects,
   Aghlam,
   Technician,
+  HseForms,
 } from "./pages";
 
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import TechnicianSubmit from "./pages/TechnicianSubmit";
-import { formData } from "./data/dummy";
+import HseSubmit from "./pages/HseSubmit";
 
 const App = () => {
   const {
@@ -115,12 +115,13 @@ const AppContent = ({
         <div>
           {themeSettings && <ThemeSettings />}
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Login />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
             <Route path="/operatorlogin" element={<OperatorLogin />} />
-            <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/forms" element={<Forms />}></Route>
-            <Route path="/hse" element={<HSE />}></Route>
+            <Route path="/hsesubmit" element={<HseSubmit />}></Route>
+            <Route path="/hseforms" element={<HseForms />}></Route>
             <Route path="/operatorsubmit" element={<OperatorSubmit />}></Route>
             <Route
               path="/techniciansubmit"

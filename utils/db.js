@@ -1,10 +1,10 @@
 import mysql from "mysql";
 
 const con = mysql.createConnection({
-  host: "box110.parsvds.com",
-  user: "qeltcenb_pooya",
-  password: "Po@12345660376911",
-  database: "qeltcenb_PM",
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "pm",
 });
 
 con.connect(function (err) {

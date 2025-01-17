@@ -16,13 +16,10 @@ function Login() {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post("https://box110.parsvds.com:8080/auth/", values).then((result) => {
-      if (result.data.loginStatus) {
-        navigate("/dashboard");
-      } else {
-        setError(result.data.Error);
-      }
-    });
+    axios
+      .post("http://localhost:3000/auth/", values)
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   };
 
   return (
