@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import express from "express";
-import con from "../utils/db.js";
+import con from "../server/utils/db.js";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();

@@ -14,11 +14,14 @@ function Login() {
   });
   const [error, setError] = useState();
   const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post("http://localhost:3000/auth/", values)
-      .then((result) => console.log(result))
+      .then((result) => {
+        navigate("/dashboard");
+      })
       .catch((err) => console.log(err));
   };
 
