@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { AdminRouter } from "../Routes/AdminRoutes.js";
+import { AdminRouter } from "../Routes/PmRoutes.js";
 
 const app = express();
 
