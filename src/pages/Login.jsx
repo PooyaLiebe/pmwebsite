@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 // noinspection ES6CheckImport
-
 import React, { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import "./loginstyle.css";
@@ -20,7 +19,11 @@ function Login() {
     axios
       .post("http://localhost:3000/auth/", values)
       .then((result) => {
-        navigate("/dashboard");
+        if (result.data.loginStatus) {
+          navigate("/dashboard");
+        } else {
+          setError(result.data.Error);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -29,7 +32,7 @@ function Login() {
     <div className="login-container">
       <div className="wrapper">
         <form onSubmit={handleSubmit}>
-          <div className="text-warning">{error && error}</div>
+          <div className="text-danger">{error && error}</div>
           <h1>ورود</h1>
           <div className="input-box">
             <input

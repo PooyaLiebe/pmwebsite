@@ -12,7 +12,7 @@ const COLUMN_ORDER = ["backlog", "todo", "doing", "done"];
 
 const Kanban = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const userRole = "user"; // Possible values: "user", "operator", "technician"
+  const role = "PM"; // Possible values: "user", "operator", "technician"
   useEffect(() => {
     const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
     setIsDarkMode(matchMedia.matches);
@@ -30,13 +30,13 @@ const Kanban = () => {
             : "border-neutral-700 text-black"
         }`}
       >
-        <Board isDarkMode={isDarkMode} userRole={userRole} />
+        <Board isDarkMode={isDarkMode} role={role} />
       </div>
     </div>
   );
 };
 
-const Board = ({ isDarkMode, userRole }) => {
+const Board = ({ isDarkMode, role }) => {
   const [cards, setCards] = useState(DEFAULT_CARDS);
 
   return (
@@ -48,7 +48,7 @@ const Board = ({ isDarkMode, userRole }) => {
         cards={cards}
         setCards={setCards}
         isDarkMode={isDarkMode}
-        userRole={userRole}
+        role={role}
       />
       <Column
         title="In progress"
@@ -57,7 +57,7 @@ const Board = ({ isDarkMode, userRole }) => {
         cards={cards}
         setCards={setCards}
         isDarkMode={isDarkMode}
-        userRole={userRole}
+        role={role}
       />
       <Column
         title="Complete"
@@ -66,7 +66,7 @@ const Board = ({ isDarkMode, userRole }) => {
         cards={cards}
         setCards={setCards}
         isDarkMode={isDarkMode}
-        userRole={userRole}
+        role={role}
       />
       <BurnBarrel setCards={setCards} isDarkMode={isDarkMode} />
     </div>
@@ -80,7 +80,7 @@ const Column = ({
   column,
   setCards,
   isDarkMode,
-  userRole,
+  role,
 }) => {
   const [active, setActive] = useState(false);
 
@@ -90,7 +90,7 @@ const Column = ({
 
   const handleDragEnd = (e) => {
     // Check if user role is Operator or Technician
-    if (userRole === "operator" || userRole === "technician") {
+    if (role === "operator" || role === "technician") {
       e.preventDefault();
       setActive(false);
       clearHighlights();
@@ -205,7 +205,7 @@ const Column = ({
             key={c.id}
             {...c}
             handleDragStart={handleDragStart}
-            userRole={userRole}
+            role={role}
           />
         ))}
         <DropIndicator beforeId={null} column={column} />
@@ -217,8 +217,8 @@ const Column = ({
   );
 };
 
-const Card = ({ title, id, column, handleDragStart, userRole }) => {
-  const isDraggable = userRole !== "operator" && userRole !== "technician";
+const Card = ({ title, id, column, handleDragStart, role }) => {
+  const isDraggable = role !== "operator" && role !== "technician";
   const navigate = useNavigate();
   const handleDoubleClick = () => {
     navigate("/projects"); // Navigate to the details page for the card

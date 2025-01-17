@@ -1,10 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import {
-  AiOutlineAreaChart,
-  AiOutlineBarChart,
-  AiOutlineStock,
-} from "react-icons/ai";
 import { CgDanger } from "react-icons/cg";
 import { GrHostMaintenance } from "react-icons/gr";
 import { AiFillGoogleSquare } from "react-icons/ai";

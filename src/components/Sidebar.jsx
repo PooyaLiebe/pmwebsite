@@ -8,7 +8,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import { useRoleBasedLinks } from "../data/dummy";
 import { SiShopware } from "react-icons/si";
 
-const Sidebar = ({ role = "pm" }) => {
+const Sidebar = ({ role }) => {
   const { currentColor, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
 
