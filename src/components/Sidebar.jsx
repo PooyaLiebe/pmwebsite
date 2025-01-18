@@ -57,6 +57,7 @@ const Sidebar = ({ role }) => {
     },
     { name: "forms", displayName: "فرم ها", icon: <FaWpforms /> },
     { name: "HSE", displayName: "HSE", icon: <FaWpforms /> },
+    { name: "HseForms", displayName: "فرم های HSE", icon: <FaWpforms /> },
     {
       name: "projects",
       displayName: "پروژه های در حال انجام",

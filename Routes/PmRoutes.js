@@ -11,13 +11,9 @@ router.post("/", (req, res) => {
     if (err) return res.json({ loginStatus: false, Error: "Query Failed" });
     if (result.length > 0) {
       const username = result[0].username;
-      const token = jwt.sign(
-        { role: "", username: username },
-        "jwt_secret_key",
-        {
-          expiresIn: "1d",
-        }
-      );
+      const token = jwt.sign({ username: username }, "jwt_secret_key", {
+        expiresIn: "1d",
+      });
       res.cookie("token", token);
       return res.json({ loginStatus: true });
     } else {
