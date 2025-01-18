@@ -27,57 +27,53 @@ const Sidebar = ({ role }) => {
   const normalLink =
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2";
 
-  const operatorLinks = [
-    { name: "dashboard", displayName: "داشبورد", icon: <FiShoppingBag /> },
-    {
-      name: "OperatorSubmit",
-      displayName: "ثبت فرم اپراتور",
-      icon: <RiContactsLine />,
-    },
-    { name: "Forms", displayName: "فرم ها", icon: <FaWpforms /> },
-  ];
+  // Sidebar links based on roles
+  const linksByRole = {
+    operator: [
+      { name: "dashboard", displayName: "داشبورد", icon: <FiShoppingBag /> },
+      {
+        name: "OperatorSubmit",
+        displayName: "ثبت فرم اپراتور",
+        icon: <RiContactsLine />,
+      },
+      { name: "Forms", displayName: "فرم ها", icon: <FaWpforms /> },
+    ],
+    technician: [
+      { name: "dashboard", displayName: "داشبورد", icon: <FiShoppingBag /> },
+      {
+        name: "TechnicianSubmit",
+        displayName: "ثبت فرم تکنیسین",
+        icon: <RiContactsLine />,
+      },
+      { name: "Forms", displayName: "فرم ها", icon: <FaWpforms /> },
+    ],
+    admin: [
+      { name: "dashboard", displayName: "داشبورد", icon: <FiShoppingBag /> },
+      { name: "submitform", displayName: "ثبت فرم", icon: <RiContactsLine /> },
+      {
+        name: "TechnicianSubmit",
+        displayName: "ثبت فرم تکنیسین",
+        icon: <RiContactsLine />,
+      },
+      { name: "forms", displayName: "فرم ها", icon: <FaWpforms /> },
+      { name: "HSE", displayName: "HSE", icon: <FaWpforms /> },
+      { name: "HseForms", displayName: "فرم های HSE", icon: <FaWpforms /> },
+      {
+        name: "projects",
+        displayName: "پروژه های در حال انجام",
+        icon: <FiPieChart />,
+      },
+      { name: "kanban", displayName: "نمای کلی پروژه ها", icon: <BsKanban /> },
+    ],
+    hse: [
+      { name: "dashboard", displayName: "داشبورد", icon: <FiShoppingBag /> },
+      { name: "HseForms", displayName: "فرم ها", icon: <FaWpforms /> },
+      { name: "HseSubmit", displayName: "ثبت فرم", icon: <FaWpforms /> },
+    ],
+  };
 
-  const technicianLinks = [
-    { name: "dashboard", displayName: "داشبورد", icon: <FiShoppingBag /> },
-    {
-      name: "TechnicianSubmit",
-      displayName: "ثبت فرم تکنیسین",
-      icon: <RiContactsLine />,
-    },
-    { name: "Forms", displayName: "فرم ها", icon: <FaWpforms /> },
-  ];
-
-  const adminLinks = [
-    { name: "dashboard", displayName: "داشبورد", icon: <FiShoppingBag /> },
-    { name: "submitform", displayName: "ثبت فرم", icon: <RiContactsLine /> },
-    {
-      name: "TechnicianSubmit",
-      displayName: "ثبت فرم تکنیسین",
-      icon: <RiContactsLine />,
-    },
-    { name: "forms", displayName: "فرم ها", icon: <FaWpforms /> },
-    { name: "HSE", displayName: "HSE", icon: <FaWpforms /> },
-    { name: "HseForms", displayName: "فرم های HSE", icon: <FaWpforms /> },
-    {
-      name: "projects",
-      displayName: "پروژه های در حال انجام",
-      icon: <FiPieChart />,
-    },
-    { name: "kanban", displayName: "نمای کلی پروژه ها", icon: <BsKanban /> },
-  ];
-  const hseLinks = [
-    { name: "dashboard", displayName: "داشبورد", icon: <FiShoppingBag /> },
-    { name: "HseForms", displayName: "فرم ها", icon: <FaWpforms /> },
-    { name: "HseSubmit", displayName: "ثبت فرم", icon: <FaWpforms /> },
-  ];
-  const links =
-    role === "operator"
-      ? operatorLinks
-      : role === "technician"
-      ? technicianLinks
-      : role === "hse"
-      ? hseLinks
-      : adminLinks;
+  // Retrieve the links based on the user's role
+  const links = linksByRole[role] || linksByRole.admin; // Default to admin links if role is not found
 
   return (
     <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
@@ -131,4 +127,5 @@ const Sidebar = ({ role }) => {
     </div>
   );
 };
+
 export default Sidebar;

@@ -11,7 +11,7 @@ router.post("/operatorlogin", (req, res) => {
     if (result.length > 0) {
       const username = result[0].username;
       const token = jwt.sign(
-        { role: "operator", username: username },
+        { role: "operator", username: username, id: result[0].id },
         "jwt_secret_key",
         {
           expiresIn: "1d",

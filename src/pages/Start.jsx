@@ -8,6 +8,22 @@ import "./start.css";
 
 function Start() {
   const navigate = useNavigate();
+  useEffect(() => {
+    axios
+      .get("htt://localhost:3000/verify")
+      .then((result) => {
+        if (result.data.Status) {
+          if (result.data.role === "admin") {
+            navigate("/dashboard");
+          } else {
+            navigate("techniciansubmit");
+          }
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((err) => console.log(err));
+  });
 
   return (
     <div className="start-container">

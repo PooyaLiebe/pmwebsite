@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
+router.post("/technicianlogin", (req, res) => {
   const sql =
     "SELECT * FROM personel where username = ? and password = ? and role = ?";
   con.query(sql, [req.body.username, req.body.password], (err, result) => {

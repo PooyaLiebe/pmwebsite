@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
@@ -22,12 +23,13 @@ import {
   Technician,
   HseForms,
   Start,
+  OperatorDashboard,
 } from "./pages";
-
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import TechnicianSubmit from "./pages/TechnicianSubmit";
 import HseSubmit from "./pages/HseSubmit";
+import { verifyUser } from "../server/api";
 
 const App = () => {
   const {
@@ -49,6 +51,19 @@ const App = () => {
     }
   }, [setCurrentColor, setCurrentMode]);
 
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      const result = await verifyUser();
+      if (result.Status) {
+        setRole(result.role);
+      } else {
+        console.log("User Not Authenticated");
+      }
+    };
+    fetchUserRole();
+  }, []);
+
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
       <BrowserRouter>
@@ -57,6 +72,7 @@ const App = () => {
           currentColor={currentColor}
           themeSettings={themeSettings}
           setThemeSettings={setThemeSettings}
+          role={role} // Pass the role to AppContent
         />
       </BrowserRouter>
     </div>
@@ -68,8 +84,10 @@ const AppContent = ({
   currentColor,
   themeSettings,
   setThemeSettings,
+  role, // Receive the role prop
 }) => {
   const location = useLocation();
+
   const hideComponents = [
     "/",
     "/login",
@@ -95,20 +113,20 @@ const AppContent = ({
       )}
       {activeMenu && !hideComponents ? (
         <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-          <Sidebar />
+          <Sidebar role={role} /> {/* Pass the role to Sidebar */}
         </div>
       ) : (
         !hideComponents && (
           <div className="w-0 dark:bg-secondary-dark-bg">
-            <Sidebar />
+            <Sidebar role={role} /> {/* Pass the role to Sidebar */}
           </div>
         )
       )}
       <div
         className={
           activeMenu && !hideComponents
-            ? "dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  "
-            : "bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 "
+            ? "dark:bg-main-dark-bg bg-main-bg min-h-screen md:ml-72 w-full "
+            : "bg-main-bg dark:bg-main-dark-bg w-full min-h-screen flex-2 "
         }
       >
         {!hideComponents && (
