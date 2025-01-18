@@ -550,14 +550,6 @@ export const formData = [
   { id: 1, machineName: "Push Feeder" },
   { id: 2, machinename: "Conveyor Line" },
 ];
-export const useRoleBasedLinks = (role) => {
-  if (!role) return links;
-  const filteredLinks = links.filter((link) => {
-    return link.title.toLowerCase() === role.toLowerCase();
-  });
-  return filteredLinks;
-};
-
 
 export const chatData = [
   {
