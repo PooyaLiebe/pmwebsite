@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const TechnicianRoutes = () => {
-  return (
-    <div>TechnicianRoutes</div>
-  )
-}
+  return <div>TechnicianRoutes</div>;
+};
 
-export default TechnicianRoutes
+export default TechnicianRoutes;
