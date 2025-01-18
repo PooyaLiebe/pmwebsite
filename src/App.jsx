@@ -21,6 +21,7 @@ import {
   Aghlam,
   Technician,
   HseForms,
+  Start,
 } from "./pages";
 
 import "./App.css";
@@ -69,9 +70,12 @@ const AppContent = ({
   setThemeSettings,
 }) => {
   const location = useLocation();
-  const hideComponents = ["/", "/technicianlogin", "/operatorlogin"].includes(
-    location.pathname
-  );
+  const hideComponents = [
+    "/",
+    "/login",
+    "/technicianlogin",
+    "/operatorlogin",
+  ].includes(location.pathname);
 
   return (
     <div className="flex relative dark:bg-main-dark-bg">
@@ -115,7 +119,8 @@ const AppContent = ({
         <div>
           {themeSettings && <ThemeSettings />}
           <Routes>
-            <Route path="/" element={<Login />}></Route>
+            <Route path="/" element={<Start />}></Route>
+            <Route path="/login" element={<Login />}></Route>
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
             <Route path="/operatorlogin" element={<OperatorLogin />} />

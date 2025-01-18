@@ -17,10 +17,10 @@ function OperatorLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("https://planningmaintenance.ir/operatorlogin", values)
+      .post("http://localhost:3000/operator/operatorlogin", values)
       .then((result) => {
         if (result.data.loginStatus) {
-          navigate("/personeldashboard");
+          navigate("/dashboard");
         } else {
           setError(result.data.Error);
         }

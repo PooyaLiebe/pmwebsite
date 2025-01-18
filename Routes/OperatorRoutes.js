@@ -4,14 +4,14 @@ import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.post("/login", (req, res) => {
-  const sql = "SELECT * FROM personel WHERE username=? and password=?";
+router.post("/operatorlogin", (req, res) => {
+  const sql = "SELECT * FROM personel where username = ? and password = ?";
   con.query(sql, [req.body.username, req.body.password], (err, result) => {
     if (err) return res.json({ loginStatus: false, Error: "Query Failed" });
     if (result.length > 0) {
       const username = result[0].username;
       const token = jwt.sign(
-        { role: "pm", username: username },
+        { role: "operator", username: username },
         "jwt_secret_key",
         {
           expiresIn: "1d",
@@ -25,4 +25,4 @@ router.post("/login", (req, res) => {
   });
 });
 
-export { router as AdminRouter };
+export { router as OperatorRouter };
