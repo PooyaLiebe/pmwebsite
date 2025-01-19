@@ -143,7 +143,6 @@ const AppContent = ({
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
             <Route path="/operatorlogin" element={<OperatorLogin />} />
             <Route path="/forms" element={<Forms />}></Route>
-            <Route path="/hse" element={<HSE />}></Route>
             <Route path="/operatorsubmit" element={<OperatorSubmit />}></Route>
             <Route
               path="/techniciansubmit"
