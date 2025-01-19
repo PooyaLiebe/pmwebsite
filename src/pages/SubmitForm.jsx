@@ -5,17 +5,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./submitstyle.css";
 import { useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker2";
-import moment from "moment";
-import "moment/locale/fa";
-import "moment-jalaali";
 
 function SubmitForm() {
-  const [date, setDate] = useState(moment());
-  useEffect(() => {
-    moment.locale("fa");
-    moment.loadPersian();
-  }, []);
   const [values, setValues] = useState({
     formcode: "",
     problemdate: "",
@@ -85,15 +76,14 @@ function SubmitForm() {
                   >
                     تاریخ بروز مشکل
                   </label>
-                  <DatePicker
+                  <input
+                    type="datetime-local"
                     name="problemdate"
-                    value={date}
                     className="outline-none text-12 w-[full] sm:w-full font-normal flex justify-center text-center  items-center rounded-md shadow-lg border-2"
                     id="problemdate"
-                    onChange={(value) => setDate(value)}
-                    isGregorian={false}
-                    timePicker={true}
-                    inputFormat="YYYY/MM/DD HH:MM"
+                    onChange={(e) =>
+                      setValues({ ...values, problemdate: e.target.value })
+                    }
                     required
                   />
                 </div>
