@@ -1,4 +1,3 @@
- 
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
@@ -21,15 +20,11 @@ import {
   Projects,
   Aghlam,
   Technician,
-  HseForms,
   Start,
-  OperatorDashboard,
 } from "./pages";
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import TechnicianSubmit from "./pages/TechnicianSubmit";
-import HseSubmit from "./pages/HseSubmit";
-import { verifyUser } from "../server/api";
 
 const App = () => {
   const {
@@ -51,19 +46,6 @@ const App = () => {
     }
   }, [setCurrentColor, setCurrentMode]);
 
-  const [role, setRole] = useState("");
-  useEffect(() => {
-    const fetchUserRole = async () => {
-      const result = await verifyUser();
-      if (result.Status) {
-        setRole(result.role);
-      } else {
-        console.log("User Not Authenticated");
-      }
-    };
-    fetchUserRole();
-  }, []);
-
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
       <BrowserRouter>
@@ -72,7 +54,6 @@ const App = () => {
           currentColor={currentColor}
           themeSettings={themeSettings}
           setThemeSettings={setThemeSettings}
-          role={role} // Pass the role to AppContent
         />
       </BrowserRouter>
     </div>
@@ -85,6 +66,7 @@ const AppContent = ({
   themeSettings,
   setThemeSettings,
   role, // Receive the role prop
+  setRole, // Receive setRole prop
 }) => {
   const location = useLocation();
 
@@ -138,10 +120,18 @@ const AppContent = ({
           {themeSettings && <ThemeSettings />}
           <Routes>
             <Route path="/" element={<Start />}></Route>
-            <Route path="/login" element={<Login />}></Route>
+            <Route
+              path="/login"
+              element={<Login setRole={setRole} />}
+            ></Route>{" "}
+            {/* Pass setRole to Login */}
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
-            <Route path="/operatorlogin" element={<OperatorLogin />} />
+            <Route
+              path="/operatorlogin"
+              element={<OperatorLogin setRole={setRole} />}
+            />{" "}
+            {/* Pass setRole to OperatorLogin */}
             <Route path="/forms" element={<Forms />}></Route>
             <Route path="/operatorsubmit" element={<OperatorSubmit />}></Route>
             <Route

@@ -65,8 +65,7 @@ const Sidebar = ({ role }) => {
     ],
   };
 
-  // Retrieve the links based on the user's role
-  const links = linksByRole[role] || linksByRole.admin; // Default to admin links if role is not found
+  const links = linksByRole[role] || linksByRole.admin;
 
   return (
     <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
@@ -74,7 +73,7 @@ const Sidebar = ({ role }) => {
         <>
           <div className="flex justify-between items-center">
             <Link
-              to="/"
+              to="/dashboard"
               onClick={handleCloseSideBar}
               className="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
             >

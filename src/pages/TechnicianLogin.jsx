@@ -17,10 +17,10 @@ function TechnicianLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("https://planningmaintenance.ir/technicianlogin", values)
+      .post("http://localhost:3000/technician/technicianlogin", values)
       .then((result) => {
         if (result.data.loginStatus) {
-          navigate("/personeldashboard");
+          navigate("/dashboard");
         } else {
           setError(result.data.Error);
         }

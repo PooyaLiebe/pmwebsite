@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 // noinspection ES6CheckImport
 
@@ -7,26 +8,37 @@ import "./loginstyle.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function OperatorLogin() {
+function OperatorLogin({ setRole }) {
   const [values, setValues] = useState({
     username: "",
     password: "",
   });
   const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     axios
       .post("http://localhost:3000/operator/operatorlogin", values)
       .then((result) => {
+        setLoading(false);
         if (result.data.loginStatus) {
+          setRole(result.data.role); // Set the role in the state
+          console.log("Logged in role:", result.data.role); // Log the role
           navigate("/dashboard");
         } else {
           setError(result.data.Error);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        setError("An error occurred. Please try again.");
+      });
   };
+
   return (
     <div className="login-container">
       <div className="wrapper">
@@ -59,7 +71,9 @@ function OperatorLogin() {
             />
             <FaLock className="icon" />
           </div>
-          <button type="submit">ورود</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "ورود"}
+          </button>
         </form>
       </div>
     </div>
