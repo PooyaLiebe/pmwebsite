@@ -1,4 +1,3 @@
- 
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { LineChart, Pie } from "../components/";
@@ -46,12 +45,12 @@ function Dashboard() {
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="bg-white flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center mt-4">
+            <div className="bg-white flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center mt-2">
               <Bar />
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="bg-white flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center mt-6">
+            <div className="bg-white flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center mt-2">
               <Area />
             </div>
           </div>
