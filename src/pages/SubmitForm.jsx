@@ -28,14 +28,14 @@ function SubmitForm() {
     problemdescription: "",
   });
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     axios
-      .post("https://planningmaintenance.ir/operatorsubmit", values)
+      .post("http://localhost:3000/auth/submitform", values)
       .then((result) => {
-        if (result.data.Status) {
-          navigate("/operatorsubmit");
-          alert("فرم با موفقیت ثبت شد");
+        if (result.data.loginStatus) {
+          navigate("/submitform");
+          console.log(result);
         } else {
           alert(result.data.Error);
         }
@@ -84,6 +84,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, problemdate: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -209,6 +210,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, stoptime: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -244,6 +246,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, shift: e.target.value })
                     }
+                    required
                   >
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -264,6 +267,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, suggesttime: e.target.value })
                     }
+                    required
                   >
                     <option value="فوری">فوری</option>
                     <option value="ساعات آتی">ساعات آتی</option>
@@ -285,6 +289,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, worksuggest: e.target.value })
                     }
+                    required
                   >
                     <option value="اضطراری">اضطراری</option>
                     <option value="بهسازی">بهسازی</option>
@@ -311,6 +316,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, fixrepair: e.target.value })
                     }
+                    required
                   >
                     <option value="درخواست اپراتور">درخواست اپراتور</option>
                     <option value="درخواست واحد نت">درخواست واحد نت</option>
@@ -335,6 +341,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, reportinseption: e.target.value })
                     }
+                    required
                   >
                     <option value="بازرسی فنی">بازرسی فنی</option>
                     <option value="واحد نت">واحد نت</option>
@@ -356,6 +363,7 @@ function SubmitForm() {
                     onChange={(e) =>
                       setValues({ ...values, faultdm: e.target.value })
                     }
+                    required
                   >
                     <option value="اختلال در کارکرد">اختلال در کارکرد</option>
                     <option value="تعمیرات دوره ای">تعمیرات دوره ای</option>

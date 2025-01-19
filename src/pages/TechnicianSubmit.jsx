@@ -136,6 +136,7 @@ function TechnicianSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, failurepart: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -153,6 +154,7 @@ function TechnicianSubmit() {
                     onChange={(e) => {
                       setValues({ ...values, failuretime: e.target.value });
                     }}
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -170,6 +172,7 @@ function TechnicianSubmit() {
                     onChange={(e) => {
                       setValues({ ...values, sparetime: e.target.value });
                     }}
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -190,6 +193,7 @@ function TechnicianSubmit() {
                         startfailuretime: e.target.value,
                       });
                     }}
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -210,6 +214,7 @@ function TechnicianSubmit() {
                         problemdescription: e.target.value,
                       })
                     }
+                    required
                   />
                 </div>
               </div>
@@ -260,6 +265,7 @@ function TechnicianSubmit() {
                                     kalaname: e.target.value,
                                   })
                                 }
+                                required
                               />
                             </div>
                             <div>
@@ -281,6 +287,7 @@ function TechnicianSubmit() {
                                     countkala: e.target.value,
                                   })
                                 }
+                                required
                               />
                             </div>
                             <div>
@@ -302,6 +309,7 @@ function TechnicianSubmit() {
                                     vahedkala: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 <option value="عدد">عدد</option>
                                 <option value="گرم">گرم</option>
@@ -332,6 +340,7 @@ function TechnicianSubmit() {
                                     codekala: e.target.value,
                                   })
                                 }
+                                required
                               />
                             </div>
                             <div>
@@ -353,6 +362,7 @@ function TechnicianSubmit() {
                                     flamekala: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 <option value="خیر">خیر</option>
                                 <option value="بله">بله</option>
@@ -377,6 +387,7 @@ function TechnicianSubmit() {
                                     shopkala: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 <option value="فوری">فوری</option>
                                 <option value="ضروری">ضروری</option>
@@ -420,6 +431,7 @@ function TechnicianSubmit() {
                                     personel: e.target.value,
                                   })
                                 }
+                                required
                               />
                             </div>
                             <div>
@@ -441,6 +453,7 @@ function TechnicianSubmit() {
                                     personelnumber: e.target.value,
                                   })
                                 }
+                                required
                               />
                             </div>
                             <div>
@@ -461,7 +474,8 @@ function TechnicianSubmit() {
                                     datesubmit: e.target.value,
                                   })
                                 }
-                              ></input>
+                                required
+                              />
                             </div>
                             <div>
                               <label
@@ -480,6 +494,7 @@ function TechnicianSubmit() {
                                     specialjob: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 <option value="کارشناس">کارشناس</option>
                                 <option value="رئیس">رئیس</option>
@@ -507,7 +522,8 @@ function TechnicianSubmit() {
                                     starttimerepair: e.target.value,
                                   })
                                 }
-                              ></input>
+                                required
+                              />
                             </div>
                             <div>
                               <label
@@ -527,7 +543,8 @@ function TechnicianSubmit() {
                                     endtimerepair: e.target.value,
                                   })
                                 }
-                              ></input>
+                                required
+                              />
                             </div>
                             <div>
                               <label
@@ -546,6 +563,7 @@ function TechnicianSubmit() {
                                     repairstatus: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 <option value="تعمیر کامل و قابل کاربری است">
                                   تعمیر کامل و قابل کاربری است
@@ -579,6 +597,7 @@ function TechnicianSubmit() {
                                     unitrepair: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 <option value="Mechanic">Mechanic</option>
                                 <option value="Electric">Electric</option>
@@ -603,6 +622,7 @@ function TechnicianSubmit() {
                                     shift: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 <option value="A">A</option>
                                 <option value="B">B</option>
@@ -626,6 +646,7 @@ function TechnicianSubmit() {
                                     delayreason: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 <option value="نبود قطعه یدکی">
                                   نبود قطعه یدکی
@@ -663,6 +684,7 @@ function TechnicianSubmit() {
                                     failurereason: e.target.value,
                                   })
                                 }
+                                required
                               >
                                 {" "}
                                 <option value="اضافه بار">اضافه بار</option>
@@ -710,6 +732,7 @@ function TechnicianSubmit() {
                                     failurereasondescription: e.target.value,
                                   })
                                 }
+                                required
                               ></textarea>
                             </div>
                             <div>
@@ -730,6 +753,7 @@ function TechnicianSubmit() {
                                     suggestionfailure: e.target.value,
                                   })
                                 }
+                                required
                               ></textarea>
                             </div>
                           </div>

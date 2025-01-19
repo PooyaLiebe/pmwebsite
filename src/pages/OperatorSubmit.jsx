@@ -84,6 +84,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, problemdate: e.target.value })
                     }
+                    required
                   />
                 </div>
                 <div className="input-field">
@@ -244,6 +245,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, shift: e.target.value })
                     }
+                    required
                   >
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -264,6 +266,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, suggesttime: e.target.value })
                     }
+                    required
                   >
                     <option value="فوری">فوری</option>
                     <option value="ساعات آتی">ساعات آتی</option>
@@ -285,6 +288,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, worksuggest: e.target.value })
                     }
+                    required
                   >
                     <option value="اضطراری">اضطراری</option>
                     <option value="بهسازی">بهسازی</option>
@@ -311,6 +315,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, fixrepair: e.target.value })
                     }
+                    required
                   >
                     <option value="درخواست اپراتور">درخواست اپراتور</option>
                     <option value="درخواست واحد نت">درخواست واحد نت</option>
@@ -335,6 +340,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, reportinseption: e.target.value })
                     }
+                    required
                   >
                     <option value="بازرسی فنی">بازرسی فنی</option>
                     <option value="واحد نت">واحد نت</option>
@@ -356,6 +362,7 @@ function OperatorSubmit() {
                     onChange={(e) =>
                       setValues({ ...values, faultdm: e.target.value })
                     }
+                    required
                   >
                     <option value="اختلال در کارکرد">اختلال در کارکرد</option>
                     <option value="تعمیرات دوره ای">تعمیرات دوره ای</option>

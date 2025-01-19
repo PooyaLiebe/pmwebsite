@@ -1,4 +1,3 @@
- 
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
@@ -319,7 +318,10 @@ function Forms({ role }) {
                 <label htmlFor="" className="text-center">
                   شخص دریافت کننده
                 </label>
-                <select className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2">
+                <select
+                  className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                  required
+                >
                   <option value="mechanic">مهران الماسی فر</option>
                   <option value="electric">مهدی زاده حسین</option>
                   <option value="utility">محمد راشدی</option>
@@ -335,6 +337,7 @@ function Forms({ role }) {
                     id="instructions"
                     className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={handleSelectChangeInstructions}
+                    required
                   >
                     <option value="خیر">خیر</option>
                     <option value="بله">بله</option>
@@ -347,6 +350,7 @@ function Forms({ role }) {
                     id="permit"
                     className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={handleSelectChangePermit}
+                    required
                   >
                     <option value="خیر">خیر</option>
                     <option value="بله">بله </option>
@@ -362,6 +366,7 @@ function Forms({ role }) {
                         submitformtype: e.target.value,
                       });
                     }}
+                    required
                   >
                     <option value="">EM</option>
                     <option value="">PM</option>
@@ -385,6 +390,7 @@ function Forms({ role }) {
                                 permitconfirmnumber: e.target.value,
                               });
                             }}
+                            required
                           />
                           <div className="flex justify-center text-center items-center mt-5">
                             <button
@@ -421,6 +427,7 @@ function Forms({ role }) {
                                 instructionsconfirm: e.target.value,
                               });
                             }}
+                            required
                           />
                           <div className="flex justify-center text-center items-center mt-5">
                             <button
@@ -461,15 +468,6 @@ function Forms({ role }) {
         )}
       </div>
       <div>
-        {/* <button
-          className={`bg-red-500 text-white px-4 py-2 rounded mb-4 ${
-            role === "operator" || role === "technician" ? "opacity-0" : ""
-          }`}
-          onClick={handleDelete}
-          disabled={role === "operator" || role === "technician"}
-        >
-          حذف
-        </button> */}
         <h1 className="bg-gray-200 rounded-md w-full text-xl flex text-center justify-center align-center mb-6">
           فرم های ثبت شده توسط تکنیسین
         </h1>
@@ -588,6 +586,7 @@ function Forms({ role }) {
                     name="stoptimeproduction"
                     id="stoptimeproduction"
                     className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                    required
                   />
                 </div>
                 <div className="text-center">
@@ -599,6 +598,7 @@ function Forms({ role }) {
                     name="starttimeproduction"
                     id="starttimeproduction"
                     className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                    required
                   />
                 </div>
                 <div>
@@ -610,6 +610,7 @@ function Forms({ role }) {
                     id="piecetimestop"
                     className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
                     onChange={handlePieceTime}
+                    required
                   >
                     <option value="خیر">خیر</option>
                     <option value="بله">بله</option>
@@ -626,6 +627,7 @@ function Forms({ role }) {
                           id="piecetimecount"
                           placeholder="مقدار زمان مقطعی را وارد کنید"
                           className="outline-none text-center text-14 w-full font-normal flex items-center rounded-md shadow-lg border-2 p-2 h-11 m-2"
+                          required
                         />
                       </div>
                     </>

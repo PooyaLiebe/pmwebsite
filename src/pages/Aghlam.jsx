@@ -64,6 +64,7 @@ function Aghlam() {
                   kalaname: e.target.value,
                 })
               }
+              required
             />
           </div>
           <div>
@@ -80,6 +81,7 @@ function Aghlam() {
                   countkala: e.target.value,
                 })
               }
+              required
             />
           </div>
           <div>
@@ -96,6 +98,7 @@ function Aghlam() {
                   vahedkala: e.target.value,
                 })
               }
+              required
             >
               <option value="عدد">عدد</option>
               <option value="گرم">گرم</option>
@@ -121,6 +124,7 @@ function Aghlam() {
                   codekala: e.target.value,
                 })
               }
+              required
             />
           </div>
           <div>
@@ -137,6 +141,7 @@ function Aghlam() {
                   flamekala: e.target.value,
                 })
               }
+              required
             >
               <option value="خیر">خیر</option>
               <option value="بله">بله</option>
@@ -156,6 +161,7 @@ function Aghlam() {
                   shopkala: e.target.value,
                 })
               }
+              required
             >
               <option value="فوری">فوری</option>
               <option value="ضروری">ضروری</option>
