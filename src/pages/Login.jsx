@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("https://ns1.parspack.co/auth/login", values)
+      .post("https://localhost/auth/login", values)
       .then((result) => {
         if (result.data.loginStatus) {
           navigate("/dashboard");
