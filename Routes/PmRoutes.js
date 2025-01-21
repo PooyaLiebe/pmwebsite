@@ -6,16 +6,16 @@ const router = express.Router();
 
 router.post("/login", (req, res) => {
   const sql =
-    "SELECT * FROM personel WHERE username = ? and password = ? AND role = ?";
+    "SELECT * FROM admin WHERE username = ? and password = ? AND role = ?";
   con.query(
     sql,
-    [req.body.username, req.body.password, "pm"],
+    [req.body.username, req.body.password, "admin"],
     (err, result) => {
       if (err) return res.json({ loginStatus: false, Error: "Query Failed" });
       if (result.length > 0) {
         const username = result[0].username;
         const role = result[0].role;
-        if (role === "pm") {
+        if (role === "admin") {
           const token = jwt.sign(
             { role: role, username: username, id: result[0].id },
             "jwt_secret_key",
