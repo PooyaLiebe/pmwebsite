@@ -1,30 +1,12 @@
 /* eslint-disable no-unused-vars */
 // noinspection ES6CheckImport
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./start.css";
 
 function Start() {
   const navigate = useNavigate();
-  useEffect(() => {
-    axios
-      .get("htt://localhost:3000/verify")
-      .then((result) => {
-        if (result.data.Status) {
-          if (result.data.role === "admin") {
-            navigate("/dashboard");
-          } else {
-            navigate("techniciansubmit");
-          }
-        } else {
-          navigate("/");
-        }
-      })
-      .catch((err) => console.log(err));
-  });
-
   return (
     <div className="start-container">
       <div className="start-wrapper">

@@ -9,7 +9,7 @@ router.post("/operatorlogin", (req, res) => {
     "SELECT * FROM operator WHERE username = ? and password = ? AND role = ?";
   con.query(
     sql,
-    [req.body.username, req.body.password, "operator"],
+    [req.body.username, req.body.password, req.body.role],
     (err, result) => {
       if (err) {
         console.error("Query Failed:", err);
