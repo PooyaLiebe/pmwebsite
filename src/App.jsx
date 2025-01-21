@@ -28,7 +28,6 @@ import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import TechnicianSubmit from "./pages/TechnicianSubmit";
 import HseSubmit from "./pages/HseSubmit";
-import { verifyUser } from "../server/api";
 
 const App = () => {
   const {
@@ -50,19 +49,6 @@ const App = () => {
     }
   }, [setCurrentColor, setCurrentMode]);
 
-  const [role, setRole] = useState("");
-  useEffect(() => {
-    const fetchUserRole = async () => {
-      const result = await verifyUser();
-      if (result.Status) {
-        setRole(result.role);
-      } else {
-        console.log("User Not Authenticated");
-      }
-    };
-    fetchUserRole();
-  }, []);
-
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
       <BrowserRouter>
@@ -71,7 +57,6 @@ const App = () => {
           currentColor={currentColor}
           themeSettings={themeSettings}
           setThemeSettings={setThemeSettings}
-          role={role} // Pass the role to AppContent
         />
       </BrowserRouter>
     </div>
@@ -83,7 +68,6 @@ const AppContent = ({
   currentColor,
   themeSettings,
   setThemeSettings,
-  role, // Receive the role prop
 }) => {
   const location = useLocation();
 
@@ -112,12 +96,12 @@ const AppContent = ({
       )}
       {activeMenu && !hideComponents ? (
         <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-          <Sidebar role={role} /> {/* Pass the role to Sidebar */}
+          <Sidebar /> {/* Pass the role to Sidebar */}
         </div>
       ) : (
         !hideComponents && (
           <div className="w-0 dark:bg-secondary-dark-bg">
-            <Sidebar role={role} /> {/* Pass the role to Sidebar */}
+            <Sidebar /> {/* Pass the role to Sidebar */}
           </div>
         )
       )}
