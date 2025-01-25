@@ -12,6 +12,6 @@ app.use("/auth", AdminRouter);
 app.use("/operator", OperatorRouter);
 app.use("/technician", TechnicianRouter);
 
-app.listen(8080, () => {
+app.listen(3306, () => {
   console.log("Server is Running");
 });

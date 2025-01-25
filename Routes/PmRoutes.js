@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/login", (req, res) => {
   const sql =
-    "SELECT * FROM admin WHERE username = ? and password = ? AND role = ?";
+    "SELECT * FROM users WHERE username = ? and password = ? AND role = ?";
   con.query(
     sql,
     [req.body.username, req.body.password, "admin"],
