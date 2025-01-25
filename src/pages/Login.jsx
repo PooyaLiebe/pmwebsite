@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("https://45.156.184.36:3306/auth/login", values)
+      .post("https://box110.parsvds.com:2083/auth/login", values)
       .then((result) => {
         if (result.data.loginStatus) {
           navigate("/dashboard");
