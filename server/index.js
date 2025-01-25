@@ -1,4 +1,3 @@
- 
 import express from "express";
 import cors from "cors";
 import { AdminRouter } from "../Routes/PmRoutes.js";
@@ -13,6 +12,6 @@ app.use("/auth", AdminRouter);
 app.use("/operator", OperatorRouter);
 app.use("/technician", TechnicianRouter);
 
-app.listen(3306, () => {
+app.listen(8080, () => {
   console.log("Server is Running");
 });
