@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
+ 
 import express from "express";
 import cors from "cors";
 import { AdminRouter } from "../Routes/PmRoutes.js";
 import { OperatorRouter } from "../Routes/OperatorRoutes.js";
 import { TechnicianRouter } from "../Routes/TechnicianRoutes.js";
-import Jwt from "jsonwebtoken";
 
 const app = express();
 
@@ -14,6 +13,6 @@ app.use("/auth", AdminRouter);
 app.use("/operator", OperatorRouter);
 app.use("/technician", TechnicianRouter);
 
-app.listen(3000, () => {
+app.listen(3306, () => {
   console.log("Server is Running");
 });

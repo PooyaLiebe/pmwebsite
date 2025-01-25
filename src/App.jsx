@@ -20,14 +20,11 @@ import {
   Projects,
   Aghlam,
   Technician,
-  HseForms,
   Start,
-  OperatorDashboard,
 } from "./pages";
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import TechnicianSubmit from "./pages/TechnicianSubmit";
-import HseSubmit from "./pages/HseSubmit";
 
 const App = () => {
   const {
@@ -72,6 +69,7 @@ const AppContent = ({
   const location = useLocation();
 
   const hideComponents = [
+    "/",
     "/login",
     "/technicianlogin",
     "/operatorlogin",
@@ -95,12 +93,12 @@ const AppContent = ({
       )}
       {activeMenu && !hideComponents ? (
         <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-          <Sidebar /> {/* Pass the role to Sidebar */}
+          <Sidebar />
         </div>
       ) : (
         !hideComponents && (
           <div className="w-0 dark:bg-secondary-dark-bg">
-            <Sidebar /> {/* Pass the role to Sidebar */}
+            <Sidebar />
           </div>
         )
       )}
@@ -119,9 +117,9 @@ const AppContent = ({
         <div>
           {themeSettings && <ThemeSettings />}
           <Routes>
-           
-
-            <Route path="/" element={<Dashboard />}></Route>
+            <Route path="/" element={<Start />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
             <Route path="/operatorlogin" element={<OperatorLogin />} />
             <Route path="/forms" element={<Forms />}></Route>
