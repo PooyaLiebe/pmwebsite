@@ -1,10 +1,10 @@
 import mysql from "mysql";
 
 const con = mysql.createConnection({
-  host: "127.0.0.1",
-  user: "qeltcenb_pooya",
+  host: "localhost",
+  user: "planning_pooya",
   password: "Po@60376911",
-  database: "qeltcenb_PM",
+  database: "planning_pm",
   port: 3306,
 });
 
