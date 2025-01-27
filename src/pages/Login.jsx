@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("https://127.0.0.1:3306/auth/login", values)
+      .post("https://localhost:3306/auth/login", values)
       .then((result) => {
         if (result.data.loginStatus) {
           navigate("/dashboard");
