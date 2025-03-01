@@ -1,10 +1,11 @@
-/* eslint-disable no-unused-vars */
+<<<<<<< HEAD
+
+=======
 import express from "express";
 import cors from "cors";
 import { AdminRouter } from "../Routes/PmRoutes.js";
 import { OperatorRouter } from "../Routes/OperatorRoutes.js";
 import { TechnicianRouter } from "../Routes/TechnicianRoutes.js";
-import Jwt from "jsonwebtoken";
 
 const app = express();
 
@@ -17,3 +18,4 @@ app.use("/technician", TechnicianRouter);
 app.listen(3000, () => {
   console.log("Server is Running");
 });
+>>>>>>> 52a233e (create index.js)

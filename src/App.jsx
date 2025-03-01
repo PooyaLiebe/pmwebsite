@@ -20,14 +20,11 @@ import {
   Projects,
   Aghlam,
   Technician,
-  HseForms,
   Start,
-  OperatorDashboard,
 } from "./pages";
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import TechnicianSubmit from "./pages/TechnicianSubmit";
-import HseSubmit from "./pages/HseSubmit";
 
 const App = () => {
   const {
@@ -96,12 +93,12 @@ const AppContent = ({
       )}
       {activeMenu && !hideComponents ? (
         <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-          <Sidebar /> {/* Pass the role to Sidebar */}
+          <Sidebar />
         </div>
       ) : (
         !hideComponents && (
           <div className="w-0 dark:bg-secondary-dark-bg">
-            <Sidebar /> {/* Pass the role to Sidebar */}
+            <Sidebar />
           </div>
         )
       )}

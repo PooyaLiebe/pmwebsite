@@ -18,9 +18,12 @@ function Login() {
     event.preventDefault();
     axios
       .post("https://localhost/auth/login", values)
-      .then((res) => {
-        console.log(res);
-        navigate("/dashboard");
+      .then((result) => {
+        if (result.data.loginStatus) {
+          navigate("/dashboard");
+        } else {
+          setError(result.data.Error);
+        }
       })
       .catch((err) => console.log(err));
   };
