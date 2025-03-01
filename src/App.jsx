@@ -12,7 +12,6 @@ import {
   OperatorSubmit,
   Kanban,
   Area,
-  Login,
   Bar,
   TechnicianLogin,
   OperatorLogin,
@@ -20,7 +19,6 @@ import {
   Projects,
   Aghlam,
   Technician,
-  Start,
 } from "./pages";
 import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
@@ -117,8 +115,6 @@ const AppContent = ({
         <div>
           {themeSettings && <ThemeSettings />}
           <Routes>
-            <Route path="/" element={<Start />}></Route>
-            <Route path="/login" element={<Login />}></Route>
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
             <Route path="/operatorlogin" element={<OperatorLogin />} />
