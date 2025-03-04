@@ -114,9 +114,9 @@ const AppContent = ({
         <div>
           {themeSettings && <ThemeSettings />}
           <Routes>
-            <Route path="/" element={<Start />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/dashboard" element={<Dashboard />}></Route>
+            {/* <Route path="/" element={<Start />}></Route>
+            <Route path="/login" element={<Login />}></Route> */}
+            <Route path="/" element={<Dashboard />}></Route>
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
             <Route path="/operatorlogin" element={<OperatorLogin />} />
             <Route path="/forms" element={<Forms />}></Route>

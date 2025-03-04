@@ -33,24 +33,24 @@ function Dashboard() {
         </div>
       </div>
       <div className="flex justify-center text-center align-center">
-        <div className="bg-gray-200 grid lg:grid-cols-2 gap-2 sm:grid-cols-2 place-self-center dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl lg:w-full overflow-hidden">
+        <div className="grid lg:grid-cols-2 gap-2 sm:grid-cols-2 place-self-center dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl lg:w-full overflow-hidden">
           <div className="flex justify-center">
-            <div className="bg-white flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center">
+            <div className="bg-gray-200  flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center">
               <LineChart />
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="bg-white flex justify-center items-center align-center rounded-lg sm:w-full lg:w-[400px] h-full  mt-2">
+            <div className="bg-gray-200  flex justify-center items-center align-center rounded-lg sm:w-full lg:w-[400px] h-full  mt-2">
               <Pie />
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="bg-white flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center mt-2">
+            <div className="bg-gray-200  flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center mt-2">
               <Bar />
             </div>
           </div>
           <div className="flex justify-center">
-            <div className="bg-white flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center mt-2">
+            <div className="bg-gray-200  flex justify-center rounded-lg sm:w-full lg:w-[400px] h-full items-center align-center mt-2">
               <Area />
             </div>
           </div>
