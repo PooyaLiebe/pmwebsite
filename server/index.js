@@ -15,4 +15,3 @@ app.use("/technician", TechnicianRouter);
 app.listen(3000, () => {
   console.log("Server is Running");
 });
->>>>>>> 52a233e (create index.js)

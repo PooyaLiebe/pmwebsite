@@ -12,6 +12,8 @@ import {
   OperatorSubmit,
   Kanban,
   Area,
+  Login,
+  Start,
   Bar,
   TechnicianLogin,
   OperatorLogin,
@@ -67,6 +69,7 @@ const AppContent = ({
   const location = useLocation();
 
   const hideComponents = [
+    "/",
     "/login",
     "/technicianlogin",
     "/operatorlogin",
@@ -114,9 +117,9 @@ const AppContent = ({
         <div>
           {themeSettings && <ThemeSettings />}
           <Routes>
-            {/* <Route path="/" element={<Start />}></Route>
-            <Route path="/login" element={<Login />}></Route> */}
-            <Route path="/" element={<Dashboard />}></Route>
+            <Route path="/" element={<Start />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/technicianlogin" element={<TechnicianLogin />} />
             <Route path="/operatorlogin" element={<OperatorLogin />} />
             <Route path="/forms" element={<Forms />}></Route>
